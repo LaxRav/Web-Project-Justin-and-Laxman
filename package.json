@@ -1,0 +1,25 @@
+{
+  "name": "web-project-justin-and-laxman",
+  "version": "1.0.0",
+  "description": "J & L Cinemas welcomes you to a world of fun and excitement with virtual reality",
+  "main": "routes.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LaxRav/Web-Project-Justin-and-Laxman.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LaxRav/Web-Project-Justin-and-Laxman/issues"
+  },
+  "homepage": "https://github.com/LaxRav/Web-Project-Justin-and-Laxman#readme"
+}
