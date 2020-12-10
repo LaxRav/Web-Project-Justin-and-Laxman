@@ -33,9 +33,9 @@ var database = {
        customerSchema = schema({
       name: String,
       age: Number,
-      creditcardInfo: String,
-      Address: String,
-      gender: String,
+      Region: String,
+      Item: String,
+      Price: Number,
       Identification: String
        });
        var connection = mongoose.connection;
@@ -48,25 +48,21 @@ var database = {
      })
     },
   
-     addEvent: function(n, d, sd, st, ed, et, callback) {
-        var newEvent = new eventModel({
+     addCustomer: function(n, a, R, it, P, I, callback) {
+        var newCustomer = new customerModel({
             name: n,
-            description: d,
-            start: {
-                date: sd,
-                time: st
-            },
-            end: {
-                date: ed,
-                time: et
-            }
+            age: a,
+            Region: R,
+            Item: it,
+            Price: P,
+            Identification: I
         });
-        newEvent.save(callback);
+        newCustomer.save(callback);
 
     },
 
-    getAllEvents: function(callback) {
-        eventModel.find({}, callback);
+    getAllCustomer: function(callback) {
+        customerModel.find({}, callback);
     },
 
     getEvent: function(id, callback) {
