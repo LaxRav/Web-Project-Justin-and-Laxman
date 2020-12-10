@@ -4,7 +4,7 @@ db.connect();
 
     var routes = function() {
         var router = require('express').Router();
-
+  
         router.use(bodyParser.urlencoded({
    extended: true
         }));
@@ -13,7 +13,6 @@ db.connect();
      res.sendFile(__dirname + "/views/index.html");
         });
         
-
         router.get('/css/*', function(req, res) {
      res.sendFile(__dirname+"/views/"+req.originalUrl);
         });
