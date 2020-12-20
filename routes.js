@@ -9,9 +9,28 @@ db.connect();
    extended: true
         }));
 
+        /* These first 5 routes are for views only
+        */
+
         router.get('/', function(req, res) {
      res.sendFile(__dirname + "/views/index.html");
         });
+
+        router.get('/rent', function(req, res) {
+         res.sendFile(__dirname + "/views/rent.html");
+            });
+
+            router.get('/contact', function(req, res) {
+               res.sendFile(__dirname + "/views/contact.html");
+                  });
+
+                  router.get('/Search', function(req, res) {
+                     res.sendFile(__dirname + "/views/search.html");
+                        });
+
+                        router.get('/review', function(req, res) {
+                           res.sendFile(__dirname + "/views/review.html");
+                              });
         
         router.get('/css/*', function(req, res) {
      res.sendFile(__dirname+"/views/"+req.originalUrl);
