@@ -31,12 +31,12 @@ var database = {
            language: String
        }),
        customerSchema = schema({
-      name: String,
-      age: Number,
+      Name: String,
       Region: String,
       Item: String,
       Price: Number,
-      Identification: String
+      ID: String,
+      PhoneNo: Number
        });
        var connection = mongoose.connection;
       movieModel = connection.model('movies', movieSchema);
@@ -48,25 +48,25 @@ var database = {
      })
     },
   
-     addCustomer: function(n, a, R, it, P, I, callback) {
+     addCustomer: function(n, R, it, P, id, pn, callback) {
         var newCustomer = new customerModel({
-            name: n,
-            age: a,
+            Name: n,
             Region: R,
             Item: it,
             Price: P,
-            Identification: I
+            ID: id,
+            PhoneNo: pn
         });
         newCustomer.save(callback);
 
     },
 
     getAllCustomer: function(callback) {
-        customerModel.find({}, callback);
+        movieModel.find({}, callback);
     },
 
-    getEvent: function(id, callback) {
-        eventModel.findById(id, callback);
+    getMovieById: function(id, callback) {
+        movieModel.findById(id, callback);
     },
 
     updateEvent: function(id, n, d, sd, st, ed, et,callback) {
