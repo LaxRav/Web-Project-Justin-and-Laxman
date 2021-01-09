@@ -4,6 +4,7 @@ var movieSchema = {};
 var customerSchema = {};
 var movieModel;
 var customerModel;
+var accountModel;
 
 
 mongoose.set('useNewUrlParser', true);
@@ -38,15 +39,25 @@ var database = {
       ID: String,
       PhoneNo: Number
        });
+
+       accountSchema = schema({
+        email: String,
+        password: String,
+        token: String
+    });
+
+
        var connection = mongoose.connection;
-      movieModel = connection.model('Movies', movieSchema);
-      customerModel = connection.model('Customer', customerSchema);
+      movieModel = connection.model('movies', movieSchema);
+      customerModel = connection.model('Customers', customerSchema);
+      accountModel= connection.model('accounts', accountSchema);
 
    } else {
        console.log("Error connecting to Mongo DB");
    }
      })
     },
+
   
      addCustomer: function(n, r, it, p, id, pn, callback) {
         var newCustomer = new customerModel({
