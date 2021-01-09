@@ -5,16 +5,16 @@ $(document).ready(function () {
     })
         .done(
             function (data) {
-                data.forEach(function (movies) {
+                data.forEach(function (Movies) {
                     $(".movies").append(`
                     <article>
-                        <h2>${ovies.movie}</h2>
+                        <h2>${Movies.movie}</h2>
                         <div>
-                           Description: ${movies.description}<br>
-                           Genre : ${movies.genre}<br>
-                            Price: ${movies.price}<br>
-                            Release: ${movies.release}<br>
-                            Language: ${movies.language}
+                           Description: ${Movies.description}<br>
+                           Genre : ${Movies.genre}<br>
+                            Price: ${Movies.price}<br>
+                            Release: ${Movies.release}<br>
+                            Language: ${Movies.language}
                         </div>
                     </article>
                 `);

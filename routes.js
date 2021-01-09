@@ -34,11 +34,11 @@ db.connect();
                      });
         
                router.get('/movies', function(req, res) {
-                        db.getAllMovieInfo(function (err, movies) {
+                        db.getAllMovieInfo(function (err, Movies) {
                         if(err) {
                            res.status(500).send("Unable to get movie information");
                         } else {
-                           res.status(200).send(movies);
+                           res.status(200).send(Movies);
                         }
                         })
                         
@@ -46,11 +46,11 @@ db.connect();
 
                      router.get('/api/movies/:id', function (req, res) {
                         var id = req.params.id;
-                        db.getMovieById(id, function(err, movies) {
+                        db.getMovieById(id, function(err, Movies) {
                             if (err) {
                                 res.status(500).send("Unable to find a movie detail with this id");
                             } else {
-                                res.status(200).send(movies);
+                                res.status(200).send(Movies);
                             }
                         });
                

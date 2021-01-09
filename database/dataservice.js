@@ -48,7 +48,7 @@ var database = {
 
 
        var connection = mongoose.connection;
-      movieModel = connection.model('movies', movieSchema);
+      movieModel = connection.model('Movies', movieSchema);
       customerModel = connection.model('Customers', customerSchema);
       accountModel= connection.model('accounts', accountSchema);
 
