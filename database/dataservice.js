@@ -26,7 +26,7 @@ var database = {
            price: Number,
            description: String,    
            genre: String,
-           release: Number,
+           release: String,
            distributor: String,
            language: String
        }),
@@ -39,7 +39,7 @@ var database = {
       PhoneNo: Number
        });
        var connection = mongoose.connection;
-      movieModel = connection.model('movies', movieSchema);
+      movieModel = connection.model('Movies', movieSchema);
       customerModel = connection.model('Customer', customerSchema);
 
    } else {
@@ -48,12 +48,12 @@ var database = {
      })
     },
   
-     addCustomer: function(n, R, it, P, id, pn, callback) {
+     addCustomer: function(n, r, it, p, id, pn, callback) {
         var newCustomer = new customerModel({
             Name: n,
-            Region: R,
+            Region: r,
             Item: it,
-            Price: P,
+            Price: p,
             ID: id,
             PhoneNo: pn
         });
@@ -62,34 +62,38 @@ var database = {
     },
 
     getAllCustomer: function(callback) {
-        movieModel.find({}, callback);
+        customerModel.find({}, callback);
     },
 
     getMovieById: function(id, callback) {
         movieModel.findById(id, callback);
     },
 
-    updateEvent: function(id, n, d, sd, st, ed, et,callback) {
-        var updatedEvent = {
-            name: n,
+    updateMovieById: function(id, m, p, d, g, r, di, l, callback) {
+        var updatedMovie = {
+            movie: m,
+            price: p,
             description: d,
-            start: {
-                date: sd,
-                time: st
-            },
-            end: {
-                date: ed,
-                time: et
-            }
+            genre: g, 
+            release: r,
+            distributor: di,
+            language: l
         };
-        eventModel.findByIdAndUpdate(id, updatedEvent, callback);
+        movieModel.findByIdAndUpdate(id, updatedMovie, callback);
     },
 
-    deleteEvent: function(id,callback) {
-        eventModel.findByIdAndDelete(id,callback);
+    deleteMovie: function(id,callback) {
+        movieModel.findByIdAndDelete(id,callback);
+    },
+
+    deleteCustomer: function(id, callback) {
+        customerModel.findByIdAndDelete(id, callback);
+    },
+
+    getAllMovieInfo: function(callback) {
+   movieModel.find({}, callback);
     }
 
-
- }
+ };
 
 module.exports = database;
