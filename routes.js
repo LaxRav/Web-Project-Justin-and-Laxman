@@ -12,7 +12,7 @@ db.connect();
         }));
 
         /*   
-        These first 5 routes are for views only
+        These first 7 routes are for views only
         */
 
         router.get('/', function(req, res) {
@@ -33,6 +33,14 @@ db.connect();
 
                router.get('/review', function(req, res) {
                   res.sendFile(__dirname + "/views/review.html");
+                     });
+
+                     router.get('/login', function (req, res) {
+                        res.sendFile(__dirname + "/views/login.html");
+                     });
+                  
+                     router.get('/register', function (req, res) {
+                        res.sendFile(__dirname + "/views/register.html");
                      });
         
                router.get('/movies', function(req, res) {
@@ -58,16 +66,7 @@ db.connect();
                
                     });
 
-                    router.get('/customer', function(req, res) {
-                     db.getAllCustomer(function (err, Customer) {
-                     if(err) {
-                        res.status(500).send("Unable to get movie information");
-                     } else {
-                        res.status(200).send(Customer);
-                     }
-                     })
-                     
-                  })
+                   
                
         
         router.get('/css/*', function(req, res) {
@@ -79,13 +78,7 @@ db.connect();
         });
 
 
-        router.get('/login', function (req, res) {
-         res.sendFile(__dirname + "/views/login.html");
-      });
-   
-      router.get('/register', function (req, res) {
-         res.sendFile(__dirname + "/views/register.html");
-      });
+       
 
       router.post('/login', function (req, res) {
          var data = req.body;

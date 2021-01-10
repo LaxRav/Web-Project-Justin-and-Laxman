@@ -88,9 +88,7 @@ var database = {
         movieModel.findByIdAndDelete(id,callback);
     },
 
-    deleteCustomer: function(id, callback) {
-        customerModel.findByIdAndDelete(id, callback);
-    },
+   
 
     getAllMovieInfo: function(callback) {
    movieModel.find({}, callback);
