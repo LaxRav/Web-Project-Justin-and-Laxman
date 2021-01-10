@@ -89,7 +89,7 @@ db.connect();
 
       router.post('/login', function (req, res) {
          var data = req.body;
-         db.login(data.username, data.password, function (err, user) {
+         db.login(data.email, data.password, function (err, user) {
              if (err) {
                  res.status(401).send("Login unsucessful. Please try again later");
              } else {
@@ -97,7 +97,7 @@ db.connect();
                      res.status(401).send("Login unsucessful. Please try again later");
                  } else {
       
-                     var strToHash = user.username + Date.now();
+                     var strToHash = user.email + Date.now();
                      var token = crypto.createHash('md5').update(strToHash).digest('hex');
                      db.updateToken(user._id, token, function (err, user) {
                         res.sendFile(__dirname + "/views/rent.html");
