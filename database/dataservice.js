@@ -4,6 +4,7 @@ var movieSchema = {};
 var customerSchema = {};
 var movieModel;
 var customerModel;
+var accountModel;
 
 
 mongoose.set('useNewUrlParser', true);
@@ -28,7 +29,8 @@ var database = {
            genre: String,
            release: String,
            distributor: String,
-           language: String
+           language: String,
+           image: String
        }),
        customerSchema = schema({
       Name: String,
@@ -38,15 +40,25 @@ var database = {
       ID: String,
       PhoneNo: Number
        });
+
+       accountSchema = schema({
+        email: String,
+        password: String,
+        token: String
+    });
+
+
        var connection = mongoose.connection;
       movieModel = connection.model('Movies', movieSchema);
-      customerModel = connection.model('Customer', customerSchema);
+      customerModel = connection.model('Customers', customerSchema);
+      accountModel= connection.model('accounts', accountSchema);
 
    } else {
        console.log("Error connecting to Mongo DB");
    }
      })
     },
+
   
      addCustomer: function(n, r, it, p, id, pn, callback) {
         var newCustomer = new customerModel({
@@ -92,7 +104,38 @@ var database = {
 
     getAllMovieInfo: function(callback) {
    movieModel.find({}, callback);
-    }
+    },
+
+    login: function (e, p, callback) {
+        accountModel.findOne({ email: e, password: p }, callback);
+    },
+    updateToken: function (id, token, callback) {
+        accountModel.findByIdAndUpdate(id, { token: token }, callback);
+    },
+    checkToken: function(token,callback) {
+        accountModel.findOne({token:token},callback);
+    },
+    removeToken: function(id,callback) {
+        accountModel.findByIdAndUpdate(id, {$unset: {token: 1}},callback);
+    },
+
+
+    addAccount: function(e,p, callback) {
+        var newAccount = new accountModel({
+            email: e,
+            password: p
+        });
+        newAccount.save(callback);
+    },
+
+    getAllAccounts: function(callback) {
+        accountModel.find({},callback);
+    },
+
+    getAccount: function(id, callback) {
+        accountModel.findById(id,callback);
+    },
+
 
  };
 
