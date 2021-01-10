@@ -1,5 +1,7 @@
 var bodyParser = require('body-parser');
 var db = require('./database/dataservice.js');
+var crypto = require('crypto');
+
 db.connect();
 
     var routes = function() {
@@ -98,7 +100,9 @@ db.connect();
                      var strToHash = user.username + Date.now();
                      var token = crypto.createHash('md5').update(strToHash).digest('hex');
                      db.updateToken(user._id, token, function (err, user) {
-                         res.status(200).json({ 'message': 'Login successful.', 'token': token });
+                        res.sendFile(__dirname + "/views/rent.html");
+
+                    //     res.status(200).json({ 'message': 'Login successful.', 'token': token });
                      });
       
                  }
@@ -124,7 +128,29 @@ db.connect();
              })
          }
    
-     })
+     }),
+
+     router.get('/accounts', function (req, res) {
+    
+        db.getAllAccounts(function (err, events) {
+            res.send(events);
+    
+        })
+    })
+    router.get('/accounts/:id', function (req, res) {
+        var id = req.params.id;
+        db.getAccount(id, function (err, event) {
+            res.send(event);
+        })
+
+    })
+    router.post('/registeraccount', function (req, res) {
+        var data = req.body;
+        db.addAccount(data.email, data.password,
+            function (err, event) {
+                res.redirect('back');
+            })
+    });
 
 
 
