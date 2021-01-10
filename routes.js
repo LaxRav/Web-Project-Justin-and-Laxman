@@ -36,11 +36,11 @@ db.connect();
                      });
         
                router.get('/movies', function(req, res) {
-                        db.getAllMovieInfo(function (err, Movies) {
+                        db.getAllMovieInfo(function (err, movies) {
                         if(err) {
                            res.status(500).send("Unable to get movie information");
                         } else {
-                           res.status(200).send(Movies);
+                           res.status(200).send(movies);
                         }
                         })
                         
@@ -132,23 +132,23 @@ db.connect();
 
      router.get('/accounts', function (req, res) {
     
-        db.getAllAccounts(function (err, events) {
-            res.send(events);
+        db.getAllAccounts(function (err, accounts) {
+            res.send(accounts);
     
         })
     })
     router.get('/accounts/:id', function (req, res) {
         var id = req.params.id;
-        db.getAccount(id, function (err, event) {
-            res.send(event);
+        db.getAccount(id, function (err, accounts) {
+            res.send(accounts);
         })
 
     })
     router.post('/registeraccount', function (req, res) {
         var data = req.body;
         db.addAccount(data.email, data.password,
-            function (err, event) {
-                res.sendFile(__dirname + "/views/rent.html");
+            function (err, accounts) {
+               res.send(accounts);
             })
     });
 

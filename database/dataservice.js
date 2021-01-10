@@ -1,10 +1,9 @@
 var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 var movieSchema = {};
-var customerSchema = {};
-var movieModel;
-var customerModel;
+var accountSchema = {};
 var accountModel;
+var movieModel;
 
 
 mongoose.set('useNewUrlParser', true);
@@ -32,14 +31,6 @@ var database = {
            language: String,
            image: String
        }),
-       customerSchema = schema({
-      Name: String,
-      Region: String,
-      Item: String,
-      Price: Number,
-      ID: String,
-      PhoneNo: Number
-       });
 
        accountSchema = schema({
         email: String,
@@ -49,8 +40,7 @@ var database = {
 
 
        var connection = mongoose.connection;
-      movieModel = connection.model('Movies', movieSchema);
-      customerModel = connection.model('Customers', customerSchema);
+      movieModel = connection.model('movies', movieSchema);
       accountModel= connection.model('accounts', accountSchema);
 
    } else {
