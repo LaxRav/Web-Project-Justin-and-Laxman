@@ -148,7 +148,7 @@ db.connect();
         var data = req.body;
         db.addAccount(data.email, data.password,
             function (err, event) {
-                res.redirect('back');
+                res.sendFile(__dirname + "/views/rent.html");
             })
     });
 
