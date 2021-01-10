@@ -45,7 +45,7 @@ db.connect();
                         
                      })
 
-                     router.get('/api/movies/:id', function (req, res) {
+                     router.get('/movies/:id', function (req, res) {
                         var id = req.params.id;
                         db.getMovieById(id, function(err, Movies) {
                             if (err) {

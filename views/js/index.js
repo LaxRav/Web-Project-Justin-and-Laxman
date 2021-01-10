@@ -1,11 +1,11 @@
 $(document).ready(function () {
     $.ajax({
-        url: "/",
+        url: "/movies",
         method: "get"
     })
         .done(
             function (data) {
-                data.forEach(function (Movies) {
+                data.forEach (function(Movies) {
                     $(".movies").append(`
                     <article>
                         <h2>${Movies.movie}</h2>
