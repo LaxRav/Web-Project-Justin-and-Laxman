@@ -8,9 +8,6 @@ $(document).ready(function () {
                 data.forEach (function(movies) {
                     $(".movies").append(`
                     <article>
-                    <div>
-                    <p>${movies.image}<p>
-                    <div>
                         <h2>${movies.movie}</h2>
                         <div>
                            Description: ${movies.description}<br>
