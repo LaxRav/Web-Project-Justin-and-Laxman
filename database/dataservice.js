@@ -89,7 +89,6 @@ var database = {
     },
 
    
-
     getAllMovieInfo: function(callback) {
    movieModel.find({}, callback);
     },
