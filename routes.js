@@ -39,6 +39,10 @@ db.connect();
         These first 8 routes are for views only
         */
 
+       router.get('/resources/*', function(req, res) {
+        res.sendFile(__dirname+"/resources/"+req.originalUrl);
+           });
+        
         router.get('/', function(req, res) {
      res.sendFile(__dirname + "/views/index.html");
         });
@@ -94,9 +98,34 @@ db.connect();
                
                     });
 
+  //route to search for movie objects
+  router.post('/movies/search', function (req, res) {
+    var movie = req.body.movie;
+    db.searchMovie(movie, function(err, movies) {
+        if (err) {
+            res.status(500).send("Sorry, Unable to retrieve records based on your search");
+        } else {
+            res.status(200).send(movies);
+        }
+    })
+
+});
+
+router.post('/genre/search', function (req, res) {
+    var genre = req.body.genre;
+    db.searchMovieByGenre(genre, function(err, movies) {
+        if (err) {
+            res.status(500).send("Sorry, Unable to retrieve records based on your search");
+        } else {
+            res.status(200).send(movies);
+        }
+    })
+
+});
+
+// search
                    
-               
-        
+            
         router.get('/css/*', function(req, res) {
      res.sendFile(__dirname+"/views/"+req.originalUrl);
         });
@@ -152,7 +181,6 @@ db.connect();
      }),
 
      router.get('/accounts', function (req, res) {
-    
         db.getAllAccounts(function (err, accounts) {
             res.send(accounts);
     

@@ -1,20 +1,20 @@
 $(document).ready(function () {
     $.ajax({
-        url: "/movies",
-        method: "get"
+        url: "/movies/search",
+        method: "post"
     })
         .done(
             function (data) {
                 data.forEach (function(movies) {
-                    $(".movies").append(`
+                    $(".super").append(`
                     <article>
                         <h2>${movies.movie}</h2>
                         <div>
-                           Description: ${movies.description}<br>
-                           Genre : ${movies.genre}<br>
-                            Price: ${movies.price}<br>
+                           Price: ${movies.price}<br>
+                           Description : ${movies.description}<br>
                             Release: ${movies.release}<br>
-                            Language: ${movies.language}
+                            Distributor: ${movies.distributor}<br>
+                            Language: ${movies.language}<br>
                         </div>
                     </article>
                 `);
