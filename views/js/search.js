@@ -5,7 +5,7 @@ $(document).ready(function () {
     })
         .done(
             function (data) {
-                data.forEach (function(movies) {
+                data.forEach (function (movies) {
                     $(".super").append(`
                     <article>
                         <h2>${movies.movie}</h2>
@@ -26,7 +26,10 @@ $(document).ready(function () {
             function (err) {
              console.log(err.responseText);
             }
-  )
+  );
 
 
-        })
+        });
+        //for button
+
+        $(".search").on
