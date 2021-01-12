@@ -11,8 +11,32 @@ db.connect();
    extended: true
         }));
 
+
+        router.use(function(req,res,next){
+            //if it is api request, then check for valid token
+            if(req.url.includes("/api")) {
+                //first time use req.query
+                var token = req.query.token;
+                if (token == undefined) {
+                    res.status(401).send("No tokens are provided");
+                } else {
+                    db.checkToken(token, function (err, user) {
+                        if (err || user == null) {
+                            res.status(401).send("Invalid token provided");
+                        } else {
+                            //means proceed on with the request.
+                            next();
+                        }
+                    });
+                }
+            } else { //means any other url, no need to check for auth 
+                //means proceed on with the request.
+                next();
+            }
+        })
+
         /*   
-        These first 7 routes are for views only
+        These first 8 routes are for views only
         */
 
         router.get('/', function(req, res) {
@@ -41,6 +65,10 @@ db.connect();
                   
                      router.get('/register', function (req, res) {
                         res.sendFile(__dirname + "/views/register.html");
+                     });
+
+                     router.get('/rent', function (req, res) {
+                        res.sendFile(__dirname + "/views/rent.html");
                      });
         
                router.get('/movies', function(req, res) {
@@ -80,29 +108,29 @@ db.connect();
 
        
 
-      router.post('/login', function (req, res) {
-         var data = req.body;
-         db.login(data.email, data.password, function (err, user) {
-             if (err) {
-                 res.status(401).send("Login unsucessful. Please try again later");
-             } else {
-                 if (user == null) {
-                     res.status(401).send("Login unsucessful. Please try again later");
-                 } else {
-      
-                     var strToHash = user.email + Date.now();
-                     var token = crypto.createHash('md5').update(strToHash).digest('hex');
-                     db.updateToken(user._id, token, function (err, user) {
-                        res.sendFile(__dirname + "/views/rent.html");
 
-                    //     res.status(200).json({ 'message': 'Login successful.', 'token': token });
-                     });
-      
-                 }
-             }
-         })
-      
-      })
+
+      router.post('/login', function (req, res) {
+        var data = req.body;
+        db.login(data.email, data.password, function (err, account) {
+            if (err) {
+                res.status(401).send("Login unsucessful. Please try again later");
+            } else {
+                if (account == null) {
+                    res.status(401).send("Login unsucessful. Please try again later");
+                } else {
+
+                    var strToHash = account.email + Date.now();
+                    var token = crypto.createHash('md5').update(strToHash).digest('hex');
+                    db.updateToken(a._id, token, function (err, account) {
+                        res.status(200).json({ 'message': 'Login successful.', 'token': token });
+                    });
+
+                }
+            }
+        })
+
+    })
 
 
       router.get("/logout", function (req, res) {
