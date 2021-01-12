@@ -17,7 +17,7 @@ mongoose.set('debug', true);
 
 var database = {
  connect: function() {
-     mongoose.connect('mongodb://localhost:27017/J&LHUB', function(err) {
+     mongoose.connect('mongodb://localhost:27017/J&LHub', function(err) {
    if(err == null) {
        console.log("Connected to Mongo DB");
        //initializing values
