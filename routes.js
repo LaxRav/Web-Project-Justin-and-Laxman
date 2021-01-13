@@ -141,17 +141,19 @@ router.post('/genre/search', function (req, res) {
 
       router.post('/login', function (req, res) {
         var data = req.body;
+            console.log(data);
         db.login(data.email, data.password, function (err, account) {
             if (err) {
                 res.status(401).send("Login unsucessful. Please try again later");
             } else {
+                console.log(account);
                 if (account == null) {
                     res.status(401).send("Login unsucessful. Please try again later");
                 } else {
 
                     var strToHash = account.email + Date.now();
                     var token = crypto.createHash('md5').update(strToHash).digest('hex');
-                    db.updateToken(a._id, token, function (err, account) {
+                    db.updateToken(account._id, token, function (err, account) {
                         res.status(200).json({ 'message': 'Login successful.', 'token': token });
                     });
 

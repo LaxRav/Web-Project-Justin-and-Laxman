@@ -16,44 +16,44 @@ mongoose.set('debug', true);
 
 
 var database = {
- connect: function() {
-     mongoose.connect('mongodb://localhost:27017/J&LHUB', function(err) {
-   if(err == null) {
-       console.log("Connected to Mongo DB");
-       //initializing values
-       movieSchema = schema({
-           movie: String,
-           price: Number,
-           description: String,    
-           genre: String,
-           release: String,
-           distributor: String,
-           language: String,
-           image: String
-       }),
+    connect: function () {
+        mongoose.connect('mongodb://localhost:27017/J&LHUB', function (err) {
+            if (err == null) {
+                console.log("Connected to Mongo DB");
+                //initializing values
+                movieSchema = schema({
+                    movie: String,
+                    price: Number,
+                    description: String,
+                    genre: String,
+                    release: String,
+                    distributor: String,
+                    language: String,
+                    image: String
+                }),
 
-       accountSchema = schema({
-        firstname: String,
-        surname: String,
-        email: String,
-        password: String,
-        dateofbirth: Date,
-        token: String
-    });
+                    accountSchema = schema({
+                        firstname: String,
+                        surname: String,
+                        email: String,
+                        password: String,
+                        dateofbirth: Date,
+                        token: String
+                    });
 
 
-       var connection = mongoose.connection;
-      movieModel = connection.model('movies', movieSchema);
-      accountModel= connection.model('accounts', accountSchema);
+                var connection = mongoose.connection;
+                movieModel = connection.model('movies', movieSchema);
+                accountModel = connection.model('accounts', accountSchema);
 
-   } else {
-       console.log("Error connecting to Mongo DB");
-   }
-     })
+            } else {
+                console.log("Error connecting to Mongo DB");
+            }
+        })
     },
 
-  
-     addCustomer: function(n, r, it, p, id, pn, callback) {
+
+    addCustomer: function (n, r, it, p, id, pn, callback) {
         var newCustomer = new customerModel({
             Name: n,
             Region: r,
@@ -66,20 +66,20 @@ var database = {
 
     },
 
-    getAllCustomer: function(callback) {
+    getAllCustomer: function (callback) {
         customerModel.find({}, callback);
     },
 
-    getMovieById: function(id, callback) {
+    getMovieById: function (id, callback) {
         movieModel.findById(id, callback);
     },
 
-    updateMovieById: function(id, m, p, d, g, r, di, l, callback) {
+    updateMovieById: function (id, m, p, d, g, r, di, l, callback) {
         var updatedMovie = {
             movie: m,
             price: p,
             description: d,
-            genre: g, 
+            genre: g,
             release: r,
             distributor: di,
             language: l
@@ -87,13 +87,13 @@ var database = {
         movieModel.findByIdAndUpdate(id, updatedMovie, callback);
     },
 
-    deleteMovie: function(id,callback) {
-        movieModel.findByIdAndDelete(id,callback);
+    deleteMovie: function (id, callback) {
+        movieModel.findByIdAndDelete(id, callback);
     },
 
-   
-    getAllMovieInfo: function(callback) {
-   movieModel.find({}, callback);
+
+    getAllMovieInfo: function (callback) {
+        movieModel.find({}, callback);
     },
 
     login: function (e, p, callback) {
@@ -102,18 +102,18 @@ var database = {
     updateToken: function (id, token, callback) {
         accountModel.findByIdAndUpdate(id, { token: token }, callback);
     },
-    checkToken: function(token,callback) {
-        accountModel.findOne({token:token},callback);
+    checkToken: function (token, callback) {
+        accountModel.findOne({ token: token }, callback);
     },
-    removeToken: function(id,callback) {
-        accountModel.findByIdAndUpdate(id, {$unset: {token: 1}},callback);
+    removeToken: function (id, callback) {
+        accountModel.findByIdAndUpdate(id, { $unset: { token: 1 } }, callback);
     },
 
 
-    addAccount: function(fn,sn,e,p,dob, callback) {
+    addAccount: function (fn, sn, e, p, dob, callback) {
         var newAccount = new accountModel({
             firstname: fn,
-            surname:sn,
+            surname: sn,
             email: e,
             password: p,
             dateofbirth: dob
@@ -121,24 +121,24 @@ var database = {
         newAccount.save(callback);
     },
 
-    getAllAccounts: function(callback) {
-        accountModel.find({},callback);
+    getAllAccounts: function (callback) {
+        accountModel.find({}, callback);
     },
 
-    getAccount: function(id, callback) {
-        accountModel.findById(id,callback);
+    getAccount: function (id, callback) {
+        accountModel.findById(id, callback);
     },
 
-    searchMovie: function(m, callback) {
-        movieModel.find({movie: new RegExp(m,'i')}, callback);
+    searchMovie: function (m, callback) {
+        movieModel.find({ movie: new RegExp(m, 'i') }, callback);
     },
 
-    searchMovieByGenre: function(g, callback) {
-        movieModel.find({genre: new RegExp(g,'i')}, callback);
+    searchMovieByGenre: function (g, callback) {
+        movieModel.find({ genre: new RegExp(g, 'i') }, callback);
     },
 
 
 
- };
+};
 
 module.exports = database;
