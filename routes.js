@@ -195,7 +195,7 @@ router.post('/genre/search', function (req, res) {
     })
     router.post('/registeraccount', function (req, res) {
         var data = req.body;
-        db.addAccount(data.email, data.password,
+        db.addAccount(data.firstname, data.surname, data.email, data.password, data.dateofbirth,
             function (err, accounts) {
                res.send(accounts);
             })

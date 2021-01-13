@@ -33,8 +33,11 @@ var database = {
        }),
 
        accountSchema = schema({
+        firstname: String,
+        surname: String,
         email: String,
         password: String,
+        dateofbirth: Date,
         token: String
     });
 
@@ -107,10 +110,13 @@ var database = {
     },
 
 
-    addAccount: function(e,p, callback) {
+    addAccount: function(fn,sn,e,p,dob, callback) {
         var newAccount = new accountModel({
+            firstname: fn,
+            surname:sn,
             email: e,
-            password: p
+            password: p,
+            dateofbirth: dob
         });
         newAccount.save(callback);
     },

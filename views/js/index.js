@@ -33,7 +33,7 @@ $(document).ready(function () {
 
 function login() {
     var credentials = {
-        username: $("#username").val(),
+        email: $("#email").val(),
         password: $("#password").val()
     }
     $.ajax({
@@ -51,3 +51,18 @@ function login() {
         })
     return false;
 }
+
+
+$(".logoutBtn").click(function(){
+    $.ajax({
+        url: "/logout?token="+sessionStorage.authToken,
+        method:"get"
+    })
+    .done(function(data){
+        sessionStorage.removeItem("authToken");
+        location.reload();
+    })
+    .fail(function(err){
+        console.log(err.responseText);
+    })
+});
