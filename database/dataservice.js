@@ -2,8 +2,11 @@ var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 var movieSchema = {};
 var accountSchema = {};
+var CartSchema  = {};
+
 var accountModel;
 var movieModel;
+var CartModel;
 
 
 mongoose.set('useNewUrlParser', true);
@@ -41,33 +44,24 @@ var database = {
                         token: String
                     });
 
+                    CartSchema = schema({
+                        movie: String,
+                        price: Number,
+                        qty: Number,
+                        Customer: String
+                    });
+
 
                 var connection = mongoose.connection;
                 movieModel = connection.model('movies', movieSchema);
                 accountModel = connection.model('accounts', accountSchema);
+                 CartModel = connection.model('cart', CartSchema);
+
 
             } else {
                 console.log("Error connecting to Mongo DB");
             }
         })
-    },
-
-
-    addCustomer: function (n, r, it, p, id, pn, callback) {
-        var newCustomer = new customerModel({
-            Name: n,
-            Region: r,
-            Item: it,
-            Price: p,
-            ID: id,
-            PhoneNo: pn
-        });
-        newCustomer.save(callback);
-
-    },
-
-    getAllCustomer: function (callback) {
-        customerModel.find({}, callback);
     },
 
     getMovieById: function (id, callback) {
@@ -136,6 +130,23 @@ var database = {
     searchMovieByGenre: function (g, callback) {
         movieModel.find({ genre: new RegExp(g, 'i') }, callback);
     },
+
+
+    addToCart: function (m, p, q , c, callback){
+      var newCustomer = new CartModel ({
+
+        movie:m,
+        price:p,
+        quantity:q,
+        customer:c
+      });
+      newCustomer.save(callback);
+
+    },
+
+    searchCartByCustomerName: function (c,callback){
+    CartModel.find({ Customer: c }, callback);
+    }
 
 
 
