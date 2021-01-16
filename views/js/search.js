@@ -1,35 +1,23 @@
-$(document).ready(function () {
-    $.ajax({
-        url: "/movies/search",
-        method: "post"
-    })
-        .done(
-            function (data) {
-                data.forEach (function (movies) {
-                    $(".super").append(`
-                    <article>
-                        <h2>${movies.movie}</h2>
-                        <div>
-                           Price: ${movies.price}<br>
-                           Description : ${movies.description}<br>
-                            Release: ${movies.release}<br>
-                            Distributor: ${movies.distributor}<br>
-                            Language: ${movies.language}<br>
-                        </div>
-                    </article>
-                `);
-                })
-            }
-        )
 
-        .fail(
-            function (err) {
-             console.log(err.responseText);
-            }
-  );
+  var genre = "";
+  var movie = "";
+  $(document).ready(function() {
+   var urlParams = new URLSearchParams(window.location.search);
+   genre = urlParams.post('genre');
+   movie = urlParams.post('movie');
+
+   $.ajax({
+      url: "/movies/search" + movie,
+      method: "post"
+   }).done(
+     function (data) {
+       $('')
+     }
+   )
+   });
 
 
-        });
+    
         //for button
 
         $(".search").on
