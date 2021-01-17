@@ -32,6 +32,42 @@ $(document).ready(function () {
 })
 
 
+$(document).ready(function () {
+    $.ajax({
+        url: "/movietocart",
+        method: "get"
+    })
+        .done(
+            function (data) {
+                data.forEach(function (movies) {
+                    $(".movies").append(`
+                    <article>
+                        <h2>${movies.movie}</h2>
+                        <div>
+                           Description: ${movies.description}<br>
+                           Genre : ${movies.genre}<br>
+                            Price: ${movies.price}<br>
+                            Release: ${movies.release}<br>
+                            Language: ${movies.language}<br>
+                        </div>
+                        <button><a href="/edit?id=${movies._id}"> Order Movie </a><button>                       
+
+                    </article>
+                `);
+                })
+            }
+        )
+
+        .fail(
+            function (err) {
+                console.log(err.responseText);
+            }
+        )
+
+
+})
+
+
 $(document).ready(function() {
     var token = sessionStorage.authToken;
 

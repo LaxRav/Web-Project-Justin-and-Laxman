@@ -75,6 +75,10 @@ db.connect();
                         res.sendFile(__dirname + "/views/rent.html");
                      });
         
+
+                     router.get('/addtocart', function (req, res) {
+                        res.sendFile(__dirname + "/views/addtocart.html");
+                    });
                router.get('/movies', function(req, res) {
                         db.getAllMovieInfo(function (err, movies) {
                         if(err) {
