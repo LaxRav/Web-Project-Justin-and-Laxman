@@ -1,23 +1,23 @@
+var movie = "";
+var genre = "";
+$(document).ready(function() {
+    var urlParams = new URLSearchParams(window.location.search);
+    movie = urlParams.get('movie');
+    genre = urlParams.get('genre');
 
-  var genre = "";
-  var movie = "";
-  $(document).ready(function() {
-   var urlParams = new URLSearchParams(window.location.search);
-   genre = urlParams.post('genre');
-   movie = urlParams.post('movie');
+    $.ajax({
+        url: "/movies/search" + movie,
+        method: "post"
+    }).done(
+        function (data) {
+            $('#search').val(data);
+            
 
-   $.ajax({
-      url: "/movies/search" + movie,
-      method: "post"
-   }).done(
-     function (data) {
-       $('')
-     }
-   )
-   });
+        }
+    ).fail(
+        function (err) {
+            console.log(err.responseText);
+        }
+    );
 
-
-    
-        //for button
-
-        $(".search").on
+});
