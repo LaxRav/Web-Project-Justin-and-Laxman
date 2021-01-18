@@ -145,7 +145,7 @@ var database = {
     },
 
     searchCartByCustomerName: function (c,callback){
-    CartModel.find({ Customer: c }, callback);
+    CartModel.find({ Customer: RegExp(c,'i') }, callback);
     }
 
 
