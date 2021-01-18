@@ -1,23 +1,34 @@
 var movie = "";
 var genre = "";
-$(document).ready(function() {
-    var urlParams = new URLSearchParams(window.location.search);
-    movie = urlParams.get('movie');
-    genre = urlParams.get('genre');
-
+$(document).ready(function () {
     $.ajax({
-        url: "/movies/search" + movie,
+        url: "/movies/search",
         method: "post"
-    }).done(
-        function (data) {
-            $('#search').val(data);
-            
+    })
+        .done(
+            function (data) {
+                data.forEach(function (movies) {
+                    $(".superman").append(`
+                    <article>
+                        <h2>${movies.movie}</h2>
+                        <div>
+                           Description: ${movies.description}<br>
+                           Genre : ${movies.genre}<br>
+                            Price: ${movies.price}<br>
+                            Release: ${movies.release}<br>
+                            Language: ${movies.language}<br>
+                        </div>
+                    </article>
+                `);
+                })
+            }
+        )
 
-        }
-    ).fail(
-        function (err) {
-            console.log(err.responseText);
-        }
-    );
+        .fail(
+            function (err) {
+                console.log(err.responseText);
+            }
+        );
+
 
 });
