@@ -50,7 +50,7 @@ $(document).ready(function () {
                             Release: ${movies.release}<br>
                             Language: ${movies.language}<br>
                         </div>
-                        <button><a href="/edit?id=${movies._id}"> Order Movie </a><button>                       
+                        <button><a href="/addtocart?id=${movies._id}"> Order Movie </a><button>                       
 
                     </article>
                 `);
