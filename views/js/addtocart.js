@@ -8,14 +8,14 @@ $(document).ready(function() {
         method: "get"
     }).done(
         function (data) {
-            $('#movie').val(data.movie);
-            $('#price').val(data.price);
-            $('#description').val(data.description);
-            $('#genre').val(data.genre);
-            $('#release').val(data.release);
-            $('#distributor').val(data.distributor);
-            $('#language').val(data.language);
-            $('#image').val(data.image);
+            $('.movie').text(data.movie);
+            $('.price').text(data.price);
+            $('.description').text(data.description);
+            $('.genre').text(data.genre);
+            $('.release').text(data.release);
+            $('.distributor').text(data.distributor);
+            $('.language').text(data.language);
+            $('.image').text(data.image);
 
         }
     ).fail(
