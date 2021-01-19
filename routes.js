@@ -198,6 +198,16 @@ db.connect();
     });
 
 
+    router.post('/addtoCart', function (req, res) {
+        var data = req.body;
+        data.timestamp = Date.now();
+db.addToCart(data.movie,data.price, data.quantity,data.customer, data.timestamp,
+    function (err, order) {
+        res.send(order);
+     })
+});
+    
+    
 
         return router;
 

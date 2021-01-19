@@ -48,7 +48,8 @@ var database = {
                         movie: String,
                         price: Number,
                         qty: Number,
-                        Customer: String
+                        customer: String,
+                        timestamp: Date
                     });
 
 
@@ -132,13 +133,14 @@ var database = {
     },
 
 
-    addToCart: function (m, p, q , c, callback){
+    addToCart: function (m, p, q , c, t ,callback){
       var newCustomer = new CartModel ({
 
         movie:m,
         price:p,
         quantity:q,
-        customer:c
+        customer:c,
+        timestamp:t
       });
       newCustomer.save(callback);
 
