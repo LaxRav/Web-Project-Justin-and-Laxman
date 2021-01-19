@@ -56,7 +56,7 @@ var database = {
                 var connection = mongoose.connection;
                 movieModel = connection.model('movies', movieSchema);
                 accountModel = connection.model('accounts', accountSchema);
-                 CartModel = connection.model('cart', CartSchema);
+                 CartModel = connection.model('carts', CartSchema);
 
 
             } else {
