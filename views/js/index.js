@@ -8,7 +8,7 @@ $(document).ready(function () {
                 data.forEach(function (movies) {
                     $(".movies").append(`
                     <article>
-                        <h2>${movies.movie}</h2>
+                        <h2><a href="/edit?id=${event._id}">${movies.movie}</a></h2>
                         <div>
                            Description: ${movies.description}<br>
                            Genre : ${movies.genre}<br>

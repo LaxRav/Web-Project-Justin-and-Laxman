@@ -92,7 +92,7 @@ db.connect();
 
                      router.get('/movies/:id', function (req, res) {
                         var id = req.params.id;
-                        db.getMovieById(id, function(err, Movies) {
+                        db.getMovie(id, function(err, Movies) {
                             if (err) {
                                 res.status(500).send("Unable to find a movie detail with this id");
                             } else {
@@ -101,6 +101,9 @@ db.connect();
                         });
                
                     });
+
+
+                    
 
   //route to search for movie objects
   router.post('/movies/search', function (req, res) {
@@ -206,7 +209,11 @@ db.addToCart(data.movie,data.price, data.quantity,data.customer, data.timestamp,
         res.send(order);
      })
 });
-    
+
+
+router.get('/edit', function (req, res) {
+    res.sendFile(__dirname + "/views/editEvent.html");
+});
     
 
         return router;

@@ -65,8 +65,12 @@ var database = {
         })
     },
 
-    getMovieById: function (id, callback) {
-        movieModel.findById(id, callback);
+    //getMovieById: function (id, callback) {
+   //     movieModel.findById(id, callback);
+   // },
+
+    getMovie: function(id, callback) {
+        movieModel.findById(id,callback);
     },
 
     updateMovieById: function (id, m, p, d, g, r, di, l, callback) {

@@ -8,7 +8,7 @@ $(document).ready(function() {
         method: "get"
     }).done(
         function (data) {
-            $('.movie').text(data.movie);
+            $('#movie').text(data.movie);
             $('.price').text(data.price);
             $('.description').text(data.description);
             $('.genre').text(data.genre);
