@@ -3,13 +3,22 @@
 <head>
         <meta charset="UTF-8">
         <title>AddMovieToCart</title>
+           <style>
+        .protectedSection,.unprotectedSection {
+            display: none;
+        }
+    </style>
         <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
         <header>
                 <h1>Movie To Cart Page</h1>
         </header>
+
+        <section class="protectedSection">
+
         <h2>Add Movie</h2>
+
         <form action="/addtoCart" method="POST">
         
                         <label for="movie">Movie Name:</label>
@@ -17,6 +26,17 @@
                         <br>
                         <label for="price">Price:</label>
                         <input type="text" id="price" name="price" readonly>                        
+                        <br>
+                        <label for="qty">Quantity:</label>
+                        <input type="number" id="qty" name="qty">
+                        <br>
+
+                        <label for="customer">Customer Name:</label>
+                        <input type="text" id="customer" name="customer"><br>
+
+                        <button type="submit">Add to Cart</button>
+
+                        <br>
                         <br>
                         <label for="description">Event Description:</label>
                         <input type="text" id="description" name="description" readonly>
@@ -27,25 +47,32 @@
                         <label for="release">Release:</label>
                         <input type="text" id="release" name="release" readonly>
                         <br>
-                        <label for="distributor">Distributor:</label>
+                        <label>Distributor:</label>
                         <input type="text" id="distributor" name="distributor" readonly>
                         <br>
                         <label for="language">Language:</label>
                         <input type="text" id="language" name="language" readonly>
                         <br>
-                        <img src=image id="image" name="image" width="437" height="567" readonly> 
-                        <br>
-
-                        <label for="qty">Quantity:</label>
-                        <input type="number" id="qty" name="qty">
-
-                        <input type="text" id="customer" value=sessionStorage.customer  name="customer" hidden>
-                        <button type="submit">Add to Cart</button>
+                
+                        <span class="description"></span>
+                        <span class="genre"></span>
+                        <span class="release"></span>
+                        <span class="distributor"></span>
+                        <span class="language"></span>
 
 
         </form>
+
         <p>Not interested? Return to <a href="/search">here</a> Instead</p>
         <br>
+</section>
+<section class="unprotectedSection">
+        This page requires a logged in account. <br>
+         Click <a href="/register">here</a> to register <br>
+         Click <a href="/login">here</a> to login 
+
+    </section>
+        
         <script src="/js/jquery.min.js"></script>
         <script src="/js/addtocart.js"></script>
 </body>

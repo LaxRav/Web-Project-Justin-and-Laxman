@@ -8,14 +8,25 @@ $(document).ready(function() {
         method: "get"
     }).done(
         function (data) {
-            $('#movie').text(data.movie);
-            $('.price').text(data.price);
-            $('.description').text(data.description);
-            $('.genre').text(data.genre);
-            $('.release').text(data.release);
-            $('.distributor').text(data.distributor);
-            $('.language').text(data.language);
-            $('.image').text(data.image);
+            $('#movie').val(data.movie);
+            $('#price').val(data.price);
+
+            $('#description').val(data.description);
+            $('#description').text(data.description);
+
+            $('#genre').val(data.genre);
+            $('#genre').text(data.genre);
+
+            $('#release').val(data.release);
+            $('#release').text(data.release);
+
+            $('#distributor').val(data.distributor);
+            $('#distributor').text(data.distributor);
+
+            $('#language').val(data.language);
+            $('#language').text(data.language);
+
+            $('#image').val(data.image);
 
         }
     ).fail(
@@ -24,4 +35,19 @@ $(document).ready(function() {
         }
     );
 
+});
+
+
+$(document).ready(function() {
+    var token = sessionStorage.authToken;
+
+    if(token==undefined) {
+        $(".protectedSection").hide();
+        $(".unprotectedSection").show();
+    } else {
+        $(".protectedSection").show();
+        $(".unprotectedSection").hide();
+    }
+
+    
 });

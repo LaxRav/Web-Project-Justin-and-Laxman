@@ -1,6 +1,7 @@
 var bodyParser = require('body-parser');
 var db = require('./database/dataservice.js');
 var crypto = require('crypto');
+const { Console } = require('console');
 
 db.connect();
 
@@ -94,8 +95,10 @@ db.connect();
                         var id = req.params.id;
                         db.getMovie(id, function(err, Movies) {
                             if (err) {
+                                console.log("Movie NOT found");
                                 res.status(500).send("Unable to find a movie detail with this id");
                             } else {
+                                console.log("Movie found");
                                 res.status(200).send(Movies);
                             }
                         });
@@ -211,9 +214,7 @@ db.addToCart(data.movie,data.price, data.quantity,data.customer, data.timestamp,
 });
 
 
-router.get('/edit', function (req, res) {
-    res.sendFile(__dirname + "/views/editEvent.html");
-});
+
     
 
         return router;
