@@ -1,6 +1,6 @@
 function search() {
-    var urlParams = new URLSearchParams(window.location.search);
-    movie = urlParams.get('movie');
+  //  var urlParams = new URLSearchParams(window.location.search);
+   // movie = urlParams.get('movie');
     var movies = {
         movie: $("#search").val()
     };
@@ -12,7 +12,7 @@ function search() {
         }
     ).done(
         function (data) {
-            data.array.forEach(function (movies) {
+            data.forEach(function (movies) {
                 
             });
         }

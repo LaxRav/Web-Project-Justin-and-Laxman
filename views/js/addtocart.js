@@ -12,7 +12,7 @@ $(document).ready(function() {
             $('#price').val(data.price);
 
             $('#description').val(data.description);
-            $('#description').text(data.description);
+            $('.description').text(data.description);
 
             $('#genre').val(data.genre);
             $('#genre').text(data.genre);

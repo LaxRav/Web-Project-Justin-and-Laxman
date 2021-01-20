@@ -47,7 +47,7 @@ var database = {
                     CartSchema = schema({
                         movie: String,
                         price: Number,
-                        qty: Number,
+                        quantity: Number,
                         customer: String,
                         timestamp: Date
                     });
