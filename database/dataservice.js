@@ -139,7 +139,6 @@ var database = {
 
     addToCart: function (m, p, q , c, t ,callback){
       var newCustomer = new CartModel ({
-
         movie:m,
         price:p,
         quantity:q,
