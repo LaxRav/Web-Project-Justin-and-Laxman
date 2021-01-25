@@ -13,7 +13,7 @@ function search() {
     ).done(
         function (data) {
             data.forEach(function (movies) {
-            $(".superman").append(
+            $(".superman").append(`
                <article>
                    <h2>Based on your seach we found : </h2>
               <div>
@@ -25,7 +25,7 @@ function search() {
                 Language: ${movies.language}<br>
               </div>
                </article>
-            );
+            `);
             })
         }
     )
@@ -35,4 +35,4 @@ function search() {
         console.log(err.responseText);
         }
     )
-})
+}
