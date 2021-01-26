@@ -27,21 +27,13 @@
         </nav>
 <br />
 <br />
-        <section class="first">
-            <form onsubmit="return search()">
-            <div class="">Search your movie: </div>
-            <p><input type="text" name="searchbox" id="search"></p><br>
-            <button class="search">Enter</button>
-          </form>
-        </section>
-
-        <br>
+        
         <section>
 
           <form action="/genre/search" method="POST">
             <label for="genre">Genre Type:</label><br>
             <input type="text" id="movie" name="movie"><br>
-            <input type="submit" value="Submit">
+            <input type="submit" class="genre" value="Search">
           </form>
         </section>
 
@@ -49,7 +41,7 @@
         <form action="/movies/search" method="POST">
           <label for="movie">Movie Title:</label><br>
           <input type="text" id="movie" name="movie"><br>
-          <input type="submit" value="Submit">
+          <input type="submit" class="movie" value="Search">
         </form>
       </section>
        
@@ -58,6 +50,10 @@
          
         </aside>
 
+
+        <aside class="luthor">
+          
+        </aside>
 
         </body>
 
