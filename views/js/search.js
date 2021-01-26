@@ -1,4 +1,3 @@
-
 $(document).ready(function () {
     $.ajax({
         url: "/genre/search",
@@ -45,7 +44,7 @@ $(document).ready(function () {
                        </div>
                     </article>
                 `);
-                })
+                });
             }
         )
 
@@ -59,11 +58,11 @@ $(document).ready(function () {
 
 $(".genre").on('click', function () {
     $(".superman").show();
-}),
+});
 
  $(".movie").on('click', function () {
     $(".luthor").show();
-})
+});
 
 
 
