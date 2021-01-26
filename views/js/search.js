@@ -54,15 +54,17 @@ $(document).ready(function () {
             }
         )
 
+        $(".genre").on('click', function () {
+            $(".superman").show();
+        });
+        
+         $(".movie").on('click', function () {
+            $(".luthor").show();
+        });
+
 });
 
-$(".genre").on('click', function () {
-    $(".superman").show();
-});
 
- $(".movie").on('click', function () {
-    $(".luthor").show();
-});
 
 
 
