@@ -219,7 +219,9 @@ router.post('/genre/search', function (req, res) {
     router.post('/addtoCart', function (req, res) {
         var data = req.body;
         data.timestamp = Date.now();
-db.addToCart(data.movie,data.price, data.quantity,data.customer, data.timestamp,
+        var accountId = res.locals.account._id; 
+
+db.addToCart(data.movie,data.price, data.quantity,accountId, data.timestamp, 
     function (err, order) {
         res.send(order);
      })
