@@ -51,3 +51,30 @@ $(document).ready(function() {
 
     
 });
+
+
+function additem() {
+    var newCartitem = {
+        movie: $("#movie").val(),
+        price: $("#price").val(),
+        quantity: $("#quantity").val(),
+      
+    };
+
+    $.ajax({
+        url:"/addtoCart?token="+sessionStorage.authToken,
+        method:"POST",
+        data:  newCartitem
+
+    })
+    .done(function(data){
+        $(".statusMessage").text(data);
+        setTimeout(function(){
+            location.reload();
+        },3000);
+    })
+    .fail(function(err){
+        $(".statusMessage").text("Unable to add item to cart");
+    })
+    return false;
+}

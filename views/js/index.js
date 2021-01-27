@@ -17,7 +17,7 @@ $(document).ready(function () {
                             Language: ${movies.language}<br>
                         </div>
 
-                        <button><a href="/addtocart?id=${movies._id}">Rent movie here</a></button>
+                        <h3><a href="/addtocart?id=${movies._id}">Rent movie here</a></h3>
 
                     </article>
                 `);

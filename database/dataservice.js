@@ -49,7 +49,12 @@ var database = {
                         price: Number,
                         quantity: Number,
                         customer: String,
-                        timestamp: Date
+                        timestamp: Date,
+
+                        account: {
+                            type: schema.Types.ObjectId,
+                            ref: 'accounts'
+                        }
                     });
 
 
