@@ -29,10 +29,30 @@
 <br />
         <section>
           <form action="return review()">
-             
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="fullname"><br>
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email"><br>
+            <label for="movie">Name movie of choice :</label><br>
+            <input type="text" id="name" name="fullname"><br>
+            <label for="name">What did you like best of movie:</label><br>
+            <input type="text" id="name" name="fullname"><br>
+            <label for="name">Rate on scale below :</label><br>
+            <input type="text" id="name" name="fullname"><br>
+            <label for="name">Would you recommend this to a friend? :</label><br>
+            <input type="text" id="name" name="fullname"><br>
+            <input type="submit" class="submit" value="submit">
           </form>
         </section>
 
+      <p class="thank"></p>
+
+<script>
+   $(".submit").on('click', function () {
+            $(".thank").show();
+        });
+</script>
+        
         </body>
 
         </html>
