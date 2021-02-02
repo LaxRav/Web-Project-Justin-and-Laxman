@@ -84,11 +84,17 @@ $(document).ready(function () {
         });
         
 <<<<<<< HEAD
+<<<<<<< HEAD
          $(".movie").on('click', function () {
             $(".luthor").show();
         });
 
 });
+=======
+       
+
+
+>>>>>>> parent of fd0e71f... search
 =======
        
 
