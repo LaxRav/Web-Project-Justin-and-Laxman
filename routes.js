@@ -129,20 +129,9 @@ var routes = function () {
         */
 
 
-router.post('/genre/search', function (req, res) {
-    var genre = req.body.genre;
-    db.searchMovie(genre, function(err, movies) {
-        if (err) {
-            res.status(500).send("Sorry, Unable to retrieve records based on your search");
-        } else {
-            res.status(200).send(movies);
-        }
-    })
-
-
     router.post('/genre/search', function (req, res) {
         var genre = req.body.genre;
-        db.searchMovieByGenre(genre, function (err, movies) {
+        db.searchMovie(genre, function (err, movies) {
             if (err) {
                 res.status(500).send("Sorry, Unable to retrieve records based on your search");
             } else {
@@ -150,118 +139,131 @@ router.post('/genre/search', function (req, res) {
             }
         })
 
-    });
+
+        router.post('/genre/search', function (req, res) {
+            var genre = req.body.genre;
+            db.searchMovieByGenre(genre, function (err, movies) {
+                if (err) {
+                    res.status(500).send("Sorry, Unable to retrieve records based on your search");
+                } else {
+                    res.status(200).send(movies);
+                }
+            })
+
+        });
 
 
 
-    // search
+        // search
 
 
-    router.get('/css/*', function (req, res) {
-        res.sendFile(__dirname + "/views/" + req.originalUrl);
-    });
+        router.get('/css/*', function (req, res) {
+            res.sendFile(__dirname + "/views/" + req.originalUrl);
+        });
 
-    router.get('/js/*', function (req, res) {
-        res.sendFile(__dirname + "/views/" + req.originalUrl);
-    });
-
-
-
+        router.get('/js/*', function (req, res) {
+            res.sendFile(__dirname + "/views/" + req.originalUrl);
+        });
 
 
 
-    router.post('/login', function (req, res) {
-        var data = req.body;
-        console.log(data);
-        db.login(data.email, data.password, function (err, account) {
-            if (err) {
-                res.status(401).send("Login unsucessful. Please try again later");
-            } else {
-                console.log(account);
-                if (account == null) {
+
+
+
+        router.post('/login', function (req, res) {
+            var data = req.body;
+            console.log(data);
+            db.login(data.email, data.password, function (err, account) {
+                if (err) {
                     res.status(401).send("Login unsucessful. Please try again later");
                 } else {
+                    console.log(account);
+                    if (account == null) {
+                        res.status(401).send("Login unsucessful. Please try again later");
+                    } else {
 
-                    var strToHash = account.email + Date.now();
-                    var token = crypto.createHash('md5').update(strToHash).digest('hex');
-                    db.updateToken(account._id, token, function (err, account) {
-                        res.status(200).json({ 'message': 'Login successful.', 'token': token });
-                    });
+                        var strToHash = account.email + Date.now();
+                        var token = crypto.createHash('md5').update(strToHash).digest('hex');
+                        db.updateToken(account._id, token, function (err, account) {
+                            res.status(200).json({ 'message': 'Login successful.', 'token': token });
+                        });
 
-                }
-            }
-        })
-
-    })
-
-
-    router.get("/logout", function (req, res) {
-        var token = req.query.token;
-        if (token == undefined) {
-            res.status(401).send("No tokens are provided");
-        } else {
-            db.checkToken(token, function (err, user) {
-                if (err || user == null) {
-                    res.status(401).send("Invalid token provided");
-                } else {
-                    db.removeToken(user._id, function (err, user) {
-                        res.status(200).send("Logout successfully")
-                    });
+                    }
                 }
             })
-        }
 
-    }),
-
-        router.get('/accounts', function (req, res) {
-            db.getAllAccounts(function (err, accounts) {
-                res.send(accounts);
-
-            })
-        })
-    router.get('/accounts/:id', function (req, res) {
-        var id = req.params.id;
-        db.getAccount(id, function (err, accounts) {
-            res.send(accounts);
         })
 
-    })
-    router.post('/registeraccount', function (req, res) {
-        var data = req.body;
-        db.addAccount(data.firstname, data.surname, data.email, data.password, data.dateofbirth,
-            function (err, accounts) {
-                res.send(accounts);
-            })
-    });
 
-
-    router.post('/addtoCart', function (req, res) {
-        var data = req.body;
-        data.timestamp = Date.now();
-        var account = res.locals.account._id;
-
-        db.addToCart(data.movie, data.price, data.quantity, account, data.timestamp,
-            function (err, order) {
-                res.send(order);
-            })
-    });
-
-
-
-    router.get('/viewmovie/:movie', function (req, res) {
-        var movie = req.params.movie;
-        db.getCommentsByMovie(movie, function (err, movies) {
-            if (err) {
-                res.status(500).send("Unable to retrieve movie comments by movie");
+        router.get("/logout", function (req, res) {
+            var token = req.query.token;
+            if (token == undefined) {
+                res.status(401).send("No tokens are provided");
             } else {
-                res.status(200).send(movies);
+                db.checkToken(token, function (err, user) {
+                    if (err || user == null) {
+                        res.status(401).send("Invalid token provided");
+                    } else {
+                        db.removeToken(user._id, function (err, user) {
+                            res.status(200).send("Logout successfully")
+                        });
+                    }
+                })
             }
-        })
-    });
 
+        }),
+
+            router.get('/accounts', function (req, res) {
+                db.getAllAccounts(function (err, accounts) {
+                    res.send(accounts);
+
+                })
+            })
+        router.get('/accounts/:id', function (req, res) {
+            var id = req.params.id;
+            db.getAccount(id, function (err, accounts) {
+                res.send(accounts);
+            })
+
+        })
+        router.post('/registeraccount', function (req, res) {
+            var data = req.body;
+            db.addAccount(data.firstname, data.surname, data.email, data.password, data.dateofbirth,
+                function (err, accounts) {
+                    res.send(accounts);
+                })
+        });
+
+
+        router.post('/addtoCart', function (req, res) {
+            var data = req.body;
+            data.timestamp = Date.now();
+            var account = res.locals.account._id;
+
+            db.addToCart(data.movie, data.price, data.quantity, account, data.timestamp,
+                function (err, order) {
+                    res.send(order);
+                })
+        });
+
+
+
+        router.get('/viewmovie/:movie', function (req, res) {
+            var movie = req.params.movie;
+            db.getCommentsByMovie(movie, function (err, movies) {
+                if (err) {
+                    res.status(500).send("Unable to retrieve movie comments by movie");
+                } else {
+                    res.status(200).send(movies);
+                }
+            })
+        });
+
+      
+
+    });
     return router;
 
-});
-
-module.exports = routes();
 }
+module.exports = routes();
+
