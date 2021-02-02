@@ -8,7 +8,7 @@ function search() {
         method:"post",
         data: genre
     })
-    .done(function (data){
+    .done(function(data){
         data.forEach(function (movies) {
             $(".superman").append(`
             <h2>These are the movies  based on your preferred genre type: </h2>
@@ -16,6 +16,7 @@ function search() {
                 <h2>${movies.movie}</h2>
                 <div>
                    Description: ${movies.description}<br>
+                   Genre : ${movies.genre}<br>
                     Price: ${movies.price}<br>
                     Release: ${movies.release}<br>
                     Language: ${movies.language}<br>
@@ -38,4 +39,12 @@ function search() {
             $(".superman").show();
         })
         
-    )}
+       
+
+
+
+
+
+
+
+

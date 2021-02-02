@@ -131,7 +131,7 @@ var routes = function () {
 =======
 router.post('/genre/search', function (req, res) {
     var genre = req.body.genre;
-    db.searchMovieByGenre(genre, function(err, movies) {
+    db.searchMovie(genre, function(err, movies) {
         if (err) {
             res.status(500).send("Sorry, Unable to retrieve records based on your search");
         } else {
