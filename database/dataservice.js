@@ -49,13 +49,13 @@ var database = {
                         movie: String,
                         price: Number,
                         quantity: Number,
-                        customer: String,
-                        timestamp: String,
 
                         account: {
                             type: schema.Types.ObjectId,
                             ref: 'accounts'
-                        }
+                        },
+                        timestamp: String,
+
                     });
 
                     commentSchema = schema({
@@ -178,11 +178,11 @@ var database = {
    
     addToComments: function (m, p, q ,oid, t ,callback){
         var newCustomer = new CartModel ({
-          movie:m,
-          price:p,
-          quantity:q,
-          account:oid,
-          timestamp:t
+            movie:m,
+            subject:s,
+            message:mes,
+            account: oid,
+            timestamp: ts,
         });
         newCustomer.save(callback);
   
