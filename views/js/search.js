@@ -7,6 +7,7 @@ function search() {
         method:"post",
         data: genre
     })
+
     .done(function(data){
         data.forEach(function (movies) {
             $(".superman").append(`
@@ -23,7 +24,8 @@ function search() {
 
             </article>
         `);
-                    
+
+        }
 
     
         .fail(
@@ -32,16 +34,17 @@ function search() {
             }
         )
 
-});
+),
 
         $(".genre").on('click', function () {
             $(".superman").show();
         });
         
 
+    }
     
 
-    //These are the newly added codes, jsutin, pls do cross check and help me out on this. Thank You..
+    //These are the newly added codes, justin, pls do cross check and help me out on this. Thank You..
 
-      
-
+     
+    )}
