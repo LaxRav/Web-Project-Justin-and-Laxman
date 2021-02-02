@@ -1,6 +1,6 @@
 function search() {
     var movies = {
-        genre: $("#genre").val();
+        genre: $("#genre").val()
     }
     $.ajax({
         url:"/genre/search",
