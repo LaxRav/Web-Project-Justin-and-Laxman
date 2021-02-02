@@ -15,18 +15,18 @@ $(document).ready(function() {
             $('.description').text(data.description);
 
             $('#genre').val(data.genre);
-            $('#genre').text(data.genre);
+            $('.genre').text(data.genre);
 
             $('#release').val(data.release);
-            $('#release').text(data.release);
+            $('.release').text(data.release);
 
             $('#distributor').val(data.distributor);
-            $('#distributor').text(data.distributor);
+            $('.distributor').text(data.distributor);
 
             $('#language').val(data.language);
-            $('#language').text(data.language);
+            $('.language').text(data.language);
 
-            $('#image').val(data.image);
+            $('.image').val(data.image);
 
         }
     ).fail(

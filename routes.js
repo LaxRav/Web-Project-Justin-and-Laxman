@@ -80,6 +80,11 @@ db.connect();
                      router.get('/addtocart', function (req, res) {
                         res.sendFile(__dirname + "/views/addtocart.html");
                     });
+
+                    router.get('/viewmovie', function(req, res) {
+                        res.sendFile(__dirname + "/views/viewmovie.html");
+                           });
+
                router.get('/movies', function(req, res) {
                         db.getAllMovieInfo(function (err, movies) {
                         if(err) {
@@ -219,9 +224,9 @@ router.post('/genre/search', function (req, res) {
     router.post('/addtoCart', function (req, res) {
         var data = req.body;
         data.timestamp = Date.now();
-        var accountId = res.locals.account._id; 
+        var account = res.locals.account._id; 
 
-db.addToCart(data.movie,data.price, data.quantity,accountId, data.timestamp, 
+db.addToCart(data.movie,data.price, data.quantity,account, data.timestamp, 
     function (err, order) {
         res.send(order);
      })
@@ -229,7 +234,16 @@ db.addToCart(data.movie,data.price, data.quantity,accountId, data.timestamp,
 
 
 
-    
+router.get('/viewmovie/:movie', function (req, res) {
+    var movie = req.params.movie;
+    db.getCommentsByMovie(movie, function (err, movies) {
+        if (err) {
+            res.status(500).send("Unable to retrieve movie comments by movie");
+        } else {
+            res.status(200).send(movies);
+        }
+    })
+});
 
         return router;
 
