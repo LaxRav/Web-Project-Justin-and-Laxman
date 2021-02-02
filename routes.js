@@ -138,6 +138,7 @@ router.post('/genre/search', function (req, res) {
             res.status(200).send(movies);
         }
     })
+})
 
 
     router.post('/genre/search', function (req, res) {
@@ -261,7 +262,6 @@ router.post('/genre/search', function (req, res) {
 
     return router;
 
-});
+};
 
 module.exports = routes();
-}
