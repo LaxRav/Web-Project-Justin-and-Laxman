@@ -5,7 +5,7 @@ function search() {
     $.ajax({
         url:"/genre/search",
         method:"post",
-        data: genre
+        data: movies
     })
 
     .done(function(data){
