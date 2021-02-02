@@ -3,15 +3,15 @@ function search() {
         genre: $("#genre").val()
     }
     $.ajax({
-        url:"/genre/search",
-        method:"post",
+        url: "/genre/search",
+        method: "post",
         data: movies
     })
 
     .done(function(data){
         data.forEach(function (movies) {
             $(".superman").append(`
-            <h2>These are the movies  based on your preferred genre type: </h2>
+            <h2>These are the movies based on your preferred genre type: </h2>
             <article>
                 <h2>${movies.movie}</h2>
                 <div>
