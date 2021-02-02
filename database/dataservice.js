@@ -21,7 +21,7 @@ mongoose.set('debug', true);
 
 var database = {
     connect: function () {
-        mongoose.connect('mongodb://localhost:27017/J&LHUB', function (err) {
+        mongoose.connect('mongodb://localhost:27017/J&LHub', function (err) {
             if (err == null) {
                 console.log("Connected to Mongo DB");
                 //initializing values
@@ -50,7 +50,7 @@ var database = {
                         price: Number,
                         quantity: Number,
                         customer: String,
-                        timestamp: timestamp,
+                        timestamp: String,
 
                         account: {
                             type: schema.Types.ObjectId,
@@ -63,7 +63,7 @@ var database = {
                         movie:String,
                         subject:String,
                         message:String,
-                        timestamp: timestamp,
+                        timestamp: String,
 
                         account:{
                             type:schema.Types.ObjectId,
@@ -152,23 +152,19 @@ var database = {
         movieModel.find({ movie: new RegExp(m, 'i') }, callback);
     },
 
-    //search by genre
     searchMovieByGenre: function (g, callback) {
         movieModel.find({ genre: new RegExp(g, 'i') }, callback);
     },
 
 
-    addToCart: function (m, s, mes, ts ,callback){
+    addToCart: function (m, s, mes, ts ,oid,callback){
       var newCustomer = new CartModel ({
         movie:m,
         subject:s,
         message:mes,
+        account: oid,
         timestamp: ts,
 
-        account:{
-            type:schema.Types.ObjectId,
-            ref:'accounts'
-        }
       });
       newCustomer.save(callback);
 
@@ -178,12 +174,12 @@ var database = {
     CartModel.find({ Customer: RegExp(c,'i') }, callback);
     },
    
-    addToComments: function (m, p, q , c, t ,callback){
+    addToComments: function (m, p, q ,oid, t ,callback){
         var newCustomer = new CartModel ({
           movie:m,
           price:p,
           quantity:q,
-          customer:c,
+          account:oid,
           timestamp:t
         });
         newCustomer.save(callback);

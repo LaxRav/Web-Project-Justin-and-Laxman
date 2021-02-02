@@ -19,11 +19,27 @@
                 
         <h2>Add Movie</h2>
 
-                <form action="/addtoCart" method="POST">
+                <form onsubmit="return addToCart();">
+
+
+
+
 
                         <label for="movie">Movie Name:</label>
                         <input type="text" id="movie" name="movie" readonly>
                         <br>
+
+                        <label for="description">Event Description:</label>
+                        <span class="description"></span><br>
+                        <label for="genre">Genre:</label>
+                        <span class="genre"></span><br>
+                        <label for="release">Release:</label>
+                        <span class="release"></span><br>
+                        <label>Distributor:</label>
+                        <span class="distributor"></span><br>
+                        <label for="language">Language:</label>
+                        <span class="language"></span><br>
+                        
                         <label for="price">Price:</label>
                         <input type="text" id="price" name="price" readonly>                        
                         <br>
@@ -33,29 +49,8 @@
 
                         <button type="submit">Add to Cart</button>
 
-                        <br>
-                        <br>
-                        <label for="description">Event Description:</label>
-                        <input type="text" id="description" name="description" readonly>
-                        <br>
-                        <label for="genre">Genre:</label>
-                        <input type="text" id="genre" name="genre" readonly>
-                        <br>
-                        <label for="release">Release:</label>
-                        <input type="text" id="release" name="release" readonly>
-                        <br>
-                        <label>Distributor:</label>
-                        <input type="text" id="distributor" name="distributor" readonly>
-                        <br>
-                        <label for="language">Language:</label>
-                        <input type="text" id="language" name="language" readonly>
-                        <br>
                 
-                        <span class="description"></span>
-                        <span class="genre"></span>
-                        <span class="release"></span>
-                        <span class="distributor"></span>
-                        <span class="language"></span>
+                     
 
 
         </form>

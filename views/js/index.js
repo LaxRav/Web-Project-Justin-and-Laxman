@@ -18,6 +18,7 @@ $(document).ready(function () {
                         </div>
 
                         <h3><a href="/addtocart?id=${movies._id}">Rent movie here</a></h3>
+                        <h3><a href="/viewmovie?id=${movies._id}">Rent movie here</a></h3>
 
                     </article>
                 `);
