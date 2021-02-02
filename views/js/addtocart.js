@@ -78,3 +78,24 @@ function additem() {
     })
     return false;
 }
+
+
+function addToCart() {
+    $.ajax(
+        {
+            url: "////?token="+sessionStorage.authToken,
+            method: '',
+            data: {}
+        }
+    ).done(
+        function (data) {
+
+        }
+    ).fail(
+        function (err) {
+            console.log(err.responseText);
+        }
+    );
+
+    return false;
+}

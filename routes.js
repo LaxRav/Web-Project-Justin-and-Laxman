@@ -5,160 +5,162 @@ const { Console } = require('console');
 
 db.connect();
 
-    var routes = function() {
-        var router = require('express').Router();
-  
-        router.use(bodyParser.urlencoded({
-   extended: true
-        }));
+var routes = function () {
+    var router = require('express').Router();
+
+    router.use(bodyParser.urlencoded({
+        extended: true
+    }));
 
 
-        router.use(function(req,res,next){
-            //if it is api request, then check for valid token
-            if(req.url.includes("/api")) {
-                //first time use req.query
-                var token = req.query.token;
-                if (token == undefined) {
-                    res.status(401).send("No tokens are provided");
-                } else {
-                    db.checkToken(token, function (err, user) {
-                        if (err || user == null) {
-                            res.status(401).send("Invalid token provided");
-                        } else {
-                            //means proceed on with the request.
-                            next();
-                        }
-                    });
-                }
-            } else { //means any other url, no need to check for auth 
-                //means proceed on with the request.
-                next();
+    router.use(function (req, res, next) {
+        //if it is api request, then check for valid token
+        if (req.url.includes("/api")) {
+            //first time use req.query
+            var token = req.query.token;
+            if (token == undefined) {
+                res.status(401).send("No tokens are provided");
+            } else {
+                db.checkToken(token, function (err, user) {
+                    if (err || user == null) {
+                        res.status(401).send("Invalid token provided");
+                    } else {
+
+                        res.locals.account = user;
+                        //means proceed on with the request.
+                        next();
+                    }
+                });
+            }
+        } else { //means any other url, no need to check for auth 
+            //means proceed on with the request.
+            next();
+        }
+    })
+
+    /*   
+    These first 8 routes are for views only
+    */
+
+    router.get('/resources/*', function (req, res) {
+        res.sendFile(__dirname + "/resources/" + req.originalUrl);
+    });
+
+    router.get('/', function (req, res) {
+        res.sendFile(__dirname + "/views/index.html");
+    });
+
+    router.get('/rent', function (req, res) {
+        res.sendFile(__dirname + "/views/rent.html");
+    });
+
+    router.get('/contact', function (req, res) {
+        res.sendFile(__dirname + "/views/contact.html");
+    });
+
+    router.get('/Search', function (req, res) {
+        res.sendFile(__dirname + "/views/search.html");
+    });
+
+    router.get('/review', function (req, res) {
+        res.sendFile(__dirname + "/views/review.html");
+    });
+
+    router.get('/login', function (req, res) {
+        res.sendFile(__dirname + "/views/login.html");
+    });
+
+    router.get('/register', function (req, res) {
+        res.sendFile(__dirname + "/views/register.html");
+    });
+
+    router.get('/rent', function (req, res) {
+        res.sendFile(__dirname + "/views/rent.html");
+    });
+
+
+    router.get('/addtocart', function (req, res) {
+        res.sendFile(__dirname + "/views/addtocart.html");
+    });
+
+    router.get('/viewmovie', function (req, res) {
+        res.sendFile(__dirname + "/views/viewmovie.html");
+    });
+
+    router.get('/movies', function (req, res) {
+        db.getAllMovieInfo(function (err, movies) {
+            if (err) {
+                res.status(500).send("Unable to get movie information");
+            } else {
+                res.status(200).send(movies);
             }
         })
 
-        /*   
-        These first 8 routes are for views only
-        */
-
-       router.get('/resources/*', function(req, res) {
-        res.sendFile(__dirname+"/resources/"+req.originalUrl);
-           });
-        
-        router.get('/', function(req, res) {
-     res.sendFile(__dirname + "/views/index.html");
-        });
-
-        router.get('/rent', function(req, res) {
-         res.sendFile(__dirname + "/views/rent.html");
-            });
-
-      router.get('/contact', function(req, res) {
-            res.sendFile(__dirname + "/views/contact.html");
-                  });
-
-         router.get('/Search', function(req, res) {
-            res.sendFile(__dirname + "/views/search.html");
-               });
-
-               router.get('/review', function(req, res) {
-                  res.sendFile(__dirname + "/views/review.html");
-                     });
-
-                     router.get('/login', function (req, res) {
-                        res.sendFile(__dirname + "/views/login.html");
-                     });
-                  
-                     router.get('/register', function (req, res) {
-                        res.sendFile(__dirname + "/views/register.html");
-                     });
-
-                     router.get('/rent', function (req, res) {
-                        res.sendFile(__dirname + "/views/rent.html");
-                     });
-        
-
-                     router.get('/addtocart', function (req, res) {
-                        res.sendFile(__dirname + "/views/addtocart.html");
-                    });
-
-                    router.get('/viewmovie', function(req, res) {
-                        res.sendFile(__dirname + "/views/viewmovie.html");
-                           });
-
-               router.get('/movies', function(req, res) {
-                        db.getAllMovieInfo(function (err, movies) {
-                        if(err) {
-                           res.status(500).send("Unable to get movie information");
-                        } else {
-                           res.status(200).send(movies);
-                        }
-                        })
-                        
-                     })
-
-                     router.get('/movies/:id', function (req, res) {
-                        var id = req.params.id;
-                        db.getMovie(id, function(err, Movies) {
-                            if (err) {
-                                console.log("Movie NOT found");
-                                res.status(500).send("Unable to find a movie detail with this id");
-                            } else {
-                                console.log("Movie found");
-                                res.status(200).send(Movies);
-                            }
-                        });
-               
-                    });
-
-
-                    
-
-  //route to search for movie objects
-  router.post('/movies/search', function (req, res) {
-    var movie = req.body.movie;
-    db.searchMovie(movie, function(err, movies) {
-        if (err) {
-            res.status(500).send("Sorry, Unable to retrieve records based on your search");
-        } else {
-            res.status(200).send(movies);
-        }
     })
 
-});
-
-router.post('/genre/search', function (req, res) {
-    var genre = req.body.genre;
-    db.searchMovie(genre, function(err, movies) {
-        if (err) {
-            res.status(500).send("Sorry, Unable to retrieve records based on your search");
-        } else {
-            res.status(200).send(movies);
-        }
-    })
-
-});
-
-
-
-// search
-                   
-            
-        router.get('/css/*', function(req, res) {
-     res.sendFile(__dirname+"/views/"+req.originalUrl);
+    router.get('/movies/:id', function (req, res) {
+        var id = req.params.id;
+        db.getMovie(id, function (err, Movies) {
+            if (err) {
+                console.log("Movie NOT found");
+                res.status(500).send("Unable to find a movie detail with this id");
+            } else {
+                console.log("Movie found");
+                res.status(200).send(Movies);
+            }
         });
 
-         router.get('/js/*', function(req, res) {
-     res.sendFile(__dirname+"/views/"+req.originalUrl);
-        });
-
-
-       
+    });
 
 
 
-      router.post('/login', function (req, res) {
+
+    //route to search for movie objects
+    router.post('/movies/search', function (req, res) {
+        var movie = req.body.movie;
+        db.searchMovie(movie, function (err, movies) {
+            if (err) {
+                res.status(500).send("Sorry, Unable to retrieve records based on your search");
+            } else {
+                res.status(200).send(movies);
+            }
+        })
+
+    });
+
+    router.post('/genre/search', function (req, res) {
+        var genre = req.body.genre;
+        db.searchMovie(genre, function (err, movies) {
+            if (err) {
+                res.status(500).send("Sorry, Unable to retrieve records based on your search");
+            } else {
+                res.status(200).send(movies);
+            }
+        })
+
+    });
+
+
+
+    // search
+
+
+    router.get('/css/*', function (req, res) {
+        res.sendFile(__dirname + "/views/" + req.originalUrl);
+    });
+
+    router.get('/js/*', function (req, res) {
+        res.sendFile(__dirname + "/views/" + req.originalUrl);
+    });
+
+
+
+
+
+
+    router.post('/login', function (req, res) {
         var data = req.body;
-            console.log(data);
+        console.log(data);
         db.login(data.email, data.password, function (err, account) {
             if (err) {
                 res.status(401).send("Login unsucessful. Please try again later");
@@ -181,30 +183,30 @@ router.post('/genre/search', function (req, res) {
     })
 
 
-      router.get("/logout", function (req, res) {
-         var token = req.query.token;
-         if (token == undefined) {
-             res.status(401).send("No tokens are provided");
-         } else {
-             db.checkToken(token, function (err, user) {
-                 if (err || user == null) {
-                     res.status(401).send("Invalid token provided");
-                 } else {
-                     db.removeToken(user._id, function (err, user) {
-                         res.status(200).send("Logout successfully")
-                     });
-                 }
-             })
-         }
-   
-     }),
+    router.get("/logout", function (req, res) {
+        var token = req.query.token;
+        if (token == undefined) {
+            res.status(401).send("No tokens are provided");
+        } else {
+            db.checkToken(token, function (err, user) {
+                if (err || user == null) {
+                    res.status(401).send("Invalid token provided");
+                } else {
+                    db.removeToken(user._id, function (err, user) {
+                        res.status(200).send("Logout successfully")
+                    });
+                }
+            })
+        }
 
-     router.get('/accounts', function (req, res) {
-        db.getAllAccounts(function (err, accounts) {
-            res.send(accounts);
-    
+    }),
+
+        router.get('/accounts', function (req, res) {
+            db.getAllAccounts(function (err, accounts) {
+                res.send(accounts);
+
+            })
         })
-    })
     router.get('/accounts/:id', function (req, res) {
         var id = req.params.id;
         db.getAccount(id, function (err, accounts) {
@@ -216,7 +218,7 @@ router.post('/genre/search', function (req, res) {
         var data = req.body;
         db.addAccount(data.firstname, data.surname, data.email, data.password, data.dateofbirth,
             function (err, accounts) {
-               res.send(accounts);
+                res.send(accounts);
             })
     });
 
@@ -224,30 +226,30 @@ router.post('/genre/search', function (req, res) {
     router.post('/addtoCart', function (req, res) {
         var data = req.body;
         data.timestamp = Date.now();
-        var account = res.locals.account._id; 
+        var account = res.locals.account._id;
 
-db.addToCart(data.movie,data.price, data.quantity,account, data.timestamp, 
-    function (err, order) {
-        res.send(order);
-     })
-});
+        db.addToCart(data.movie, data.price, data.quantity, account, data.timestamp,
+            function (err, order) {
+                res.send(order);
+            })
+    });
 
 
 
-router.get('/viewmovie/:movie', function (req, res) {
-    var movie = req.params.movie;
-    db.getCommentsByMovie(movie, function (err, movies) {
-        if (err) {
-            res.status(500).send("Unable to retrieve movie comments by movie");
-        } else {
-            res.status(200).send(movies);
-        }
-    })
-});
+    router.get('/viewmovie/:movie', function (req, res) {
+        var movie = req.params.movie;
+        db.getCommentsByMovie(movie, function (err, movies) {
+            if (err) {
+                res.status(500).send("Unable to retrieve movie comments by movie");
+            } else {
+                res.status(200).send(movies);
+            }
+        })
+    });
 
-        return router;
+    return router;
 
-    };
+};
 
-    module.exports = routes();
+module.exports = routes();
 
