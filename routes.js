@@ -261,7 +261,7 @@ router.post('/genre/search', function (req, res) {
 
     return router;
 
-};
+});
 
 module.exports = routes();
-
+}
