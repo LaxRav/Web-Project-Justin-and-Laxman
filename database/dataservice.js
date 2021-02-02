@@ -3,10 +3,11 @@ var schema = mongoose.Schema;
 var movieSchema = {};
 var accountSchema = {};
 var CartSchema  = {};
-
+var commentSchema = {};
 var accountModel;
 var movieModel;
 var CartModel;
+var commentModel = {}; 
 
 
 mongoose.set('useNewUrlParser', true);
@@ -49,11 +50,24 @@ var database = {
                         price: Number,
                         quantity: Number,
                         customer: String,
-                        timestamp: Date,
+                        timestamp: timestamp,
 
                         account: {
                             type: schema.Types.ObjectId,
                             ref: 'accounts'
+                        }
+                    });
+
+                    commentSchema = schema({
+
+                        movie:String,
+                        subject:String,
+                        message:String,
+                        timestamp: timestamp,
+
+                        account:{
+                            type:schema.Types.ObjectId,
+                            ref:'accounts'
                         }
                     });
 
@@ -62,6 +76,7 @@ var database = {
                 movieModel = connection.model('movies', movieSchema);
                 accountModel = connection.model('accounts', accountSchema);
                  CartModel = connection.model('carts', CartSchema);
+                 commentModel = connection.model('comments',commentSchema);
 
 
             } else {
@@ -142,13 +157,17 @@ var database = {
     },
 
 
-    addToCart: function (m, p, q , c, t ,callback){
+    addToCart: function (m, s, mes, ts ,callback){
       var newCustomer = new CartModel ({
         movie:m,
-        price:p,
-        quantity:q,
-        customer:c,
-        timestamp:t
+        subject:s,
+        message:mes,
+        timestamp: ts,
+
+        account:{
+            type:schema.Types.ObjectId,
+            ref:'accounts'
+        }
       });
       newCustomer.save(callback);
 
@@ -156,8 +175,23 @@ var database = {
 
     searchCartByCustomerName: function (c,callback){
     CartModel.find({ Customer: RegExp(c,'i') }, callback);
-    }
+    },
+   
+    addToComments: function (m, p, q , c, t ,callback){
+        var newCustomer = new CartModel ({
+          movie:m,
+          price:p,
+          quantity:q,
+          customer:c,
+          timestamp:t
+        });
+        newCustomer.save(callback);
+  
+      },
 
+    getCommentsByMovie: function (m,callback){
+        commentModel.find({ message: RegExp(m,'i') }, callback);
+     }
 
 
 };
