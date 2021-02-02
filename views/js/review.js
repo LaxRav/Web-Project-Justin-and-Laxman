@@ -3,28 +3,18 @@ $(document).ready(function () {
     var urlParams = new URLSearchParams(window.location.search);
     email = urlParams.get('email'); 
     $.ajax({
-        url: "/movies",
+        url: "/movies" + email,
         method: "get"
     })
         .done(
             function (data) {
-                data.forEach(function (movies) {
-                    $(".movies").append(`
-                    <article>
-                        <h2>${movies.movie}</a></h2>
-                        <div>
-                           Description: ${movies.description}<br>
-                           Genre : ${movies.genre}<br>
-                            Price: ${movies.price}<br>
-                            Release: ${movies.release}<br>
-                            Language: ${movies.language}<br>
-                        </div>
-
-                        <button><a href="/addtocart?id=${movies._id}">Rent movie here</a></button>
-
-                    </article>
-                `);
-                })
+                
+                $('#name').val(data.name);
+                $('#email').val(data.email);
+                $('#namechoice').val(data.namechoice);
+                $('#namebest').val(data.namebest);
+                $('#scale').val(data.scale);
+                $('#recommendation').val(data.recommendation);
             }
         )
 
@@ -34,4 +24,16 @@ $(document).ready(function () {
             }
         )
 
-})
+});
+
+function review() {
+var feedback = {
+    email: data.email,
+    name: $("#name").val(),
+    email: $("#email").val(),
+    namechoice: $("#namechoice").val(),
+    namebest: $("#namebest").val(),
+    scale: $("#scale").val(),
+    recommendation: $("#recommendation").val(),
+}
+}
