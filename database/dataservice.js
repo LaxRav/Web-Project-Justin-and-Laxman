@@ -148,9 +148,11 @@ var database = {
         accountModel.findById(id, callback);
     },
 
+    /*
     searchMovie: function (m, callback) {
         movieModel.find({ movie: new RegExp(m, 'i') }, callback);
     },
+    */
 
     searchMovieByGenre: function (g, callback) {
         movieModel.find({ genre: new RegExp(g, 'i') }, callback);
