@@ -152,6 +152,7 @@ var database = {
         movieModel.find({ movie: new RegExp(m, 'i') }, callback);
     },
 
+    //search by genre
     searchMovieByGenre: function (g, callback) {
         movieModel.find({ genre: new RegExp(g, 'i') }, callback);
     },

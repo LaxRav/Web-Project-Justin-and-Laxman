@@ -126,7 +126,19 @@ var routes = function () {
             }
         })
 
+<<<<<<< HEAD
     });
+=======
+router.post('/genre/search', function (req, res) {
+    var genre = req.body.genre;
+    db.searchMovieByGenre(genre, function(err, movies) {
+        if (err) {
+            res.status(500).send("Sorry, Unable to retrieve records based on your search");
+        } else {
+            res.status(200).send(movies);
+        }
+    })
+>>>>>>> fd0e71f815da7813fc2ac41ea7716b7f980f026f
 
     router.post('/genre/search', function (req, res) {
         var genre = req.body.genre;
