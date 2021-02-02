@@ -123,7 +123,7 @@ db.connect();
 
 router.post('/genre/search', function (req, res) {
     var genre = req.body.genre;
-    db.searchMovie(genre, function(err, movies) {
+    db.searchMovieByGenre(genre, function(err, movies) {
         if (err) {
             res.status(500).send("Sorry, Unable to retrieve records based on your search");
         } else {
