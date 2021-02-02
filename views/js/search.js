@@ -23,7 +23,8 @@ function search() {
 
             </article>
         `);
-                    
+        }
+        )         
 
     
         .fail(
@@ -34,14 +35,14 @@ function search() {
 
 });
 
-        $(".genre").on('click', function () {
-            $(".superman").show();
-        });
-        
+      
+$(".genre").on('click', function () {
+    $(".superman").show();
+});
 
     
 
     //These are the newly added codes, jsutin, pls do cross check and help me out on this. Thank You..
 
       
-
+}
