@@ -52,50 +52,32 @@ $(document).ready(function() {
     
 });
 
-
-function additem() {
-    var newCartitem = {
+function addCart() {
+    var newCartItem = {
         movie: $("#movie").val(),
         price: $("#price").val(),
         quantity: $("#quantity").val(),
-      
     };
 
-    $.ajax({
-        url:"/addtoCart?token="+sessionStorage.authToken,
-        method:"POST",
-        data:  newCartitem
-
-    })
-    .done(function(data){
+    $.ajax(
+        {
+            url: "/api/addtoCart?token="+sessionStorage.authToken,
+            method: 'POST',
+            data: newCartItem
+            
+        }
+    ) .done(function(data){
         $(".statusMessage").text(data);
         setTimeout(function(){
             location.reload();
         },3000);
     })
-    .fail(function(err){
-        $(".statusMessage").text("Unable to add item to cart");
-    })
-    return false;
-}
-
-
-function addToCart() {
-    $.ajax(
-        {
-            url: "////?token="+sessionStorage.authToken,
-            method: '',
-            data: {}
-        }
-    ).done(
-        function (data) {
-
-        }
-    ).fail(
+    .fail(
         function (err) {
             console.log(err.responseText);
         }
     );
-
+    
     return false;
 }
+
