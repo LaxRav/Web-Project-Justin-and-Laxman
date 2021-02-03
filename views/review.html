@@ -28,15 +28,18 @@
 <br />
 <br />
         <section>
-          <form action="return review();">
+          <form onsubmit="return review();">
             <label for="name">Name:</label><br>
             <input type="text" id="name" name="name"><br>
             <label for="email">Email:</label><br>
             <input type="text" id="email" name="email"><br>
             <label for="movie">Name movie of choice :</label><br>
-            <select name= "movie" id="movie">
+            <select name= "movie" id="movie" onchange="">
+              <option value="BeeMovie">Bee Movie</option>
+              <option value="Toys Story">Toys Story</option>
 
-            <input type="text" id="namechoice" name="namechoice"><br>
+            </select>
+          </br>
             <label for="name">What did you like best of movie:</label><br>
             <input type="text" id="namebest" name="namebest"><br>
             <label for="name">Rate on scale below :</label><br>
