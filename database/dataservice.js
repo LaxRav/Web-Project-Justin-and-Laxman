@@ -7,7 +7,7 @@ var commentSchema = {};
 var accountModel;
 var movieModel;
 var CartModel;
-var commentModel = {}; 
+var commentModel;
 
 
 mongoose.set('useNewUrlParser', true);
@@ -21,7 +21,7 @@ mongoose.set('debug', true);
 
 var database = {
     connect: function () {
-        mongoose.connect('mongodb://localhost:27017/J&LHub', function (err) {
+        mongoose.connect('mongodb://localhost:27017/J&LHUB', function (err) {
             if (err == null) {
                 console.log("Connected to Mongo DB");
                 //initializing values
@@ -60,13 +60,13 @@ var database = {
 
                     commentSchema = schema({
 
-                        movie:String,
-                        subject:String,
-                        message:String,
+                        movie: String,
+                        subject: String,
+                        message: String,
                         timestamp: String,
 
                         account:{
-                            type:schema.Types.ObjectId,
+                            type: schema.Types.ObjectId,
                             ref:'accounts'
                         }
                     });
@@ -85,9 +85,7 @@ var database = {
         })
     },
 
-    //getMovieById: function (id, callback) {
-   //     movieModel.findById(id, callback);
-   // },
+  
 
     getMovie: function(id, callback) {
         movieModel.findById(id,callback);

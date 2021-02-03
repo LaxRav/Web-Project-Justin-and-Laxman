@@ -1,7 +1,7 @@
 var bodyParser = require('body-parser');
 var db = require('./database/dataservice.js');
 var crypto = require('crypto');
-const { Console } = require('console');
+
 
 db.connect();
 
@@ -257,13 +257,18 @@ var routes = function () {
                     res.status(200).send(movies);
                 }
             })
+        
         });
 
-      
+ return router;
 
-    });
-    return router;
+        })
+    
+    }
 
-}
-module.exports = routes();
+    module.exports = routes();
+
+    
+
+
 
