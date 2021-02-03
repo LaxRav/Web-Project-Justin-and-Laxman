@@ -247,6 +247,15 @@ router.post('/genre/search', function (req, res) {
             })
     });
 
+    router.post('/sendReview', function (req, res) {
+        var data = req.body;
+        data.timestamp = Date.now();
+
+        db.addReview(data.name, data.email, data.movie, data.namebest, data.scale, data.recommendation, data.timestamp,
+            function (err, review) {
+                res.send(review);
+            })
+    })
 
 
     router.get('/viewmovie/:movie', function (req, res) {

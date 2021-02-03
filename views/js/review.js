@@ -26,14 +26,36 @@ $(document).ready(function () {
 
 });
 
+
+
 function review() {
-var feedback = {
-    email: data.email,
-    name: $("#name").val(),
-    email: $("#email").val(),
-    namechoice: $("#namechoice").val(),
-    namebest: $("#namebest").val(),
-    scale: $("#scale").val(),
-    recommendation: $("#recommendation").val(),
-}
+    var feedback = {
+        name: $("#name").val(),
+        email: $("#email").val(),
+        movie: $("#namechoice").val(),
+        namebest: $("#namebest").val(),
+        scale: $("#scale").val(),
+        recommendation: $("#recommendation").val(),
+    };
+
+    $.ajax(
+        {
+            url: "/sendreview",
+            method: 'POST',
+            data: feedback
+            
+        }
+    ) .done(function(data){
+        $(".statusMessage").text(data);
+        setTimeout(function(){
+            location.reload();
+        },3000);
+    })
+    .fail(
+        function (err) {
+            console.log(err.responseText);
+        }
+    );
+    
+    return false;
 }

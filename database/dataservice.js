@@ -3,11 +3,11 @@ var schema = mongoose.Schema;
 var movieSchema = {};
 var accountSchema = {};
 var CartSchema  = {};
-var commentSchema = {};
+var reviewSchema = {};
 var accountModel;
 var movieModel;
 var CartModel;
-var commentModel = {}; 
+var reviewModel = {}; 
 
 
 mongoose.set('useNewUrlParser', true);
@@ -58,17 +58,16 @@ var database = {
 
                     });
 
-                    commentSchema = schema({
+                    reviewSchema = schema({
 
                         movie:String,
                         subject:String,
-                        message:String,
+                        namebest:String,
+                        scale:String,
+                        recommedation: String,
                         timestamp: String,
 
-                        account:{
-                            type:schema.Types.ObjectId,
-                            ref:'accounts'
-                        }
+                        
                     });
 
 
@@ -76,7 +75,7 @@ var database = {
                 movieModel = connection.model('movies', movieSchema);
                 accountModel = connection.model('accounts', accountSchema);
                  CartModel = connection.model('carts', CartSchema);
-                 commentModel = connection.model('comments',commentSchema);
+                 reviewModel = connection.model('comments',commentSchema);
 
 
             } else {
@@ -176,22 +175,26 @@ var database = {
     CartModel.find({ Customer: RegExp(c,'i') }, callback);
     },
    
-    addToComments: function (m, p, q ,oid, t ,callback){
-        var newCustomer = new CartModel ({
-            movie:m,
-            subject:s,
-            message:mes,
-            account: oid,
-            timestamp: ts,
-        });
-        newCustomer.save(callback);
-  
-      },
+    
 
     getCommentsByMovie: function (m,callback){
         commentModel.find({ message: RegExp(m,'i') }, callback);
-     }
+     },
 
+
+     addReview: function (n,e,m,nb,s,r, ts,callback){
+        var newReview = new reviewModel ({
+            name:n,
+            email:e,
+            movie:m,
+            namebest: nb,
+            scale: s,
+            recommedation: r,
+            timestamp: ts,
+        });
+        newReview.save(callback);
+  
+      },
 
 };
 
