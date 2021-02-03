@@ -2,12 +2,12 @@ var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 var movieSchema = {};
 var accountSchema = {};
-var CartSchema  = {};
+var CartSchema = {};
 var reviewSchema = {};
 var accountModel;
 var movieModel;
 var CartModel;
-var reviewModel = {}; 
+var reviewModel = {};
 
 
 mongoose.set('useNewUrlParser', true);
@@ -21,7 +21,7 @@ mongoose.set('debug', true);
 
 var database = {
     connect: function () {
-        mongoose.connect('mongodb://localhost:27017/J&LHUB', function (err) {
+        mongoose.connect('mongodb://localhost:27017/J&LHub', function (err) {
             if (err == null) {
                 console.log("Connected to Mongo DB");
                 //initializing values
@@ -45,37 +45,37 @@ var database = {
                         token: String
                     });
 
-                    CartSchema = schema({
-                        movie: String,
-                        price: Number,
-                        quantity: Number,
+                CartSchema = schema({
+                    movie: String,
+                    price: Number,
+                    quantity: Number,
 
-                        account: {
-                            type: schema.Types.ObjectId,
-                            ref: 'accounts'
-                        },
-                        timestamp: String,
+                    account: {
+                        type: schema.Types.ObjectId,
+                        ref: 'accounts'
+                    },
+                    timestamp: String,
 
-                    });
+                });
 
-                    reviewSchema = schema({
+                reviewSchema = schema({
 
-                        movie:String,
-                        subject:String,
-                        namebest:String,
-                        scale:String,
-                        recommedation: String,
-                        timestamp: String,
+                    movie: String,
+                    subject: String,
+                    namebest: String,
+                    scale: String,
+                    recommedation: String,
+                    timestamp: String,
 
-                        
-                    });
+
+                });
 
 
                 var connection = mongoose.connection;
                 movieModel = connection.model('movies', movieSchema);
                 accountModel = connection.model('accounts', accountSchema);
-                 CartModel = connection.model('carts', CartSchema);
-                 reviewModel = connection.model('comments',commentSchema);
+                CartModel = connection.model('carts', CartSchema);
+                reviewModel = connection.model('comments', reviewSchema);
 
 
             } else {
@@ -85,11 +85,11 @@ var database = {
     },
 
     //getMovieById: function (id, callback) {
-   //     movieModel.findById(id, callback);
-   // },
+    //     movieModel.findById(id, callback);
+    // },
 
-    getMovie: function(id, callback) {
-        movieModel.findById(id,callback);
+    getMovie: function (id, callback) {
+        movieModel.findById(id, callback);
     },
 
     updateMovieById: function (id, m, p, d, g, r, di, l, callback) {
@@ -135,6 +135,9 @@ var database = {
             email: e,
             password: p,
             dateofbirth: dob
+
+
+            
         });
         newAccount.save(callback);
     },
@@ -147,54 +150,54 @@ var database = {
         accountModel.findById(id, callback);
     },
 
-    /*
+    
     searchMovie: function (m, callback) {
         movieModel.find({ movie: new RegExp(m, 'i') }, callback);
     },
-    */
 
     searchMovieByGenre: function (g, callback) {
         movieModel.find({ genre: new RegExp(g, 'i') }, callback);
     },
 
 
-    addToCart: function (m, s, mes, ts ,oid,callback){
-      var newCustomer = new CartModel ({
-        movie:m,
-        subject:s,
-        message:mes,
-        account: oid,
-        timestamp: ts,
+    addToCart: function (m, p, q,oid, ts, callback) {
+        var newCustomer = new CartModel({
+            movie: m,
+            price:p,
+            quantity: q,
+            account: oid,
+            timestamp: ts,
 
-      });
-      newCustomer.save(callback);
+           
+        });
+        newCustomer.save(callback);
 
     },
 
-    searchCartByCustomerName: function (c,callback){
-    CartModel.find({ Customer: RegExp(c,'i') }, callback);
+    searchCartByCustomerName: function (c, callback) {
+        CartModel.find({ Customer: RegExp(c, 'i') }, callback);
     },
-   
-    
-
-    getCommentsByMovie: function (m,callback){
-        commentModel.find({ message: RegExp(m,'i') }, callback);
-     },
 
 
-     addReview: function (n,e,m,nb,s,r, ts,callback){
-        var newReview = new reviewModel ({
-            name:n,
-            email:e,
-            movie:m,
+
+    getCommentsByMovie: function (m, callback) {
+        commentModel.find({ message: RegExp(m, 'i') }, callback);
+    },
+
+
+    addReview: function (n, e, m, nb, s, r, ts, callback) {
+        var newReview = new reviewModel({
+            name: n,
+            email: e,
+            movie: m,
             namebest: nb,
             scale: s,
             recommedation: r,
             timestamp: ts,
         });
         newReview.save(callback);
-  
-      },
+
+    },
 
 };
 
