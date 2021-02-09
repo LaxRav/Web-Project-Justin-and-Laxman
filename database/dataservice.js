@@ -93,7 +93,8 @@ var database = {
              {
                 console.log("Error connecting to Mongo DB");
             }
-        }
+        })
+        },
     
 
 
