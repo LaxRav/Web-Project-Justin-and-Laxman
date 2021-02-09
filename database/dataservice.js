@@ -72,7 +72,8 @@ var database = {
                         }
                     });
 
-                });
+                }
+            
 
                 reviewSchema = schema({
 
@@ -95,11 +96,13 @@ var database = {
                 reviewModel = connection.model('comments', reviewSchema);
 
 
-            } else {
+        }
+             else 
+             {
                 console.log("Error connecting to Mongo DB");
             }
-        })
-    },
+        }
+    
 
 
   

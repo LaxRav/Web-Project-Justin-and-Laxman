@@ -262,9 +262,21 @@ router.post('/genre/search', function (req, res) {
         
         });
 
- return router;
+        router.get('/viewmovie/:movie', function (req, res) {
+            var movie = req.params.movie;
+            db.getCommentsByMovie(movie, function (err, movies) {
+                if (err) {
+                    res.status(500).send("Unable to retrieve movie comments by movie");
+                } else {
+                    res.status(200).send(movies);
+                }
+            })
+        });
 
-        })
+ return router;
+ 
+
+        
     
     }
 
@@ -274,23 +286,9 @@ router.post('/genre/search', function (req, res) {
 
 
 
-    })
+    
 
 
-    router.get('/viewmovie/:movie', function (req, res) {
-        var movie = req.params.movie;
-        db.getCommentsByMovie(movie, function (err, movies) {
-            if (err) {
-                res.status(500).send("Unable to retrieve movie comments by movie");
-            } else {
-                res.status(200).send(movies);
-            }
-        })
-    });
+   
 
-    return router;
-
-};
-
-
-module.exports = routes();
+    
