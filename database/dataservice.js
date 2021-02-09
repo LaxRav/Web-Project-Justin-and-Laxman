@@ -72,7 +72,7 @@ var database = {
                         }
                     });
 
-                });
+                
 
                 reviewSchema = schema({
 
