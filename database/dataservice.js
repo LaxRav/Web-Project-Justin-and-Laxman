@@ -59,17 +59,6 @@ var database = {
                         ref: 'accounts'
                     },
                     timestamp: String,
-
-
-                        movie: String,
-                        subject: String,
-                        message: String,
-                        timestamp: String,
-
-                        account:{
-                            type: schema.Types.ObjectId,
-                            ref:'accounts'
-                        }
                     });
 
                 
@@ -95,7 +84,7 @@ var database = {
                 var connection = mongoose.connection;
                 movieModel = connection.model('movies', movieSchema);
                 accountModel = connection.model('accounts', accountSchema);
-                CartModel = connection.model('carts', CartSchema);
+                cartModel = connection.model('carts', CartSchema);
                 reviewModel = connection.model('comments', reviewSchema);
 
 
@@ -200,7 +189,7 @@ var database = {
     },
 
     searchCartByCustomerName: function (c, callback) {
-        CartModel.find({ Customer: RegExp(c, 'i') }, callback);
+        cartModel.find({ Customer: RegExp(c, 'i') }, callback);
     },
 
 
@@ -223,6 +212,11 @@ var database = {
         newReview.save(callback);
 
     },
+
+    getCartOrderByAccount: function(account, callback){
+     cartModel.find({account:account}).exec(callback);
+    }
+
 
 };
 

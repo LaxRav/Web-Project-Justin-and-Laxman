@@ -87,6 +87,10 @@ var routes = function () {
         res.sendFile(__dirname + "/views/viewmovie.html");
     });
 
+    router.get('/cart', function (req, res) {
+        res.sendFile(__dirname + "/views/cart.html");
+    });
+
     router.get('/movies', function (req, res) {
         db.getAllMovieInfo(function (err, movies) {
             if (err) {
@@ -129,16 +133,16 @@ var routes = function () {
         */
 
 
-router.post('/genre/search', function (req, res) {
-    var genre = req.body.genre;
-    db.searchMovie(genre, function(err, movies) {
-        if (err) {
-            res.status(500).send("Sorry, Unable to retrieve records based on your search");
-        } else {
-            res.status(200).send(movies);
-        }
+    router.post('/genre/search', function (req, res) {
+        var genre = req.body.genre;
+        db.searchMovie(genre, function (err, movies) {
+            if (err) {
+                res.status(500).send("Sorry, Unable to retrieve records based on your search");
+            } else {
+                res.status(200).send(movies);
+            }
+        })
     })
-})
 
 
     router.post('/genre/search', function (req, res) {
@@ -243,7 +247,7 @@ router.post('/genre/search', function (req, res) {
 
         console.log(data);
         console.log(account);
-        
+
         db.addToCart(data.movie, data.price, data.quantity, account, data.timestamp,
             function (err, order) {
                 res.send(order);
@@ -254,17 +258,17 @@ router.post('/genre/search', function (req, res) {
         var data = req.body;
         data.timestamp = Date.now();
         var account = res.locals.account._id;
-        db.addReview( data.movie, data.subject, data.reviewcomment ,data.rating,account, data.timestamp,
+        db.addReview(data.movie, data.subject, data.reviewcomment, data.rating, account, data.timestamp,
             function (err, review) {
                 res.send(review);
             })
 
-        
-        });
+
+    });
 
 
 
-   
+
     router.get('/viewmovie/:movie', function (req, res) {
         var movie = req.params.movie;
         db.getCommentsByMovie(movie, function (err, movies) {
@@ -275,6 +279,20 @@ router.post('/genre/search', function (req, res) {
             }
         })
     });
+
+
+    router.get('/api/carts/:account', function (req, res) {
+        var account = res.locals.account._id;
+        db.getCartOrderByAccount(account, function (err, cart) {
+            if (err) {
+                res.status(500).send("Unable to retrieve cart orders by account");
+            }
+            else {
+                res.status(200).send(cart);
+
+            }
+        })
+    })
 
     return router;
 

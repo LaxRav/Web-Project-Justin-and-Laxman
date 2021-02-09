@@ -3,7 +3,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 13 - Authentication</title>
     <style>
         .protectedSection,.unprotectedSection {
             display: none;
@@ -12,8 +11,15 @@
 </head>
 <body>
     <section class="protectedSection">
-        This page will be used to allow logged in users to access their cart and checkout.
-        <button class="logoutBtn">Logout now</button>
+        
+        <section>
+            <h1>New releases/Blockbuster hits</h1>
+ 
+            <aside class="cart">
+
+            </aside>
+        </section>  
+<button class="logoutBtn">Logout now</button>
     </section>
     <section class="unprotectedSection">
         This page requires a logged in account. <br>
@@ -23,6 +29,6 @@
     </section>
 
     <script src="/js/jquery.min.js"></script>
-    <script src="/js/index.js"></script>
+    <script src="/js/cart.js"></script>
 </body>
 </html>
