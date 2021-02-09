@@ -78,10 +78,14 @@ var database = {
 
                     movie: String,
                     subject: String,
-                    namebest: String,
-                    scale: String,
-                    recommedation: String,
+                    reviewcomment: String,
+                    rating: Number,
                     timestamp: String,
+                   
+                    account:{
+                        type: schema.Types.ObjectId,
+                        ref:'accounts'
+                    }
 
 
                 });

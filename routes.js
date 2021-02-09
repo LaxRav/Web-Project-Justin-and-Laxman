@@ -250,11 +250,11 @@ router.post('/genre/search', function (req, res) {
             })
     });
 
-    router.post('/sendReview', function (req, res) {
+    router.post('/api/sendReview', function (req, res) {
         var data = req.body;
         data.timestamp = Date.now();
-
-        db.addReview(data.name, data.email, data.movie, data.namebest, data.scale, data.recommendation, data.timestamp,
+        var account = res.locals.account._id;
+        db.addReview( data.movie, data.subject, data.reviewcomment ,data.rating,account, data.timestamp,
             function (err, review) {
                 res.send(review);
             })
