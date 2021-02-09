@@ -277,7 +277,7 @@ var routes = function () {
         var data = req.body;
         data.timestamp = Date.now();
         var account = res.locals.account._id;
-        db.addReview(data.movie, data.subject, data.reviewcomment, data.rating, account, data.timestamp,
+        db.addReview(data.movie, data.subject, data.reviewcomment,
             function (err, review) {
                 res.send(review);
             })

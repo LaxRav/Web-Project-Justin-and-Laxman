@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="../css/style.css">
 
     <script src="../js/jquery-3.5.1.min.js"></script>
-    <script src='../js/review.js'></script>
+    <script src='/js/review.js'></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>One stop movie portal</title>
     <style>
@@ -33,24 +33,50 @@
 <br />
 <section class="protectedSection">
   <form onsubmit="return review();">
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name"><br>
-            <label for="email">Email:</label><br>
-            <input type="text" id="email" name="email"><br>
-            <label for="movie">Name movie of choice :</label><br>
-            <select name= "movie" id="movie" onchange="">
-              <option value="BeeMovie">Bee Movie</option>
-              <option value="Toys Story">Toys Story</option>
 
-            </select>
-          </br>
-            <label for="name">What did you like best of movie:</label><br>
-            <input type="text" id="namebest" name="namebest"><br>
-            <label for="name">Rate on scale below :</label><br>
-            <input type="text" id="scale" name="scale"><br>
-            <label for="name">Would you recommend this to a friend? :</label><br>
-            <input type="text" id="recommendation" name="recommendation"><br>
-            <input type="submit" class="submit" value="submit">
+    <label for="movie">Movie Name:</label>
+    <input type="text" id="movie" name="movie" readonly>
+    <br>
+    <label for="price">Price: $</label>
+    <span class="price"></span><br>
+    <br>
+    <label for="description">Description:</label>
+    <span class="description"></span><br>
+    <br>
+    <label for="genre">Genre:</label>
+    <span class="genre"></span>
+    <br>
+    <label for="release">Release:</label>
+    <span class="release"></span>
+    <br>
+    <label for="distributor">Distributor:</label>
+    <span class="distributor"></span>
+    <br>
+    <label for="language">language:</label>
+    <span class="language"></span>
+    <br>
+
+
+    <label for="subject">Subject:</label>
+    <input type="text" id="subject" name="subject">
+    <br>
+    
+    <label for="reviewcomment">Review Comment:</label>
+    <input type="text" id="reviewcomment" name="reviewcomment">
+    <br>
+
+    <label for="rating">Review Rating:</label>
+
+    <select id="rating" name="rating">
+      <option value="1">1 star</option>
+      <option value="2">2 star</option>
+      <option value="3">3 star</option>
+      <option value="4">4 star</option>
+      <option value="5">5 star</option>
+    </select>
+    
+  <br>
+          <input type="submit" class="submit" value="submit">
           </form>
         </section>
 

@@ -57,6 +57,7 @@ function addCart() {
         movie: $("#movie").val(),
         price: $("#price").val(),
         quantity: $("#quantity").val(),
+        rating: $("#rating").val(),
     };
 
     $.ajax(

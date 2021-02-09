@@ -50,8 +50,8 @@ function editCart() {
     };
     $.ajax(
         {
-            url: '/editcart?token='+sessionStorage.authToken,
-            method: 'put',
+            url: "/api/addtoCart?token="+sessionStorage.authToken,
+            method: 'PUT',
             data: cart
         }
     ).done(

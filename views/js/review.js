@@ -1,20 +1,22 @@
-var email = "";
+var movieId = 0;
 $(document).ready(function () {
     var urlParams = new URLSearchParams(window.location.search);
-    email = urlParams.get('email'); 
+    movieId = urlParams.get('id');
     $.ajax({
-        url: "/movies" + email,
+        url: "/movies/" + movieId,
         method: "get"
     })
         .done(
             function (data) {
                 
-                $('#name').val(data.name);
-                $('#email').val(data.email);
-                $('#namechoice').val(data.namechoice);
-                $('#namebest').val(data.namebest);
-                $('#scale').val(data.scale);
-                $('#recommendation').val(data.recommendation);
+                $('#movie').val(data.movie);
+                $('.movie').text(data.movie);
+                $('.price').text(data.price);
+                $('.description').text(data.description);
+                $('.genre').text(data.genre);
+                $('.release').text(data.release);
+                $('.distributor').text(data.distributor);
+                $('.language').text(data.language);
             }
         )
 
@@ -28,19 +30,19 @@ $(document).ready(function () {
 
 
 
-function review() {
+function addreview() {
     var feedback = {
-        name: $("#name").val(),
-        email: $("#email").val(),
-        movie: $("#namechoice").val(),
-        namebest: $("#namebest").val(),
-        scale: $("#scale").val(),
-        recommendation: $("#recommendation").val(),
+        movie: $("#movie").val(),
+        subject: $("#subject").val(),
+        reviewcomment: $("#comment").val(),
+
+       
+       
     };
 
     $.ajax(
         {
-            url: "/sendreview",
+            url: "/api/sendReview?token="+sessionStorage.authToken,
             method: 'POST',
             data: feedback
             
