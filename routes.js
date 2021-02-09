@@ -279,20 +279,13 @@ var routes = function () {
         });
 
 
-        router.get('/viewmovie/:movie', function (req, res) {
-            var movie = req.params.movie;
-            db.getCommentsByMovie(movie, function (err, movies) {
-                if (err) {
-                    res.status(500).send("Unable to retrieve movie comments by movie");
-                } else {
-                    res.status(200).send(movies);
-                }
-            })
-        });
+       
     
     
-        router.get('/api/carts/:account', function (req, res) {
+        router.get('cart/:account', function (req, res) {
             var account = res.locals.account._id;
+          // var account = req.params.account;
+
             db.getCartOrderByAccount(account, function (err, cart) {
                 if (err) {
                     res.status(500).send("Unable to retrieve cart orders by account");

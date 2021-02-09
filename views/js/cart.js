@@ -17,7 +17,7 @@ var accountId = "";
 $(document).ready(function () {
  accountId = res.locals.account._id;
     $.ajax({
-        url: "/api/carts/" + accountId ,
+        url: "cart/" + accountId ,
         method: "get"
     })
         .done(
@@ -46,3 +46,17 @@ $(document).ready(function () {
         )
 
 })
+
+$(".logoutBtn").click(function(){
+    $.ajax({
+        url: "/logout?token="+sessionStorage.authToken,
+        method:"get"
+    })
+    .done(function(data){
+        sessionStorage.removeItem("authToken");
+        location.reload();
+    })
+    .fail(function(err){
+        console.log(err.responseText);
+    })
+});

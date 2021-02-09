@@ -2,11 +2,11 @@ var mongoose = require('mongoose');
 var schema = mongoose.Schema;
 var movieSchema = {};
 var accountSchema = {};
-var CartSchema = {};
+var cartSchema = {};
 var reviewSchema = {};
 var accountModel;
 var movieModel;
-var CartModel;
+var cartModel;
 
 var commentModel;
 
@@ -49,7 +49,7 @@ var database = {
                         token: String
                     });
 
-                CartSchema = schema({
+                cartSchema = schema({
                     movie: String,
                     price: Number,
                     quantity: Number,
@@ -84,7 +84,7 @@ var database = {
                 var connection = mongoose.connection;
                 movieModel = connection.model('movies', movieSchema);
                 accountModel = connection.model('accounts', accountSchema);
-                cartModel = connection.model('carts', CartSchema);
+                cartModel = connection.model('carts', cartSchema);
                 reviewModel = connection.model('comments', reviewSchema);
 
 
@@ -178,7 +178,7 @@ var database = {
 
 
     addToCart: function (m, p, q,oid, ts, callback) {
-        var newCustomer = new CartModel({
+        var newCustomer = new cartModel({
             movie: m,
             price:p,
             quantity: q,
@@ -216,8 +216,8 @@ var database = {
 
     },
 
-    getCartOrderByAccount: function(account, callback){
-     cartModel.find({account:account}).exec(callback);
+    getCartOrderByAccount: function(accountid, callback){
+     cartModel.find({account:accountid}, callback);
     }
 
 
