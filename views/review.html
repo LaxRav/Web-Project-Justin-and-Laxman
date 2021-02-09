@@ -6,7 +6,11 @@
     <script src='../js/review.js'></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>One stop movie portal</title>
-   
+    <style>
+      .protectedSection,.unprotectedSection {
+          display: none;
+      }
+  </style>
     <body class="various">
         <h1>J & L Movies</h1>
         <aside>
@@ -27,8 +31,8 @@
         </nav>
 <br />
 <br />
-        <section>
-          <form onsubmit="return review();">
+<section class="protectedSection">
+  <form onsubmit="return review();">
             <label for="name">Name:</label><br>
             <input type="text" id="name" name="name"><br>
             <label for="email">Email:</label><br>
@@ -50,8 +54,12 @@
           </form>
         </section>
 
-      <p class="thank"></p>
-
+        <section class="unprotectedSection">
+          This page requires a logged in account. <br>
+           Click <a href="/register">here</a> to register <br>
+           Click <a href="/login">here</a> to login 
+  
+      </section>
 
         
         </body>
