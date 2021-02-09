@@ -4,14 +4,14 @@ $(document).ready(function() {
     cartId = urlParams.get('id');
 
     $.ajax({
-        url: "/cart/" + cartId,
+        url: "/cartitem/" + cartId,
         method: "get"
     }).done(
         function (data) {
             $('.company').text(data.movie);
-            $('#name').val(data.quantity);
-            $('.description').val(data.price);
-            $('.timestamp').val(data.timestamp);
+            $('#quantity').val(data.quantity);
+            $('.description').text(data.price);
+            $('.timestamp').text(data.timestamp);
         }
     ).fail(
         function (err) {

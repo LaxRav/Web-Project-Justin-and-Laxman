@@ -191,6 +191,13 @@ var database = {
 
     },
 
+
+
+
+    getCartById: function (id, callback) {
+        cartModel.findById(id, callback);
+    },
+
     updateCartItem: function (m, p, q,oid, ts, callback) {
         var newCustomer = new cartModel({
             movie: m,

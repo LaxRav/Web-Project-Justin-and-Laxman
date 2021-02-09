@@ -92,7 +92,7 @@ var routes = function () {
     });
 
     router.get('/editcart', function (req, res) {
-        res.sendFile(__dirname + "/views/cart.html");
+        res.sendFile(__dirname + "/views/editcart.html");
     });
     router.get('/movies', function (req, res) {
         db.getAllMovieInfo(function (err, movies) {
@@ -282,7 +282,16 @@ var routes = function () {
         });
 
 
-       
+        router.get('/cartitem/:id', function (req, res) {
+            var id = req.params.id;
+            db.getCartById(id, function (err, event) {
+                if (err) {
+                    res.status(500).send("Unable to find an event with this id");
+                } else {
+                    res.status(200).send(event);
+                }
+            })
+        })
     
     
         router.get('/cart/:account', function (req, res) {
