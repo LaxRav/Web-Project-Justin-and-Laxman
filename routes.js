@@ -91,6 +91,9 @@ var routes = function () {
         res.sendFile(__dirname + "/views/cart.html");
     });
 
+    router.get('/editcart', function (req, res) {
+        res.sendFile(__dirname + "/views/cart.html");
+    });
     router.get('/movies', function (req, res) {
         db.getAllMovieInfo(function (err, movies) {
             if (err) {
@@ -282,10 +285,10 @@ var routes = function () {
        
     
     
-        router.get('cart/:account', function (req, res) {
-            var account = res.locals.account._id;
-          // var account = req.params.account;
-
+        router.get('/cart/:account', function (req, res) {
+            //var account2 =
+          var account = req.params.account;
+         //console.log(account2);
             db.getCartOrderByAccount(account, function (err, cart) {
                 if (err) {
                     res.status(500).send("Unable to retrieve cart orders by account");
@@ -296,6 +299,40 @@ var routes = function () {
                 }
             })
         })
+
+
+        router.put('/editcart', function (req, res) {
+            var data = req.body;
+            db.updateCartItem(data.id, data.name, data.description, data.startDate, data.startTime, data.endDate, data.endTime,
+                function (err, event) {
+                    if (err) {
+                        res.status(500).send("Unable to update the event");
+                    } else {
+                        if (event == null) {
+                            res.status(200).send("No event is updated");
+                        } else {
+                            res.status(200).send("Event has been updated successfully");
+                        }
+                    }
+                });
+        })
+
+
+        router.delete('/cart/:id', function (req, res) {
+            var id = req.params.id;
+            db.deleteCartItem(id, function (err, event) {
+                if (err) {
+                    res.status(500).send("Unable to delete the cart item");
+                } else {
+                    if (event == null) {
+                        res.status(200).send("No cart item is deleted");
+                    } else {
+                        res.status(200).send("Cart item has been deleted successfully");
+                    }
+                }
+            });
+        })
+
 
  return router;
  

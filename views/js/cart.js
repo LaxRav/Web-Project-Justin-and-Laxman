@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
     var token = sessionStorage.authToken;
 
@@ -13,27 +14,29 @@ $(document).ready(function() {
 });
 
 
-var accountId = "";
+var accountId = "5ffd1a1d1da1bb5168872dba";
 $(document).ready(function () {
- accountId = res.locals.account._id;
+ //accountId = res.locals.account._id;
     $.ajax({
-        url: "cart/" + accountId ,
+        url: "/cart/" + accountId ,
         method: "get"
     })
         .done(
             function (data) {
                 data.forEach(function (cart) {
+                    
                     $(".cart").append(`
                     <article>
-                
+                        
                         <div>
-                           Cart: ${cart.movie}<br>
-                           Genre : ${cart.price}<br>
+                           Movie: ${cart.movie}<br>
+                           Price : $${cart.price}<br>
                             Quantity: ${cart.quantity}<br>
                             Timestamp: ${cart.timestamp}<br>
                         </div>
-
+                             <h3><a href="/editcart?id=${cart._id}" >Click here to edit your order</a></h3>
                     </article>
+                    <br>
                 `);
                 })
             }

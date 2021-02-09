@@ -25,7 +25,7 @@ mongoose.set('debug', true);
 
 var database = {
     connect: function () {
-        mongoose.connect('mongodb://localhost:27017/J&LHUB', function (err) {
+        mongoose.connect('mongodb://localhost:27017/J&LHub', function (err) {
             if (err == null) {
                 console.log("Connected to Mongo DB");
                 //initializing values
@@ -191,6 +191,24 @@ var database = {
 
     },
 
+    updateCartItem: function (m, p, q,oid, ts, callback) {
+        var newCustomer = new cartModel({
+            movie: m,
+            price:p,
+            quantity: q,
+            account: oid,
+            timestamp: ts,
+
+           
+        });
+        newCustomer.save(callback);
+
+    },
+
+    deleteCartItem: function (id, callback) {
+        cartModel.findByIdAndDelete(id, callback);
+    },
+
     searchCartByCustomerName: function (c, callback) {
         cartModel.find({ Customer: RegExp(c, 'i') }, callback);
     },
@@ -219,6 +237,7 @@ var database = {
     getCartOrderByAccount: function(accountid, callback){
      cartModel.find({account:accountid}, callback);
     }
+    
 
 
 };
