@@ -8,9 +8,9 @@ $(document).ready(function() {
         method: "get"
     }).done(
         function (data) {
-            $('.company').text(data.movie);
+            $('.moviename').text(data.movie);
             $('#quantity').val(data.quantity);
-            $('.description').text(data.price);
+            $('.price').text(data.price);
             $('.timestamp').text(data.timestamp);
         }
     ).fail(
@@ -38,25 +38,25 @@ $(document).ready(function() {
     });
 });
 
-function editEvent() {
-    var event = {
+function editCart() {
+    var cart = {
         id: eventId,
-        name: $("#name").val(),
-        description: $("#description").val(),
-        startDate: $("#startDate").val(),
-        startTime: $("#startTime").val(),
-        endDate: $("#endDate").val(),
-        endTime: $("#endTime").val()
+        movie: $("#movie").val(),
+        price: $("#price").val(),
+        quantity: $("#quantity").val(),
+        account: $("#account").val(),
+        timestamp: Date.now.val()
+
     };
     $.ajax(
         {
-            url: '/events?token='+sessionStorage.authToken,
+            url: '/editcart?token='+sessionStorage.authToken,
             method: 'put',
-            data: event
+            data: cart
         }
     ).done(
         function (data) {
-            alert("Event updated!");
+            alert("Cart updated!");
         }
     ).fail(
         function (err) {
@@ -65,3 +65,36 @@ function editEvent() {
     );
     return false;
 }
+
+
+
+
+$(".logoutBtn").click(function(){
+    $.ajax({
+        url: "/logout?token="+sessionStorage.authToken,
+        method:"get"
+    })
+    .done(function(data){
+        sessionStorage.removeItem("authToken");
+        location.reload();
+        location.url("/index");
+    })
+    .fail(function(err){
+        console.log(err.responseText);
+    })
+});
+
+
+$(document).ready(function() {
+    var token = sessionStorage.authToken;
+
+    if(token==undefined) {
+        $(".protectedSection").hide();
+        $(".unprotectedSection").show();
+    } else {
+        $(".protectedSection").show();
+        $(".unprotectedSection").hide();
+    }
+
+    
+});

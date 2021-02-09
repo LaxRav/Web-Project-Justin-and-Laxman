@@ -257,6 +257,22 @@ var routes = function () {
             })
     });
 
+    router.put('/editcart', function (req, res) {
+        var data = req.body;
+        data.timestamp = Date.now();
+        var account = res.locals.account._id;
+
+        console.log(data);
+        console.log(account);
+
+        db.updateCartItem(data.id,data.movie, data.price, data.quantity, account, data.timestamp,
+            function (err, order) {
+                res.send(order);
+            })
+    });
+
+
+
     router.post('/api/sendReview', function (req, res) {
         var data = req.body;
         data.timestamp = Date.now();
@@ -312,10 +328,11 @@ var routes = function () {
 
         router.put('/editcart', function (req, res) {
             var data = req.body;
-            db.updateCartItem(data.id, data.name, data.description, data.startDate, data.startTime, data.endDate, data.endTime,
+            data.timestamp = Date.now();
+            db.updateCartItem(data.id, data.quantity, data.timestamp,
                 function (err, event) {
                     if (err) {
-                        res.status(500).send("Unable to update the event");
+                        res.status(500).send("Unable to update the cart item");
                     } else {
                         if (event == null) {
                             res.status(200).send("No event is updated");

@@ -199,7 +199,7 @@ var database = {
     },
 
     updateCartItem: function (m, p, q,oid, ts, callback) {
-        var newCustomer = new cartModel({
+        var updatedCart = {
             movie: m,
             price:p,
             quantity: q,
@@ -207,8 +207,8 @@ var database = {
             timestamp: ts,
 
            
-        });
-        newCustomer.save(callback);
+        };
+        cartModel.findByIdAndUpdate(id, updatedCart, callback);
 
     },
 
