@@ -40,17 +40,12 @@ $(document).ready(function() {
 
 function editCart() {
     var cart = {
-        id: eventId,
-        movie: $("#movie").val(),
-        price: $("#price").val(),
+        id: cartId,
         quantity: $("#quantity").val(),
-        account: $("#account").val(),
-        timestamp: Date.now.val()
-
     };
     $.ajax(
         {
-            url: "/api/addtoCart?token="+sessionStorage.authToken,
+            url: "/api/editcart?token="+sessionStorage.authToken,
             method: 'PUT',
             data: cart
         }
@@ -97,4 +92,20 @@ $(document).ready(function() {
     }
 
     
+});
+
+
+$(".logoutBtn").click(function(){
+    $.ajax({
+        url: "/logout?token="+sessionStorage.authToken,
+        method:"get"
+    })
+    .done(function(data){
+        sessionStorage.removeItem("authToken");
+        location.reload();
+        location.url("/index");
+    })
+    .fail(function(err){
+        console.log(err.responseText);
+    })
 });

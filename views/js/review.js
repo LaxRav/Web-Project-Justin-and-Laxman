@@ -18,6 +18,8 @@ $(document).ready(function () {
                 $('.distributor').text(data.distributor);
                 $('.language').text(data.language);
             }
+
+
         )
 
         .fail(
@@ -31,10 +33,11 @@ $(document).ready(function () {
 
 
 function addreview() {
-    var feedback = {
+    var newreview = {
         movie: $("#movie").val(),
         subject: $("#subject").val(),
-        reviewcomment: $("#comment").val(),
+        reviewcomment: $("#reviewcomment").val(),
+        rating: $("#rating").val(),
 
        
        
@@ -44,15 +47,17 @@ function addreview() {
         {
             url: "/api/sendReview?token="+sessionStorage.authToken,
             method: 'POST',
-            data: feedback
+            data: newreview
             
         }
     ) .done(function(data){
         $(".statusMessage").text(data);
-        setTimeout(function(){
-            location.reload();
-        },3000);
-    })
+        alert("Your review has been recorded");
+        window.location.href = "/";
+    }
+    
+    
+    )
     .fail(
         function (err) {
             console.log(err.responseText);
@@ -74,4 +79,20 @@ $(document).ready(function() {
     }
 
     
+});
+
+
+$(".logoutBtn").click(function(){
+    $.ajax({
+        url: "/logout?token="+sessionStorage.authToken,
+        method:"get"
+    })
+    .done(function(data){
+        sessionStorage.removeItem("authToken");
+        location.reload();
+        location.url("/index");
+    })
+    .fail(function(err){
+        console.log(err.responseText);
+    })
 });

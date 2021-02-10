@@ -14,11 +14,10 @@ $(document).ready(function() {
 });
 
 
-var accountId = "5ffd1a1d1da1bb5168872dba";
+var accountId = "";
 $(document).ready(function () {
- //accountId = res.locals.account._id;
     $.ajax({
-        url: "/cart/" + accountId ,
+        url: "/api/cart?token=" + sessionStorage.authToken ,
         method: "get"
     })
         .done(
@@ -58,6 +57,21 @@ $(".logoutBtn").click(function(){
     .done(function(data){
         sessionStorage.removeItem("authToken");
         location.reload();
+    })
+    .fail(function(err){
+        console.log(err.responseText);
+    })
+});
+
+$(".logoutBtn").click(function(){
+    $.ajax({
+        url: "/logout?token="+sessionStorage.authToken,
+        method:"get"
+    })
+    .done(function(data){
+        sessionStorage.removeItem("authToken");
+        location.reload();
+        location.url("/index");
     })
     .fail(function(err){
         console.log(err.responseText);

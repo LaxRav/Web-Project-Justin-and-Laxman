@@ -57,7 +57,6 @@ function addCart() {
         movie: $("#movie").val(),
         price: $("#price").val(),
         quantity: $("#quantity").val(),
-        rating: $("#rating").val(),
     };
 
     $.ajax(
@@ -82,3 +81,17 @@ function addCart() {
     return false;
 }
 
+$(".logoutBtn").click(function(){
+    $.ajax({
+        url: "/logout?token="+sessionStorage.authToken,
+        method:"get"
+    })
+    .done(function(data){
+        sessionStorage.removeItem("authToken");
+        location.reload();
+        location.url("/index");
+    })
+    .fail(function(err){
+        console.log(err.responseText);
+    })
+});

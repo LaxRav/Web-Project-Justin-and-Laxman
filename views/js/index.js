@@ -18,7 +18,8 @@ $(document).ready(function () {
                         </div>
 
                         <h3><a href="/addtocart?id=${movies._id}">Rent movie here</a></h3>
-                        <h3><a href="/review?id=${movies._id}">Review movie here</a></h3>
+                        <h3><a href="/review?id=${movies._id}">Write a review here</a></h3>
+                        <h3><a href="/allreviews?id=${movies._id}">Check out the movie reviews here</a></h3>
 
                     </article>
                 `);
@@ -99,6 +100,8 @@ function login() {
             $(".statusMessage").text(data.message);
             //stores the token returned from the server, if successful login
             sessionStorage.authToken = data.token;
+            alert("You have managed to log in");
+            window.location.href = "/";
         })
         .fail(function (err) {
             $(".statusMessage").text(err.responseText);

@@ -10,7 +10,7 @@ var cartModel;
 
 var commentModel;
 
-var reviewModel = {};
+var reviewModel;
 
 
 
@@ -85,7 +85,7 @@ var database = {
                 movieModel = connection.model('movies', movieSchema);
                 accountModel = connection.model('accounts', accountSchema);
                 cartModel = connection.model('carts', cartSchema);
-                reviewModel = connection.model('comments', reviewSchema);
+                reviewModel = connection.model('reviews', reviewSchema);
 
 
         }
@@ -129,6 +129,10 @@ var database = {
 
     getAllMovieInfo: function (callback) {
         movieModel.find({}, callback);
+    },
+
+    getmoviereviewsbymovie: function (moviename,callback) {
+        cartModel.find({movie:moviename}, callback);
     },
 
     login: function (e, p, callback) {
@@ -198,15 +202,10 @@ var database = {
         cartModel.findById(id, callback);
     },
 
-    updateCartItem: function (m, p, q,oid, ts, callback) {
+    updateCartItem: function (id,q,ts,callback) {
         var updatedCart = {
-            movie: m,
-            price:p,
             quantity: q,
-            account: oid,
-            timestamp: ts,
-
-           
+            timestamp: ts,          
         };
         cartModel.findByIdAndUpdate(id, updatedCart, callback);
 
@@ -227,14 +226,14 @@ var database = {
     },
 
 
-    addReview: function (n, e, m, nb, s, r, ts, callback) {
+    addReview: function (m,s, rc,r ,oid ,ts, callback) {
         var newReview = new reviewModel({
-            name: n,
-            email: e,
+          
             movie: m,
-            namebest: nb,
-            scale: s,
-            recommedation: r,
+            subject: s,
+            reviewcomment: rc,
+            rating: r,
+            account: oid,
             timestamp: ts,
         });
         newReview.save(callback);
@@ -244,6 +243,7 @@ var database = {
     getCartOrderByAccount: function(accountid, callback){
      cartModel.find({account:accountid}, callback);
     }
+    
     
 
 

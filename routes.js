@@ -94,6 +94,11 @@ var routes = function () {
     router.get('/editcart', function (req, res) {
         res.sendFile(__dirname + "/views/editcart.html");
     });
+
+    router.get('/allreviews', function (req, res) {
+        res.sendFile(__dirname + "/views/allreviews.html");
+    });
+
     router.get('/movies', function (req, res) {
         db.getAllMovieInfo(function (err, movies) {
             if (err) {
@@ -138,7 +143,7 @@ var routes = function () {
 
     router.post('/genre/search', function (req, res) {
         var genre = req.body.genre;
-        db.searchMovie(genre, function (err, movies) {
+        db.searchMovieByGenre(genre, function (err, movies) {
             if (err) {
                 res.status(500).send("Sorry, Unable to retrieve records based on your search");
             } else {
@@ -148,17 +153,18 @@ var routes = function () {
     })
 
 
-    router.post('/genre/search', function (req, res) {
-        var genre = req.body.genre;
-        db.searchMovieByGenre(genre, function (err, movies) {
-            if (err) {
-                res.status(500).send("Sorry, Unable to retrieve records based on your search");
-            } else {
-                res.status(200).send(movies);
-            }
-        })
+    // router.post('/genre/search', function (req, res) {
+        
+    //     var genre = req.body.genre;
+    //     db.searchMovieByGenre(genre, function (err, movies) {
+    //         if (err) {
+    //             res.status(500).send("Sorry, Unable to retrieve records based on your search");
+    //         } else {
+    //             res.status(200).send(movies);
+    //         }
+    //     })
 
-    });
+    // });
 
 
 
@@ -277,7 +283,7 @@ var routes = function () {
         var data = req.body;
         data.timestamp = Date.now();
         var account = res.locals.account._id;
-        db.addReview(data.movie, data.subject, data.reviewcomment,
+        db.addReview(data.movie, data.subject, data.reviewcomment, data.rating, account, data.timestamp,
             function (err, review) {
                 res.send(review);
             })
@@ -310,10 +316,9 @@ var routes = function () {
         })
     
     
-        router.get('/cart/:account', function (req, res) {
-            //var account2 =
-          var account = req.params.account;
-         //console.log(account2);
+        router.get('/api/cart', function (req, res) {
+            var account = res.locals.account._id;
+        //   var account = req.params.account;
             db.getCartOrderByAccount(account, function (err, cart) {
                 if (err) {
                     res.status(500).send("Unable to retrieve cart orders by account");
@@ -326,7 +331,7 @@ var routes = function () {
         })
 
 
-        router.put('/editcart', function (req, res) {
+        router.put('/api/editcart', function (req, res) {
             var data = req.body;
             data.timestamp = Date.now();
             db.updateCartItem(data.id, data.quantity, data.timestamp,
@@ -358,6 +363,22 @@ var routes = function () {
                 }
             });
         })
+
+        router.get('/allreviews/:moviename'), function (req, res) {
+            var moviename = req.params.moviename;
+            db.getmoviereviewsbymovie(moviename, function (err, movies) {
+                if (err) {
+                    res.status(500).send("Unable to retrieve movie comments by movie");
+                } else {
+                    res.status(200).send(movies);
+                }
+            })
+        }
+
+        
+
+
+        
 
 
  return router;
