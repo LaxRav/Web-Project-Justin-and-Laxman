@@ -242,8 +242,11 @@ var database = {
 
     getCartOrderByAccount: function(accountid, callback){
      cartModel.find({account:accountid}, callback);
-    }
-    
+    },
+
+    getReviewsByAccount: function(accountid, callback){
+        reviewModel.find({account:accountid}, callback);
+       }    
     
 
 

@@ -364,8 +364,8 @@ var routes = function () {
             });
         })
 
-        router.get('/allreviews/:moviename'), function (req, res) {
-            var moviename = req.params.moviename;
+        router.get('/api/reviews/:movie'), function (req, res) {
+            var moviename = req.params.movie;
             db.getmoviereviewsbymovie(moviename, function (err, movies) {
                 if (err) {
                     res.status(500).send("Unable to retrieve movie comments by movie");
@@ -375,7 +375,18 @@ var routes = function () {
             })
         }
 
-        
+        router.get('/api/reviews', function (req, res) {
+            var account = res.locals.account._id;
+            db.getReviewsByAccount(account, function (err, reviews) {
+                if (err) {
+                    res.status(500).send("Unable to retrieve reviews by account");
+                }
+                else {
+                    res.status(200).send(reviews);
+    
+                }
+            })
+        })
 
 
         
