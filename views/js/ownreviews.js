@@ -1,25 +1,28 @@
-var movieId = 0;
+var accountId = "";
 $(document).ready(function () {
-    var urlParams = new URLSearchParams(window.location.search);
-    movieId = urlParams.get('id');
     $.ajax({
-        url: "/movies/" + movieId,
+        url: "/api/reviews?token=" + sessionStorage.authToken ,
         method: "get"
     })
         .done(
             function (data) {
-                
-                $('#movie').val(data.movie);
-                $('.movie').text(data.movie);
-                $('.price').text(data.price);
-                $('.description').text(data.description);
-                $('.genre').text(data.genre);
-                $('.release').text(data.release);
-                $('.distributor').text(data.distributor);
-                $('.language').text(data.language);
+                data.forEach(function (review) {
+                    
+                    $(".reviews").append(`
+                    <article>
+                       
+                    <h2>${review.movie}</h2>
+                    <h3>${review.subject}</h3>
+                        <div>
+                         Rating: ${review.rating}/5 <br>
+                         <p>${review.reviewcomment}</p>
+                        Timestamp: ${review.timestamp}<br>
+                        </div>
+                    </article>
+                    <br>
+                `);
+                })
             }
-
-
         )
 
         .fail(
@@ -28,44 +31,7 @@ $(document).ready(function () {
             }
         )
 
-});
-
-
-
-function addreview() {
-    var newreview = {
-        movie: $("#movie").val(),
-        subject: $("#subject").val(),
-        reviewcomment: $("#reviewcomment").val(),
-        rating: $("#rating").val(),
-
-       
-       
-    };
-
-    $.ajax(
-        {
-            url: "/api/sendReview?token="+sessionStorage.authToken,
-            method: 'POST',
-            data: newreview
-            
-        }
-    ) .done(function(data){
-        $(".statusMessage").text(data);
-        alert("Your review has been recorded");
-        window.location.href = "/";
-    }
-    
-    
-    )
-    .fail(
-        function (err) {
-            console.log(err.responseText);
-        }
-    );
-    
-    return false;
-}
+})
 
 $(document).ready(function() {
     var token = sessionStorage.authToken;
@@ -96,3 +62,4 @@ $(".logoutBtn").click(function(){
         console.log(err.responseText);
     })
 });
+

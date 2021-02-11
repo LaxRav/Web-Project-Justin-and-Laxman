@@ -95,8 +95,12 @@ var routes = function () {
         res.sendFile(__dirname + "/views/editcart.html");
     });
 
-    router.get('/allreviews', function (req, res) {
+    router.get('/reviews', function (req, res) {
         res.sendFile(__dirname + "/views/allreviews.html");
+    });
+
+    router.get('/ownreviews', function (req, res) {
+        res.sendFile(__dirname + "/views/ownreviews.html");
     });
 
     router.get('/movies', function (req, res) {
