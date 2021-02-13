@@ -56,7 +56,7 @@ function search2() {
                         Language: ${movies.language}<br>
                         Genre: ${movies.genre}<br>
                     </div>
-                    <button><a href="/addtocart?id=${movies._id}"> Order Movie </a><button>                       
+                    <a href="/addtocart?id=${movies._id}"> Order Movie </a>                     
                 </article>
             `);
         }

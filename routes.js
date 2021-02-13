@@ -131,18 +131,7 @@ var routes = function () {
 
 
 
-    //route to search for movie objects
-    /*
-    router.post('/movies/search', function (req, res) {
-        var movie = req.body.movie;
-        db.searchMovie(movie, function (err, movies) {
-            if (err) {
-                res.status(500).send("Sorry, Unable to retrieve records based on your search");
-            } else {
-                res.status(200).send(movies);
-            }
-        })
-        */
+    
 
 
     router.post('/genre/search', function (req, res) {
