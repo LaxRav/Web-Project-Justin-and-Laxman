@@ -210,7 +210,6 @@ var routes = function () {
                 if (account == null) {
                     res.status(401).send("Login unsucessful. Please try again later");
                 } else {
-
                     var strToHash = account.email + Date.now();
                     var token = crypto.createHash('md5').update(strToHash).digest('hex');
                     db.updateToken(account._id, token, function (err, account) {
