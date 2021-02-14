@@ -367,7 +367,7 @@ var routes = function () {
 
         router.get('/api/reviews/:movie'), function (req, res) {
             var moviename = req.params.movie;
-            db.getmoviereviewsbymovie(moviename, function (err, movies) {
+            db.getReviewsByMovie(moviename, function (err, movies) {
                 if (err) {
                     res.status(500).send("Unable to retrieve movie comments by movie");
                 } else {
@@ -388,6 +388,8 @@ var routes = function () {
                 }
             })
         })
+
+     
 
 
  return router;

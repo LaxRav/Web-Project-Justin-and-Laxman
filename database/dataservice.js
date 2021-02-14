@@ -95,45 +95,8 @@ var database = {
             }
         })
         },
-    
 
 
-  
-
-    //getMovieById: function (id, callback) {
-    //     movieModel.findById(id, callback);
-    // },
-
-
-    getMovie: function (id, callback) {
-        movieModel.findById(id, callback);
-    },
-
-    updateMovieById: function (id, m, p, d, g, r, di, l, callback) {
-        var updatedMovie = {
-            movie: m,
-            price: p,
-            description: d,
-            genre: g,
-            release: r,
-            distributor: di,
-            language: l
-        };
-        movieModel.findByIdAndUpdate(id, updatedMovie, callback);
-    },
-
-    deleteMovie: function (id, callback) {
-        movieModel.findByIdAndDelete(id, callback);
-    },
-
-
-    getAllMovieInfo: function (callback) {
-        movieModel.find({}, callback);
-    },
-
-    getmoviereviewsbymovie: function (moviename,callback) {
-        cartModel.find({movie:moviename}, callback);
-    },
 
     login: function (e, p, callback) {
         accountModel.findOne({ email: e, password: p }, callback);
@@ -147,7 +110,6 @@ var database = {
     removeToken: function (id, callback) {
         accountModel.findByIdAndUpdate(id, { $unset: { token: 1 } }, callback);
     },
-
 
     addAccount: function (fn, sn, e, p, dob, callback) {
         var newAccount = new accountModel({
@@ -171,7 +133,34 @@ var database = {
         accountModel.findById(id, callback);
     },
 
+
+    getMovie: function (id, callback) {
+        movieModel.findById(id, callback);
+    },
+
+    updateMovieById: function (id, m, p, d, g, r, di, l, callback) {
+        var updatedMovie = {
+            movie: m,
+            price: p,
+            description: d,
+            genre: g,
+            release: r,
+            distributor: di,
+            language: l
+        };
+        movieModel.findByIdAndUpdate(id, updatedMovie, callback);
+    },
+
+    deleteMovie: function (id, callback) {
+        movieModel.findByIdAndDelete(id, callback);
+    },
     
+    getAllMovieInfo: function (callback) {
+        movieModel.find({}, callback);
+    },
+
+  
+
     searchMovie: function (m, callback) {
         movieModel.find({ movie: RegExp(m, 'i') }, callback);
     },
@@ -219,11 +208,11 @@ var database = {
         cartModel.find({ Customer: RegExp(c, 'i') }, callback);
     },
 
-
-
-    getCommentsByMovie: function (m, callback) {
-        commentModel.find({ message: RegExp(m, 'i') }, callback);
+    removeCartByCustomer: function (Customer, callback){
+        cartModel.find({account:accountid}, callback);
     },
+
+
 
 
     addReview: function (m,s, rc,r ,oid ,ts, callback) {
@@ -246,8 +235,14 @@ var database = {
 
     getReviewsByAccount: function(accountid, callback){
         reviewModel.find({account:accountid}, callback);
-       }    
-    
+       },    
+
+       getReviewsByMovie: function(moviename, callback){
+        reviewModel.find({movie:moviename}, callback);
+       } ,
+
+      
+       
 
 
 };
