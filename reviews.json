@@ -1,0 +1,49 @@
+[{
+  "_id": {
+    "$oid": "6028f254f8e4c84c8c9accd7"
+  },
+  "movie": "Peter Pan",
+  "subject": "Worth watching",
+  "reviewcomment": "terrible movie",
+  "rating": 1,
+  "account": {
+    "$oid": "5ffd1a1d1da1bb5168872dba"
+  },
+  "movieid": {
+    "$oid": "5fb76aca56318a655ff23065"
+  },
+  "timestamp": "1613296212697",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60290dd4145bae60f898b686"
+  },
+  "movie": "Spider Man",
+  "subject": "Worth watching",
+  "reviewcomment": "The movie is meh",
+  "rating": 4,
+  "account": {
+    "$oid": "5ffd1a1d1da1bb5168872dba"
+  },
+  "movieid": {
+    "$oid": "5fc0bff48e4840191c614486"
+  },
+  "timestamp": "1613303252784",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "60290e00145bae60f898b687"
+  },
+  "movie": "Man of Steel",
+  "subject": "Ok lah",
+  "reviewcomment": "could be better",
+  "rating": 2,
+  "account": {
+    "$oid": "5ffd1a1d1da1bb5168872dba"
+  },
+  "movieid": {
+    "$oid": "5fc138815e8e003a34b146aa"
+  },
+  "timestamp": "1613303296098",
+  "__v": 0
+}]
