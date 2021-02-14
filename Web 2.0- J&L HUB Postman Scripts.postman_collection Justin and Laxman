@@ -1,11 +1,44 @@
 {
 	"info": {
-		"_postman_id": "3d7d93da-c230-4515-9dd7-53182515c222",
-		"name": "Web 2.0: J&L HUB Postman Scripts",
-		"description": "All the testing of routes for J&L HUB.",
+		"_postman_id": "b3fdc1aa-f3df-4e01-b362-4900c3db5730",
+		"name": "J&L Hub",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
+		{
+			"name": "http://localhost:3000/api/reviews?token=ee09d1190340c9b1054d6cdac3c622fb",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "5fc0bff28e4840191c614485",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:3000/movies/5fc0bff28e4840191c614485",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"movies",
+						"5fc0bff28e4840191c614485"
+					]
+				},
+				"description": "Retrive reviews by account"
+			},
+			"response": []
+		},
 		{
 			"name": "http://localhost:3000/movies",
 			"request": {
@@ -21,17 +54,31 @@
 					"path": [
 						"movies"
 					]
-				}
+				},
+				"description": "Return all movies"
 			},
 			"response": []
 		},
 		{
-			"name": "http://localhost:3000/movies/5fb76aca56318a655ff23065",
+			"name": "http://localhost:3000/movies/5fc0bff28e4840191c614485",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "5fc0bff28e4840191c614485",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "http://localhost:3000/movies/5fb76aca56318a655ff23065",
+					"raw": "http://localhost:3000/movies/5fc0bff28e4840191c614485",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -39,9 +86,10 @@
 					"port": "3000",
 					"path": [
 						"movies",
-						"5fb76aca56318a655ff23065"
+						"5fc0bff28e4840191c614485"
 					]
-				}
+				},
+				"description": "Search movies by Id"
 			},
 			"response": []
 		},
@@ -50,6 +98,22 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "5fc0bff28e4840191c614485",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "genre",
+							"value": "animation",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
 					"raw": "http://localhost:3000/genre/search",
 					"protocol": "http",
@@ -61,47 +125,8 @@
 						"genre",
 						"search"
 					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/genre/search",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/genre/search",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"genre",
-						"search"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/genre/search",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/genre/search",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"genre",
-						"search"
-					]
-				}
+				},
+				"description": "Search Genres"
 			},
 			"response": []
 		},
@@ -110,6 +135,28 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "5fc0bff28e4840191c614485",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "genre",
+							"value": "animation",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "movie",
+							"value": "The Smurfs",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
 					"raw": "http://localhost:3000/movies/search",
 					"protocol": "http",
@@ -121,37 +168,51 @@
 						"movies",
 						"search"
 					]
-				}
+				},
+				"description": "Search Movies"
 			},
 			"response": []
 		},
 		{
-			"name": "http://localhost:3000/movies/search",
+			"name": "http://localhost:3000/login?email&password",
 			"request": {
 				"method": "POST",
 				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/movies/search",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"movies",
-						"search"
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "id",
+							"value": "5fc0bff28e4840191c614485",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "genre",
+							"value": "animation",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "movie",
+							"value": "The Smurfs",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "nyp@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234",
+							"type": "text"
+						}
 					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/login",
-			"request": {
-				"method": "POST",
-				"header": [],
+				},
 				"url": {
-					"raw": "http://localhost:3000/login",
+					"raw": "http://localhost:3000/login?email&password",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -159,37 +220,42 @@
 					"port": "3000",
 					"path": [
 						"login"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/login",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/login",
-					"protocol": "http",
-					"host": [
-						"localhost"
 					],
-					"port": "3000",
-					"path": [
-						"login"
+					"query": [
+						{
+							"key": "email",
+							"value": null
+						},
+						{
+							"key": "password",
+							"value": null
+						}
 					]
-				}
+				},
+				"description": "Login with email and password"
 			},
 			"response": []
 		},
 		{
-			"name": "http://localhost:3000/logout",
+			"name": "http://localhost:3000/logout?token=b5e77772bb322723746488400ab58302",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "b5e77772bb322723746488400ab58302",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "http://localhost:3000/logout",
+					"raw": "http://localhost:3000/logout?token=b5e77772bb322723746488400ab58302",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -197,35 +263,36 @@
 					"port": "3000",
 					"path": [
 						"logout"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/logout",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/logout",
-					"protocol": "http",
-					"host": [
-						"localhost"
 					],
-					"port": "3000",
-					"path": [
-						"logout"
+					"query": [
+						{
+							"key": "token",
+							"value": "b5e77772bb322723746488400ab58302"
+						}
 					]
-				}
+				},
+				"description": "Logout function.\r\nRequires token which can be retrived from a logged in user.\r\nEg:b5e77772bb322723746488400ab58302"
 			},
 			"response": []
 		},
 		{
 			"name": "http://localhost:3000/accounts",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "b5e77772bb322723746488400ab58302",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
 					"raw": "http://localhost:3000/accounts",
 					"protocol": "http",
@@ -236,15 +303,29 @@
 					"path": [
 						"accounts"
 					]
-				}
+				},
+				"description": "Returns all created accounts"
 			},
 			"response": []
 		},
 		{
 			"name": "http://localhost:3000/accounts/5feaa36dd7cab65c5150c62c",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
 			"request": {
 				"method": "GET",
 				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "b5e77772bb322723746488400ab58302",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
 					"raw": "http://localhost:3000/accounts/5feaa36dd7cab65c5150c62c",
 					"protocol": "http",
@@ -256,46 +337,8 @@
 						"accounts",
 						"5feaa36dd7cab65c5150c62c"
 					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/accounts/5fecac8f63b0da14d00a0c7d",
-			"request": {
-				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/accounts/5fecac8f63b0da14d00a0c7d",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"accounts",
-						"5fecac8f63b0da14d00a0c7d"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/registeraccount",
-			"request": {
-				"method": "POST",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/registeraccount",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"registeraccount"
-					]
-				}
+				},
+				"description": "Retrives an account Id.\r\nEg:5feaa36dd7cab65c5150c62c"
 			},
 			"response": []
 		},
@@ -304,6 +347,73 @@
 			"request": {
 				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "b5e77772bb322723746488400ab58302",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "firstname",
+							"value": "Mr Wee",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "surname",
+							"value": "Kong Sin",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "MrWee@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "dateofbirth",
+							"value": "2021-05-29T00:00:00.000+00:00",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "token",
+							"value": "ee09d1190340c9b1054d6cdac3c622fb",
+							"type": "text"
+						},
+						{
+							"key": "movie",
+							"value": "Toy Story",
+							"type": "text"
+						},
+						{
+							"key": "price",
+							"value": "15.95",
+							"type": "text"
+						},
+						{
+							"key": "quantity",
+							"value": "5",
+							"type": "text"
+						},
+						{
+							"key": "ac",
+							"value": "",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
 				"url": {
 					"raw": "http://localhost:3000/api/addtoCart",
 					"protocol": "http",
@@ -315,140 +425,86 @@
 						"api",
 						"addtoCart"
 					]
-				}
+				},
+				"description": "Add a movie to cart based on the account id."
 			},
 			"response": []
 		},
 		{
-			"name": "http://localhost:3000/editcart",
+			"name": "http://localhost:3000/registeraccount?firstname=Mr Wee&surname=Kong Sin&email=MrWee@gmail.com&password=password&dateofbirth=2021-05-29T00:00:00.000+00:00",
 			"request": {
-				"method": "PUT",
+				"method": "POST",
 				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "token",
+							"value": "b5e77772bb322723746488400ab58302",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "firstname",
+							"value": "Mr Wee",
+							"type": "text"
+						},
+						{
+							"key": "surname",
+							"value": "Kong Sin",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "MrWee@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "dateofbirth",
+							"value": "2021-05-29T00:00:00.000+00:00",
+							"type": "text"
+						}
+					]
+				},
 				"url": {
-					"raw": "http://localhost:3000/editcart",
+					"raw": "http://localhost:3000/registeraccount?firstname=Mr Wee&surname=Kong Sin&email=MrWee@gmail.com&password=password&dateofbirth=2021-05-29T00:00:00.000+00:00",
 					"protocol": "http",
 					"host": [
 						"localhost"
 					],
 					"port": "3000",
 					"path": [
-						"editcart"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/editcart",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/editcart",
-					"protocol": "http",
-					"host": [
-						"localhost"
+						"registeraccount"
 					],
-					"port": "3000",
-					"path": [
-						"editcart"
+					"query": [
+						{
+							"key": "firstname",
+							"value": "Mr Wee"
+						},
+						{
+							"key": "surname",
+							"value": "Kong Sin"
+						},
+						{
+							"key": "email",
+							"value": "MrWee@gmail.com"
+						},
+						{
+							"key": "password",
+							"value": "password"
+						},
+						{
+							"key": "dateofbirth",
+							"value": "2021-05-29T00:00:00.000+00:00"
+						}
 					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/editcart",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/editcart",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"editcart"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/editcart",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/editcart",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"editcart"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/editcart",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/editcart",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"editcart"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/editcart",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/editcart",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"editcart"
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "http://localhost:3000/editcart",
-			"request": {
-				"method": "PUT",
-				"header": [],
-				"url": {
-					"raw": "http://localhost:3000/editcart",
-					"protocol": "http",
-					"host": [
-						"localhost"
-					],
-					"port": "3000",
-					"path": [
-						"editcart"
-					]
-				}
+				},
+				"description": "Register an account"
 			},
 			"response": []
 		}
