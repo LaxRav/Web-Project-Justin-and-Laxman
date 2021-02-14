@@ -57,4 +57,22 @@ li a:hover, li a:active {
      background-color: darkorange;
  }
 
+ .contacting{
+     text-align: center;
+     background-color: darkturquoise;
+     border: 5px solid green;
+ }
+
+ .superman{
+     text-align: center;
+     
+     background-color: mediumblue;
+ }
+
+ .extra{
+    text-align: center;
+    text-decoration: lawngreen;
+    background-color: mediumblue;
+}
+
  
