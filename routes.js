@@ -42,9 +42,7 @@ var routes = function () {
     These first 8 routes are for views only
     */
 
-    router.get('/resources/*', function (req, res) {
-        res.sendFile(__dirname + "/resources/" + req.originalUrl);
-    });
+   
 
     router.get('/', function (req, res) {
         res.sendFile(__dirname + "/views/index.html");

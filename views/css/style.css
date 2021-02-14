@@ -49,4 +49,12 @@ li a:hover, li a:active {
      text-align: center;
  }
 
+ .credentials {
+     text-align: center;
+ }
+
+ .login{
+     background-image: url('/resources/Captain_America_The_First_Avenger_poster.jpg');
+ }
+
  
