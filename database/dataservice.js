@@ -22,7 +22,7 @@ mongoose.set('debug', true);
 
 var database = {
     connect: function () {
-        mongoose.connect('mongodb://localhost:27017/J&LHUB', function (err) {
+        mongoose.connect('mongodb://localhost:27017/J&LHub', function (err) {
             if (err == null) {
                 console.log("Connected to Mongo DB");
                 //initializing values
@@ -54,6 +54,11 @@ var database = {
                     account: {
                         type: schema.Types.ObjectId,
                         ref: 'accounts'
+                    },
+
+                    movieid:{
+                        type:schema.Types.ObjectId,
+                        ref: 'movies'
                     },
                 
                     
@@ -115,14 +120,14 @@ var database = {
         accountModel.findByIdAndUpdate(id, { $unset: { token: 1 } }, callback);
     },
 
-    addAccount: function (fn, sn, e, p, dob, callback) {
+    addAccount: function (fn, sn, e, p, dob,oida, callback) {
         var newAccount = new accountModel({
             firstname: fn,
             surname: sn,
             email: e,
             password: p,
-            dateofbirth: dob
-
+            dateofbirth: dob,
+            movieid: oida
 
             
         });

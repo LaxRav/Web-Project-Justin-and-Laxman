@@ -72,11 +72,6 @@ var routes = function () {
         res.sendFile(__dirname + "/views/register.html");
     });
 
-    router.get('/rent', function (req, res) {
-        res.sendFile(__dirname + "/views/rent.html");
-    });
-
-
     router.get('/addtocart', function (req, res) {
         res.sendFile(__dirname + "/views/addtocart.html");
     });
@@ -364,7 +359,7 @@ var routes = function () {
 
             })
         })
-        router.get('/reviews/movie'), function (req, res) {
+        router.get('/allreviews/:movie'), function (req, res) {
             var movie = req.body.movie;
             db.getReviewsByMovie(movie, function (err, moviereviews) {
                 if (err) {
