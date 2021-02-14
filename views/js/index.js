@@ -19,7 +19,7 @@ $(document).ready(function () {
 
                         <h3><a href="/addtocart?id=${movies._id}">Rent movie here</a></h3>
                         <h3><a href="/review?id=${movies._id}">Write a review here</a></h3>
-                        <h3><a href="/allreviews?id=${movies._id}">Check out the movie reviews here</a></h3>
+                        <h3><a href="/allreviews?movie=${movies.movie}">Check out the movie reviews here</a></h3>
 
                     </article>
                 `);
