@@ -19,7 +19,7 @@ $(document).ready(function() {
         }
     );
 
-    $(".deleteEventBtn").on('click', function() {
+    $(".deleteCartitemBtn").on('click', function() {
         $.ajax(
             {
                 url: '/cart/'+cartId+"?token="+sessionStorage.authToken,
@@ -27,8 +27,8 @@ $(document).ready(function() {
             }
         ).done(
             function (data) {
-                alert("Event deleted!");
-                window.location.href = "/";
+                alert("Cart item deleted. Going to cart page.");
+                window.location.href = "/cart";
             }
         ).fail(
             function (err) {
