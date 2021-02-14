@@ -152,22 +152,7 @@ var routes = function () {
     })
 
 
-    // router.post('/genre/search', function (req, res) {
-        
-    //     var genre = req.body.genre;
-    //     db.searchMovieByGenre(genre, function (err, movies) {
-    //         if (err) {
-    //             res.status(500).send("Sorry, Unable to retrieve records based on your search");
-    //         } else {
-    //             res.status(200).send(movies);
-    //         }
-    //     })
 
-    // });
-
-
-
-    // search
 
 
     router.get('/css/*', function (req, res) {
@@ -177,10 +162,6 @@ var routes = function () {
     router.get('/js/*', function (req, res) {
         res.sendFile(__dirname + "/views/" + req.originalUrl);
     });
-
-
-
-
 
 
     router.post('/login', function (req, res) {
@@ -359,16 +340,7 @@ var routes = function () {
 
             })
         })
-        router.get('/allreviews/:movie'), function (req, res) {
-            var movie = req.body.movie;
-            db.getReviewsByMovie(movie, function (err, moviereviews) {
-                if (err) {
-                    res.status(500).send("Unable to retrieve movie reviews by movie");
-                } else {
-                    res.status(200).send(moviereviews);
-                }
-            })
-        }
+       
 
         router.get('/api/reviews', function (req, res) {
             var account = res.locals.account._id;
@@ -382,6 +354,18 @@ var routes = function () {
                 }
             })
         })
+
+      //cannot work
+        router.get('/allreviews/:movie'), function (req, res) {
+            var movie = req.body.movie;
+            db.getReviewsByMovie(movie, function (err, moviereviews) {
+                if (err) {
+                    res.status(500).send("Unable to retrieve movie reviews by movie");
+                } else {
+                    res.status(200).send(moviereviews);
+                }
+            })
+        }
 
      
  return router;
