@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
         <meta charset="UTF-8">
         <title>AddMovieToCart</title>
-           <style>
-        .protectedSection,.unprotectedSection {
-            display: none;
-        }
-    </style>
+        <style>
+                .protectedSection,
+                .unprotectedSection {
+                        display: none;
+                }
+        </style>
         <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
         <header>
                 <h1>Movie To Cart Page</h1>
         </header>
 
         <section class="protectedSection">
-                
-        <h2>Add Movie</h2>
+
+                <h2>Add Movie</h2>
 
                 <form onsubmit="return addCart();">
 
@@ -39,9 +42,9 @@
                         <span class="distributor"></span><br>
                         <label for="language">Language:</label>
                         <span class="language"></span><br>
-                        
+
                         <label for="price">Price:</label>
-                        <input type="text" id="price" name="price" readonly>                        
+                        <input type="text" id="price" name="price" readonly>
                         <br>
                         <label for="quantity">Quantity:</label>
                         <input type="number" id="quantity" name="quantity">
@@ -49,22 +52,22 @@
 
                         <button type="submit">Add to Cart</button>
 
-                
-                     
 
 
-        </form>
 
-        <p>Not interested? Return to <a href="/search">here</a> Instead</p>
-        <br>
-</section>
-<section class="unprotectedSection">
-        This page requires a logged in account. <br>
-         Click <a href="/register">here</a> to register <br>
-         Click <a href="/login">here</a> to login 
 
-    </section>
-        
+                </form>
+
+                <p>Not interested? Return to <a href="/search">here</a> Instead</p>
+                <br>
+        </section>
+        <section class="unprotectedSection">
+                This page requires a logged in account. <br>
+                Click <a href="/register">here</a> to register <br>
+                Click <a href="/login">here</a> to login
+
+        </section>
+
         <script src="/js/jquery.min.js"></script>
         <script src="/js/addtocart.js"></script>
 </body>

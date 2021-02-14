@@ -1,58 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
         <meta charset="UTF-8">
         <title>AddMovieToCart</title>
-           <style>
-       
-    </style>
+        <style>
+
+        </style>
         <link rel="stylesheet" href="/css/style.css">
 </head>
+
 <body>
         <header>
                 <h1>Movie To Cart Page</h1>
         </header>
 
-                
+
         <h2>Add Movie</h2>
 
-                <form action="/addtoCart" method="POST">
+        <form action="/addtoCart" method="POST">
 
-                        <label for="movie">Movie Name:</label>
-                        <input type="text" id="movie" name="movie" readonly>
-                        <br>
-                        <label for="price">Price:</label>
-                        <input type="text" id="price" name="price" readonly>                        
-                        <br>
-                        <label for="quantity">Quantity:</label>
-                        <input type="number" id="quantity" name="quantity">
-                        <br>
+                <label for="movie">Movie Name:</label>
+                <input type="text" id="movie" name="movie" readonly>
+                <br>
+                <label for="price">Price:</label>
+                <input type="text" id="price" name="price" readonly>
+                <br>
+                <label for="quantity">Quantity:</label>
+                <input type="number" id="quantity" name="quantity">
+                <br>
 
-                        <button type="submit">Add to Cart</button>
+                <button type="submit">Add to Cart</button>
 
-                        <br>
-                        <br>
-                        <label for="description">Event Description:</label>
-                        <input type="text" id="description" name="description" readonly>
-                        <br>
-                        <label for="genre">Genre:</label>
-                        <input type="text" id="genre" name="genre" readonly>
-                        <br>
-                        <label for="release">Release:</label>
-                        <input type="text" id="release" name="release" readonly>
-                        <br>
-                        <label>Distributor:</label>
-                        <input type="text" id="distributor" name="distributor" readonly>
-                        <br>
-                        <label for="language">Language:</label>
-                        <input type="text" id="language" name="language" readonly>
-                        <br>
-                
-                        <span class="description"></span>
-                        <span class="genre"></span>
-                        <span class="release"></span>
-                        <span class="distributor"></span>
-                        <span class="language"></span>
+                <br>
+                <br>
+                <label for="description">Event Description:</label>
+                <input type="text" id="description" name="description" readonly>
+                <br>
+                <label for="genre">Genre:</label>
+                <input type="text" id="genre" name="genre" readonly>
+                <br>
+                <label for="release">Release:</label>
+                <input type="text" id="release" name="release" readonly>
+                <br>
+                <label>Distributor:</label>
+                <input type="text" id="distributor" name="distributor" readonly>
+                <br>
+                <label for="language">Language:</label>
+                <input type="text" id="language" name="language" readonly>
+                <br>
+
+                <span class="description"></span>
+                <span class="genre"></span>
+                <span class="release"></span>
+                <span class="distributor"></span>
+                <span class="language"></span>
 
 
         </form>
@@ -60,7 +62,7 @@
         <p> Return to <a href="/index">home</a></p>
         <br>
 
-        
+
         <script src="/js/jquery.min.js"></script>
         <script src="/js/viewmovie.js"></script>
 </body>

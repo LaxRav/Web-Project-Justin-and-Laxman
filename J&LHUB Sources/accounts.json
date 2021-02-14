@@ -1,27 +1,32 @@
-[{
-  "_id": {
-    "$oid": "5feaa36dd7cab65c5150c62c"
+[
+  {
+    "_id": {
+      "$oid": "5feaa36dd7cab65c5150c62c"
+    },
+    "email": "nyp@gmail.com",
+    "password": "1234"
   },
-  "email": "nyp@gmail.com",
-  "password": "1234"
-},{
-  "_id": {
-    "$oid": "5fec1e6ee292424144f6f269"
+  {
+    "_id": {
+      "$oid": "5fec1e6ee292424144f6f269"
+    },
+    "email": "seetoh@gmail.com",
+    "password": "54321"
   },
-  "email": "seetoh@gmail.com",
-  "password": "54321"
-},{
-  "_id": {
-    "$oid": "5fecac8f63b0da14d00a0c7d"
+  {
+    "_id": {
+      "$oid": "5fecac8f63b0da14d00a0c7d"
+    },
+    "email": "kwjustin2001@gmail.com",
+    "password": "1234",
+    "__v": 0
   },
-  "email": "kwjustin2001@gmail.com",
-  "password": "1234",
-  "__v": 0
-},{
-  "_id": {
-    "$oid": "5fecc0145869d763f46a1785"
-  },
-  "email": "kwjustin2008@gmail.com",
-  "password": "123456",
-  "__v": 0
-}]
+  {
+    "_id": {
+      "$oid": "5fecc0145869d763f46a1785"
+    },
+    "email": "kwjustin2008@gmail.com",
+    "password": "123456",
+    "__v": 0
+  }
+]

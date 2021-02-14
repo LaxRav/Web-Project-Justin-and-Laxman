@@ -1,6 +1,6 @@
 
 var movie = 0;
-$(document).ready(function() {
+$(document).ready(function () {
     var urlParams = new URLSearchParams(window.location.search);
     movieId = urlParams.get('movie');
 
@@ -12,7 +12,7 @@ $(document).ready(function() {
         .done(
             function (data) {
                 data.forEach(function (review) {
-                    
+
                     $(".moviereviews").append(`
                     <article>
                        
@@ -39,18 +39,18 @@ $(document).ready(function() {
 
 
 
-$(".logoutBtn").click(function(){
+$(".logoutBtn").click(function () {
     $.ajax({
-        url: "/logout?token="+sessionStorage.authToken,
-        method:"get"
+        url: "/logout?token=" + sessionStorage.authToken,
+        method: "get"
     })
-    .done(function(data){
-        sessionStorage.removeItem("authToken");
-        location.reload();
-        location.url("/index");
-    })
-    .fail(function(err){
-        console.log(err.responseText);
-    })
+        .done(function (data) {
+            sessionStorage.removeItem("authToken");
+            location.reload();
+            location.url("/index");
+        })
+        .fail(function (err) {
+            console.log(err.responseText);
+        })
 });
 

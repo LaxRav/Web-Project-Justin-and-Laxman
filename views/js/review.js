@@ -40,40 +40,40 @@ function addreview() {
         reviewcomment: $("#reviewcomment").val(),
         rating: $("#rating").val(),
         movieId: $("#movieId").val(),
-    
 
-       
-       
+
+
+
     };
 
     $.ajax(
         {
-            url: "/api/sendReview?token="+sessionStorage.authToken,
+            url: "/api/sendReview?token=" + sessionStorage.authToken,
             method: 'POST',
             data: newreview
-            
+
         }
-    ) .done(function(data){
+    ).done(function (data) {
         $(".statusMessage").text(data);
         alert("Your review has been recorded");
         window.location.href = "/";
     }
-    
-    
+
+
     )
-    .fail(
-        function (err) {
-            console.log(err.responseText);
-        }
-    );
-    
+        .fail(
+            function (err) {
+                console.log(err.responseText);
+            }
+        );
+
     return false;
 }
 
-$(document).ready(function() {
+$(document).ready(function () {
     var token = sessionStorage.authToken;
 
-    if(token==undefined) {
+    if (token == undefined) {
         $(".protectedSection").hide();
         $(".unprotectedSection").show();
     } else {
@@ -81,21 +81,21 @@ $(document).ready(function() {
         $(".unprotectedSection").hide();
     }
 
-    
+
 });
 
 
-$(".logoutBtn").click(function(){
+$(".logoutBtn").click(function () {
     $.ajax({
-        url: "/logout?token="+sessionStorage.authToken,
-        method:"get"
+        url: "/logout?token=" + sessionStorage.authToken,
+        method: "get"
     })
-    .done(function(data){
-        sessionStorage.removeItem("authToken");
-        location.reload();
-        location.url("/index");
-    })
-    .fail(function(err){
-        console.log(err.responseText);
-    })
+        .done(function (data) {
+            sessionStorage.removeItem("authToken");
+            location.reload();
+            location.url("/index");
+        })
+        .fail(function (err) {
+            console.log(err.responseText);
+        })
 });

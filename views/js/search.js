@@ -7,9 +7,9 @@ function search() {
         method: "post",
         data: movie
     })
-    .done(function (data) {
-        data.forEach(function (movies) {
-            $(".superman").append(`
+        .done(function (data) {
+            data.forEach(function (movies) {
+                $(".superman").append(`
                 <h2> These are the movies based on your preferred genre type: </h2>
                 <article>
                     <h2>${movies.movie}</h2>
@@ -22,14 +22,14 @@ function search() {
                     <a href="/addtocart?id=${movies._id}"> Order Movie </a>                     
                 </article>
             `);
-        }
+            }
+            )
+        })
+        .fail(
+            function (err) {
+                console.log(err.responseText);
+            }
         )
-    })
-    .fail(
-        function (err) {
-            console.log(err.responseText);
-        }
-    )
 
     return false;
 }
@@ -43,9 +43,9 @@ function search2() {
         method: "post",
         data: movie
     })
-    .done(function (data) {
-        data.forEach(function (movies) {
-            $(".extra").append(`
+        .done(function (data) {
+            data.forEach(function (movies) {
+                $(".extra").append(`
                 <h2> These are the movies based on your preferred movie of choice: </h2>
                 <article>
                     <h2>${movies.movie}</h2>
@@ -59,14 +59,14 @@ function search2() {
                     <a href="/addtocart?id=${movies._id}"> Order Movie </a>                     
                 </article>
             `);
-        }
+            }
+            )
+        })
+        .fail(
+            function (err) {
+                console.log(err.responseText);
+            }
         )
-    })
-    .fail(
-        function (err) {
-            console.log(err.responseText);
-        }
-    )
 
     return false;
 }

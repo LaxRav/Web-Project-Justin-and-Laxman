@@ -56,14 +56,14 @@ var database = {
                         ref: 'accounts'
                     },
 
-                    movieid:{
-                        type:schema.Types.ObjectId,
+                    movieid: {
+                        type: schema.Types.ObjectId,
                         ref: 'movies'
                     },
-                
-                    
+
+
                     timestamp: String,
-                    });
+                });
 
 
 
@@ -74,14 +74,14 @@ var database = {
                     reviewcomment: String,
                     rating: Number,
                     timestamp: String,
-                   
-                    account:{
+
+                    account: {
                         type: schema.Types.ObjectId,
-                        ref:'accounts'
+                        ref: 'accounts'
                     },
 
-                    movieid:{
-                        type:schema.Types.ObjectId,
+                    movieid: {
+                        type: schema.Types.ObjectId,
                         ref: 'movies'
                     },
 
@@ -97,13 +97,12 @@ var database = {
                 reviewModel = connection.model('reviews', reviewSchema);
 
 
-        }
-             else 
-             {
+            }
+            else {
                 console.log("Error connecting to Mongo DB");
             }
         })
-        },
+    },
 
 
 
@@ -120,7 +119,7 @@ var database = {
         accountModel.findByIdAndUpdate(id, { $unset: { token: 1 } }, callback);
     },
 
-    addAccount: function (fn, sn, e, p, dob,oida, callback) {
+    addAccount: function (fn, sn, e, p, dob, oida, callback) {
         var newAccount = new accountModel({
             firstname: fn,
             surname: sn,
@@ -129,7 +128,7 @@ var database = {
             dateofbirth: dob,
             movieid: oida
 
-            
+
         });
         newAccount.save(callback);
     },
@@ -163,12 +162,12 @@ var database = {
     deleteMovie: function (id, callback) {
         movieModel.findByIdAndDelete(id, callback);
     },
-    
+
     getAllMovieInfo: function (callback) {
         movieModel.find({}, callback);
     },
 
-  
+
 
     searchMovie: function (movie, callback) {
         movieModel.find({ movie: RegExp(movie, 'i') }, callback);
@@ -179,15 +178,15 @@ var database = {
     },
 
 
-    addToCart: function (m, p, q,oid, ts, callback) {
+    addToCart: function (m, p, q, oid, ts, callback) {
         var newCustomer = new cartModel({
             movie: m,
-            price:p,
+            price: p,
             quantity: q,
             account: oid,
             timestamp: ts,
 
-           
+
         });
         newCustomer.save(callback);
 
@@ -200,10 +199,10 @@ var database = {
         cartModel.findById(id, callback);
     },
 
-    updateCartItem: function (id,q,ts,callback) {
+    updateCartItem: function (id, q, ts, callback) {
         var updatedCart = {
             quantity: q,
-            timestamp: ts,          
+            timestamp: ts,
         };
         cartModel.findByIdAndUpdate(id, updatedCart, callback);
 
@@ -217,16 +216,16 @@ var database = {
         cartModel.find({ Customer: RegExp(c, 'i') }, callback);
     },
 
-    removeCartByCustomer: function (Customer, callback){
-        cartModel.find({account:accountid}, callback);
+    removeCartByCustomer: function (Customer, callback) {
+        cartModel.find({ account: accountid }, callback);
     },
 
 
 
 
-    addReview: function (m,s, rc,r ,oid ,oida, ts, callback) {
+    addReview: function (m, s, rc, r, oid, oida, ts, callback) {
         var newReview = new reviewModel({
-          
+
             movie: m,
             subject: s,
             reviewcomment: rc,
@@ -239,20 +238,20 @@ var database = {
 
     },
 
-    getCartOrderByAccount: function(accountid, callback){
-     cartModel.find({account:accountid}, callback);
+    getCartOrderByAccount: function (accountid, callback) {
+        cartModel.find({ account: accountid }, callback);
     },
 
-    getReviewsByAccount: function(accountid, callback){
-        reviewModel.find({account:accountid}, callback);
-       },    
+    getReviewsByAccount: function (accountid, callback) {
+        reviewModel.find({ account: accountid }, callback);
+    },
 
-       getReviewsByMovie: function(movie, callback){
-        reviewModel.find({movie:movie}, callback);
-       },
+    getReviewsByMovie: function (movie, callback) {
+        reviewModel.find({ movie: movie }, callback);
+    },
 
-      
-       getAllReviews: function (callback) {
+
+    getAllReviews: function (callback) {
         reviewModel.find({}, callback);
     },
 

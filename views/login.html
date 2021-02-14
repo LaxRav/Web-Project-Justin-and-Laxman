@@ -1,11 +1,13 @@
 <html>
-    <link rel="stylesheet" href="../css/style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="../css/style.css">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-        .protectedSection,.unprotectedSection {
-            display: none;
-        }
-    </style>
+    .protectedSection,
+    .unprotectedSection {
+        display: none;
+    }
+</style>
+
 <head>
     <title>Login Page</title>
 </head>
@@ -14,35 +16,35 @@
 
     <nav>
         <div id="navigation">
-        <ul>
-            <li><a class="fiona" href="/">Home</a></li>
-            <li class="unprotectedSection"><a href="/login">Login</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/Search">Search</a></li>
-            <li><a href="/cart">Cart</a></li>
-            <li class="protectedSection"><button class="logoutBtn">Logout now</button></li>
-          </ul>
+            <ul>
+                <li><a class="fiona" href="/">Home</a></li>
+                <li class="unprotectedSection"><a href="/login">Login</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/Search">Search</a></li>
+                <li><a href="/cart">Cart</a></li>
+                <li class="protectedSection"><button class="logoutBtn">Logout now</button></li>
+            </ul>
         </div>
     </nav>
     <div class="login">
-    <h1>Login</h1>
-    <section class="credentials">
-        <form onsubmit="return login();">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email"><br><br />
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password"><br><br />
-            <input type="submit" value="Login">
-        </form>
-    </section>
-<section>
-    <p>Don't have an account? Register <a href="/register">here</a> Instead!</p>
-    
-</section>
-    <div class="statusMessage"></div>
-    <script src='/js/jquery.min.js'></script>
-    <script src="/js/index.js"></script>
-</div>
+        <h1>Login</h1>
+        <section class="credentials">
+            <form onsubmit="return login();">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email"><br><br />
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password"><br><br />
+                <input type="submit" value="Login">
+            </form>
+        </section>
+        <section>
+            <p>Don't have an account? Register <a href="/register">here</a> Instead!</p>
+
+        </section>
+        <div class="statusMessage"></div>
+        <script src='/js/jquery.min.js'></script>
+        <script src="/js/index.js"></script>
+    </div>
 </body>
 
 </html>

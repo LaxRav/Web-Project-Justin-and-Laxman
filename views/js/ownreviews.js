@@ -1,13 +1,13 @@
 var accountId = "";
 $(document).ready(function () {
     $.ajax({
-        url: "/api/reviews?token=" + sessionStorage.authToken ,
+        url: "/api/reviews?token=" + sessionStorage.authToken,
         method: "get"
     })
         .done(
             function (data) {
                 data.forEach(function (review) {
-                    
+
                     $(".reviews").append(`
                     <article>
                        
@@ -33,10 +33,10 @@ $(document).ready(function () {
 
 })
 
-$(document).ready(function() {
+$(document).ready(function () {
     var token = sessionStorage.authToken;
 
-    if(token==undefined) {
+    if (token == undefined) {
         $(".protectedSection").hide();
         $(".unprotectedSection").show();
     } else {
@@ -44,22 +44,22 @@ $(document).ready(function() {
         $(".unprotectedSection").hide();
     }
 
-    
+
 });
 
 
-$(".logoutBtn").click(function(){
+$(".logoutBtn").click(function () {
     $.ajax({
-        url: "/logout?token="+sessionStorage.authToken,
-        method:"get"
+        url: "/logout?token=" + sessionStorage.authToken,
+        method: "get"
     })
-    .done(function(data){
-        sessionStorage.removeItem("authToken");
-        location.reload();
-        location.url("/index");
-    })
-    .fail(function(err){
-        console.log(err.responseText);
-    })
+        .done(function (data) {
+            sessionStorage.removeItem("authToken");
+            location.reload();
+            location.url("/index");
+        })
+        .fail(function (err) {
+            console.log(err.responseText);
+        })
 });
 

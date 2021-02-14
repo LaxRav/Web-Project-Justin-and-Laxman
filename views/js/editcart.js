@@ -1,5 +1,5 @@
 var cartId = 0;
-$(document).ready(function() {
+$(document).ready(function () {
     var urlParams = new URLSearchParams(window.location.search);
     cartId = urlParams.get('id');
 
@@ -19,10 +19,10 @@ $(document).ready(function() {
         }
     );
 
-    $(".deleteCartitemBtn").on('click', function() {
+    $(".deleteCartitemBtn").on('click', function () {
         $.ajax(
             {
-                url: '/cart/'+cartId+"?token="+sessionStorage.authToken,
+                url: '/cart/' + cartId + "?token=" + sessionStorage.authToken,
                 method: 'delete'
             }
         ).done(
@@ -45,7 +45,7 @@ function editCart() {
     };
     $.ajax(
         {
-            url: "/api/editcart?token="+sessionStorage.authToken,
+            url: "/api/editcart?token=" + sessionStorage.authToken,
             method: 'PUT',
             data: cart
         }
@@ -55,7 +55,7 @@ function editCart() {
         }
     ).fail(
         function (err) {
-           console.log(err.responseText);
+            console.log(err.responseText);
         }
     );
     return false;
@@ -64,26 +64,26 @@ function editCart() {
 
 
 
-$(".logoutBtn").click(function(){
+$(".logoutBtn").click(function () {
     $.ajax({
-        url: "/logout?token="+sessionStorage.authToken,
-        method:"get"
+        url: "/logout?token=" + sessionStorage.authToken,
+        method: "get"
     })
-    .done(function(data){
-        sessionStorage.removeItem("authToken");
-        location.reload();
-        location.url("/index");
-    })
-    .fail(function(err){
-        console.log(err.responseText);
-    })
+        .done(function (data) {
+            sessionStorage.removeItem("authToken");
+            location.reload();
+            location.url("/index");
+        })
+        .fail(function (err) {
+            console.log(err.responseText);
+        })
 });
 
 
-$(document).ready(function() {
+$(document).ready(function () {
     var token = sessionStorage.authToken;
 
-    if(token==undefined) {
+    if (token == undefined) {
         $(".protectedSection").hide();
         $(".unprotectedSection").show();
     } else {
@@ -91,21 +91,21 @@ $(document).ready(function() {
         $(".unprotectedSection").hide();
     }
 
-    
+
 });
 
 
-$(".logoutBtn").click(function(){
+$(".logoutBtn").click(function () {
     $.ajax({
-        url: "/logout?token="+sessionStorage.authToken,
-        method:"get"
+        url: "/logout?token=" + sessionStorage.authToken,
+        method: "get"
     })
-    .done(function(data){
-        sessionStorage.removeItem("authToken");
-        location.reload();
-        location.url("/index");
-    })
-    .fail(function(err){
-        console.log(err.responseText);
-    })
+        .done(function (data) {
+            sessionStorage.removeItem("authToken");
+            location.reload();
+            location.url("/index");
+        })
+        .fail(function (err) {
+            console.log(err.responseText);
+        })
 });

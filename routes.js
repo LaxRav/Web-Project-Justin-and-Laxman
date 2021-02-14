@@ -42,7 +42,7 @@ var routes = function () {
     These first 8 routes are for views only
     */
 
-   
+
 
     router.get('/', function (req, res) {
         res.sendFile(__dirname + "/views/index.html");
@@ -88,7 +88,7 @@ var routes = function () {
         res.sendFile(__dirname + "/views/editcart.html");
     });
 
- 
+
 
     router.get('/ownreviews', function (req, res) {
         res.sendFile(__dirname + "/views/ownreviews.html");
@@ -126,7 +126,7 @@ var routes = function () {
 
 
 
-    
+
 
 
     router.post('/genre/search', function (req, res) {
@@ -254,7 +254,7 @@ var routes = function () {
             function (err, order) {
                 res.send(order);
             })
-      });
+    });
 
 
 
@@ -262,124 +262,124 @@ var routes = function () {
         var data = req.body;
         data.timestamp = Date.now();
         var account = res.locals.account._id;
-        db.addReview(data.movie, data.subject, data.reviewcomment, data.rating, account,data.movieId, data.timestamp,
+        db.addReview(data.movie, data.subject, data.reviewcomment, data.rating, account, data.movieId, data.timestamp,
             function (err, review) {
                 res.send(review);
             })
 
 
-        
-        });
+
+    });
 
 
 
-        router.get('/cartitem/:id', function (req, res) {
-            var id = req.params.id;
-            db.getCartById(id, function (err, event) {
-                if (err) {
-                    res.status(500).send("Unable to find an event with this id");
-                } else {
-                    res.status(200).send(event);
-                }
-            })
+    router.get('/cartitem/:id', function (req, res) {
+        var id = req.params.id;
+        db.getCartById(id, function (err, event) {
+            if (err) {
+                res.status(500).send("Unable to find an event with this id");
+            } else {
+                res.status(200).send(event);
+            }
         })
-    
-    
-        router.get('/api/cart', function (req, res) {
-            var account = res.locals.account._id;
+    })
+
+
+    router.get('/api/cart', function (req, res) {
+        var account = res.locals.account._id;
         //   var account = req.params.account;
-            db.getCartOrderByAccount(account, function (err, cart) {
-                if (err) {
-                    res.status(500).send("Unable to retrieve cart orders by account");
-                }
-                else {
-                    res.status(200).send(cart);
-    
-                }
-            })
+        db.getCartOrderByAccount(account, function (err, cart) {
+            if (err) {
+                res.status(500).send("Unable to retrieve cart orders by account");
+            }
+            else {
+                res.status(200).send(cart);
+
+            }
         })
+    })
 
 
-        router.put('/api/editcart', function (req, res) {
-            var data = req.body;
-            data.timestamp = Date.now();
-            db.updateCartItem(data.id, data.quantity, data.timestamp,
-                function (err, event) {
-                    if (err) {
-                        res.status(500).send("Unable to update the cart item");
-                    } else {
-                        if (event == null) {
-                            res.status(200).send("No event is updated");
-                        } else {
-                            res.status(200).send("Event has been updated successfully");
-                        }
-                    }
-                });
-        })
-
-
-        router.delete('/cart/:id', function (req, res) {
-            var id = req.params.id;
-            db.deleteCartItem(id, function (err, event) {
+    router.put('/api/editcart', function (req, res) {
+        var data = req.body;
+        data.timestamp = Date.now();
+        db.updateCartItem(data.id, data.quantity, data.timestamp,
+            function (err, event) {
                 if (err) {
-                    res.status(500).send("Unable to delete the cart item");
+                    res.status(500).send("Unable to update the cart item");
                 } else {
                     if (event == null) {
-                        res.status(200).send("No cart item is deleted");
+                        res.status(200).send("No event is updated");
                     } else {
-                        res.status(200).send("Cart item has been deleted successfully");
+                        res.status(200).send("Event has been updated successfully");
                     }
                 }
             });
-        })
+    })
 
 
-        router.get('/reviews', function (req, res) {
-            db.getAllReviews(function (err, movies) {
-                res.send(movies);
-
-            })
-        })
-       
-
-        router.get('/api/reviews', function (req, res) {
-            var account = res.locals.account._id;
-            db.getReviewsByAccount(account, function (err, reviews) {
-                if (err) {
-                    res.status(500).send("Unable to retrieve reviews by account");
-                }
-                else {
-                    res.status(200).send(reviews);
-    
-                }
-            })
-        })
-
-      //cannot work
-        router.get('/allreviews/:movie'), function (req, res) {
-            var movie = req.body.movie;
-            db.getReviewsByMovie(movie, function (err, moviereviews) {
-                if (err) {
-                    res.status(500).send("Unable to retrieve movie reviews by movie");
+    router.delete('/cart/:id', function (req, res) {
+        var id = req.params.id;
+        db.deleteCartItem(id, function (err, event) {
+            if (err) {
+                res.status(500).send("Unable to delete the cart item");
+            } else {
+                if (event == null) {
+                    res.status(200).send("No cart item is deleted");
                 } else {
-                    res.status(200).send(moviereviews);
+                    res.status(200).send("Cart item has been deleted successfully");
                 }
-            })
-        }
+            }
+        });
+    })
 
-     
- return router;
- 
-    
+
+    router.get('/reviews', function (req, res) {
+        db.getAllReviews(function (err, movies) {
+            res.send(movies);
+
+        })
+    })
+
+
+    router.get('/api/reviews', function (req, res) {
+        var account = res.locals.account._id;
+        db.getReviewsByAccount(account, function (err, reviews) {
+            if (err) {
+                res.status(500).send("Unable to retrieve reviews by account");
+            }
+            else {
+                res.status(200).send(reviews);
+
+            }
+        })
+    })
+
+    //cannot work
+    router.get('/allreviews/:movie'), function (req, res) {
+        var movie = req.body.movie;
+        db.getReviewsByMovie(movie, function (err, moviereviews) {
+            if (err) {
+                res.status(500).send("Unable to retrieve movie reviews by movie");
+            } else {
+                res.status(200).send(moviereviews);
+            }
+        })
     }
 
-    module.exports = routes();
 
-    
-
+    return router;
 
 
+}
+
+module.exports = routes();
 
 
 
-    
+
+
+
+
+
+

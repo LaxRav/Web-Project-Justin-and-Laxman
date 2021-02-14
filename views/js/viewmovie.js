@@ -1,5 +1,5 @@
 var movieId = 0;
-$(document).ready(function() {
+$(document).ready(function () {
     var urlParams = new URLSearchParams(window.location.search);
     movieId = urlParams.get('id');
 
@@ -63,6 +63,6 @@ $(document).ready(function () {
         )
 
 })
-    
-    
-    
+
+
+

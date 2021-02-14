@@ -1,54 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/style.css">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        .protectedSection,.unprotectedSection {
+        .protectedSection,
+        .unprotectedSection {
             display: none;
         }
     </style>
 </head>
+
 <body>
-            <h1>J & L Movies</h1>
+    <h1>J & L Movies</h1>
 
-            <section>
-                <p>Welcome to J&L Movies.</p>
-                <nav>
-                    <div id="navigation">
-                    <ul>
-                        <li><a class="fiona" href="/">Home</a></li>
-                        <li><a href="/rent">Rent</a></li>
-                        <li class="unprotectedSection"><a href="/login">Login</a></li>
-                        <li><a href="/contact">Contact</a></li>
-                        <li><a href="/Search">Search</a></li>
-                        <li><a href="/cart">Cart</a></li>
-                        <li class="protectedSection"><button class="logoutBtn">Logout now</button></li>
+    <section>
+        <p>Welcome to J&L Movies.</p>
+        <nav>
+            <div id="navigation">
+                <ul>
+                    <li><a class="fiona" href="/">Home</a></li>
+                    <li><a href="/rent">Rent</a></li>
+                    <li class="unprotectedSection"><a href="/login">Login</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/Search">Search</a></li>
+                    <li><a href="/cart">Cart</a></li>
+                    <li class="protectedSection"><button class="logoutBtn">Logout now</button></li>
 
-                      </ul>
-                    </div> 
-                </nav>
-                </section>
-                
+                </ul>
+            </div>
+        </nav>
+    </section>
+
     <section class="protectedSection">
-        
-       <h2>Your cart is as follows</h2>
-            <aside class="cart">
 
-            </aside>
+        <h2>Your cart is as follows</h2>
+        <aside class="cart">
+
+        </aside>
 
     </section>
-    
+
     <section class="unprotectedSection">
         This page requires a logged in account. <br>
-         Click <a href="/register">here</a> to register <br>
-         Click <a href="/login">here</a> to login 
+        Click <a href="/register">here</a> to register <br>
+        Click <a href="/login">here</a> to login
 
     </section>
 
     <script src="/js/jquery.min.js"></script>
     <script src="/js/cart.js"></script>
 </body>
+
 </html>

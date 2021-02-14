@@ -7,22 +7,24 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Account Regisrtation page</title>
 <style>
-    .protectedSection,.unprotectedSection {
+    .protectedSection,
+    .unprotectedSection {
         display: none;
     }
 </style>
+
 <body>
 
     <nav>
         <div id="navigation">
-        <ul>
-            <li><a class="fiona" href="/">Home</a></li>
-            <li class="unprotectedSection"><a href="/login">Login</a></li>
-            <li><a href="/contact">Contact</a></li>
-            <li><a href="/Search">Search</a></li>
-            <li><a href="/cart">Cart</a></li>
-            <li class="protectedSection"><button class="logoutBtn">Logout now</button></li>
-          </ul>
+            <ul>
+                <li><a class="fiona" href="/">Home</a></li>
+                <li class="unprotectedSection"><a href="/login">Login</a></li>
+                <li><a href="/contact">Contact</a></li>
+                <li><a href="/Search">Search</a></li>
+                <li><a href="/cart">Cart</a></li>
+                <li class="protectedSection"><button class="logoutBtn">Logout now</button></li>
+            </ul>
         </div>
     </nav>
     <h1>Register Account</h1>
@@ -40,7 +42,7 @@
 
             <label for="password">Password:</label>
             <input type="password" id="password" name="password"><br>
-           
+
             <label for="dateofbirth">Date of Birth:</label>
             <input type="date" id="dateofbirth" name="dateofbirth">
 

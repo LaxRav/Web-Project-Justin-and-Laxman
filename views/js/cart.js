@@ -1,8 +1,8 @@
 
-$(document).ready(function() {
+$(document).ready(function () {
     var token = sessionStorage.authToken;
 
-    if(token==undefined) {
+    if (token == undefined) {
         $(".protectedSection").hide();
         $(".unprotectedSection").show();
     } else {
@@ -10,20 +10,20 @@ $(document).ready(function() {
         $(".unprotectedSection").hide();
     }
 
-    
+
 });
 
 
 var accountId = "";
 $(document).ready(function () {
     $.ajax({
-        url: "/api/cart?token=" + sessionStorage.authToken ,
+        url: "/api/cart?token=" + sessionStorage.authToken,
         method: "get"
     })
         .done(
             function (data) {
                 data.forEach(function (cart) {
-                    
+
                     $(".cart").append(`
                     <article>
                         
@@ -49,31 +49,31 @@ $(document).ready(function () {
 
 })
 
-$(".logoutBtn").click(function(){
+$(".logoutBtn").click(function () {
     $.ajax({
-        url: "/logout?token="+sessionStorage.authToken,
-        method:"get"
+        url: "/logout?token=" + sessionStorage.authToken,
+        method: "get"
     })
-    .done(function(data){
-        sessionStorage.removeItem("authToken");
-        location.reload();
-    })
-    .fail(function(err){
-        console.log(err.responseText);
-    })
+        .done(function (data) {
+            sessionStorage.removeItem("authToken");
+            location.reload();
+        })
+        .fail(function (err) {
+            console.log(err.responseText);
+        })
 });
 
-$(".logoutBtn").click(function(){
+$(".logoutBtn").click(function () {
     $.ajax({
-        url: "/logout?token="+sessionStorage.authToken,
-        method:"get"
+        url: "/logout?token=" + sessionStorage.authToken,
+        method: "get"
     })
-    .done(function(data){
-        sessionStorage.removeItem("authToken");
-        location.reload();
-        location.url("/index");
-    })
-    .fail(function(err){
-        console.log(err.responseText);
-    })
+        .done(function (data) {
+            sessionStorage.removeItem("authToken");
+            location.reload();
+            location.url("/index");
+        })
+        .fail(function (err) {
+            console.log(err.responseText);
+        })
 });

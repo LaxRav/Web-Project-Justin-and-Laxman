@@ -1,5 +1,5 @@
 var movieId = 0;
-$(document).ready(function() {
+$(document).ready(function () {
     var urlParams = new URLSearchParams(window.location.search);
     movieId = urlParams.get('id');
 
@@ -38,10 +38,10 @@ $(document).ready(function() {
 });
 
 
-$(document).ready(function() {
+$(document).ready(function () {
     var token = sessionStorage.authToken;
 
-    if(token==undefined) {
+    if (token == undefined) {
         $(".protectedSection").hide();
         $(".unprotectedSection").show();
     } else {
@@ -49,7 +49,7 @@ $(document).ready(function() {
         $(".unprotectedSection").hide();
     }
 
-    
+
 });
 
 function addCart() {
@@ -61,36 +61,36 @@ function addCart() {
 
     $.ajax(
         {
-            url: "/api/addtoCart?token="+sessionStorage.authToken,
+            url: "/api/addtoCart?token=" + sessionStorage.authToken,
             method: 'POST',
             data: newCartItem
-            
+
         }
-    ) .done(function(data){
+    ).done(function (data) {
         $(".statusMessage").text(data);
         alert("You have just added movie to cart");
         window.location.href = "/";
     })
-    .fail(
-        function (err) {
-            console.log(err.responseText);
-        }
-    );
-    
+        .fail(
+            function (err) {
+                console.log(err.responseText);
+            }
+        );
+
     return false;
 }
 
-$(".logoutBtn").click(function(){
+$(".logoutBtn").click(function () {
     $.ajax({
-        url: "/logout?token="+sessionStorage.authToken,
-        method:"get"
+        url: "/logout?token=" + sessionStorage.authToken,
+        method: "get"
     })
-    .done(function(data){
-        sessionStorage.removeItem("authToken");
-        location.reload();
-        location.url("/index");
-    })
-    .fail(function(err){
-        console.log(err.responseText);
-    })
+        .done(function (data) {
+            sessionStorage.removeItem("authToken");
+            location.reload();
+            location.url("/index");
+        })
+        .fail(function (err) {
+            console.log(err.responseText);
+        })
 });

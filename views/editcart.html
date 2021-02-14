@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
-    <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/style.css">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        .protectedSection,.unprotectedSection {
+        .protectedSection,
+        .unprotectedSection {
             display: none;
         }
     </style>
@@ -19,49 +20,49 @@
         <p>Welcome to J&L Movies.</p>
         <nav>
             <div id="navigation">
-            <ul>
-                <li><a class="fiona" href="/">Home</a></li>
-                <li class="unprotectedSection"><a href="/login">Login</a></li>
-                <li><a href="/contact">Contact</a></li>
-                <li><a href="/Search">Search</a></li>
-                <li><a href="/cart">Cart</a></li>
-                <li class="protectedSection"><button class="logoutBtn">Logout now</button></li>
+                <ul>
+                    <li><a class="fiona" href="/">Home</a></li>
+                    <li class="unprotectedSection"><a href="/login">Login</a></li>
+                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="/Search">Search</a></li>
+                    <li><a href="/cart">Cart</a></li>
+                    <li class="protectedSection"><button class="logoutBtn">Logout now</button></li>
 
-              </ul>
-            </div> 
+                </ul>
+            </div>
         </nav>
     </section>
 
     <section class="protectedSection">
-              
-                <form onsubmit="return editCart();">
-                        <label for="moviename">Movie Name:</label>
-                        <span class="moviename"></span>
-                        <br>
-                        <label for="price">Price: $</label>
-                        <span class="price"></span>
-                        <br>
-                        <label for="quantity">Quantity:</label>
-                        <input type="number" id="quantity" name="quantity">
-                        <br>
-                        <label for="timestamp">Recent Timestamp:</label>
-                        <span class="timestamp"></span>
-                        <br>
-                        <button type="submit">Save cart details</button>
-                </form>
-                <button class="deleteCartitemBtn">Delete cart item</button>
-        </section>
+
+        <form onsubmit="return editCart();">
+            <label for="moviename">Movie Name:</label>
+            <span class="moviename"></span>
+            <br>
+            <label for="price">Price: $</label>
+            <span class="price"></span>
+            <br>
+            <label for="quantity">Quantity:</label>
+            <input type="number" id="quantity" name="quantity">
+            <br>
+            <label for="timestamp">Recent Timestamp:</label>
+            <span class="timestamp"></span>
+            <br>
+            <button type="submit">Save cart details</button>
+        </form>
+        <button class="deleteCartitemBtn">Delete cart item</button>
+    </section>
 
 
-        <section class="unprotectedSection">
-            This page requires a logged in account. <br>
-             Click <a href="/register">here</a> to register <br>
-             Click <a href="/login">here</a> to login 
-    
-        </section>
-        <br>
-        <script src='/js/jquery.min.js'></script>
-        <script src="/js/editCart.js"></script>
+    <section class="unprotectedSection">
+        This page requires a logged in account. <br>
+        Click <a href="/register">here</a> to register <br>
+        Click <a href="/login">here</a> to login
+
+    </section>
+    <br>
+    <script src='/js/jquery.min.js'></script>
+    <script src="/js/editCart.js"></script>
 </body>
 
 </html>
