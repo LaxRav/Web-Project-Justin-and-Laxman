@@ -272,11 +272,11 @@ var routes = function () {
         console.log(data);
         console.log(account);
 
-        db.updateCartItem(data.id,data.movie, data.price, data.quantity, account, data.timestamp,
+        db.updateCartItem(data.id, data.movie, data.price, data.quantity, account, data.timestamp,
             function (err, order) {
                 res.send(order);
             })
-    });
+      });
 
 
 
