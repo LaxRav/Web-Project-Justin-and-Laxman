@@ -1,7 +1,12 @@
-var movie = "";
-$(document).ready(function () {
+
+var movie = 0;
+$(document).ready(function() {
+    var urlParams = new URLSearchParams(window.location.search);
+    movieId = urlParams.get('movie');
+
+
     $.ajax({
-        url: "/allreviews/" + movie,
+        url: "/allreviews/" + movieId,
         method: "get"
     })
         .done(

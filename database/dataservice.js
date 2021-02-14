@@ -7,9 +7,6 @@ var reviewSchema = {};
 var accountModel;
 var movieModel;
 var cartModel;
-
-var commentModel;
-
 var reviewModel;
 
 

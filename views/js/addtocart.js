@@ -68,9 +68,8 @@ function addCart() {
         }
     ) .done(function(data){
         $(".statusMessage").text(data);
-        setTimeout(function(){
-            location.reload();
-        },3000);
+        alert("You have just added movie to cart");
+        window.location.href = "/";
     })
     .fail(
         function (err) {

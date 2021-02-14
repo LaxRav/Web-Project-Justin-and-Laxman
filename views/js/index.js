@@ -128,3 +128,31 @@ $(".logoutBtn").click(function(){
 
 
 
+
+
+function register() {
+    var registrationdetails = {
+        firstname: $("#firstname").val(),
+        surname: $("#surname").val(),
+        email: $("#email").val(),
+        password: $("#password").val(),
+        dateofbirth: $("#dateofbirth").val()
+
+    }
+    $.ajax({
+        url: "/registeraccount",
+        method: "post",
+        data: registrationdetails
+    })
+        .done(function (data) {
+            $(".statusMessage").text(data.message);
+            //stores the token returned from the server, if successful login
+            sessionStorage.authToken = data.token;
+            alert("You have managed to register. Please log in.");
+            window.location.href = "/login";
+        })
+        .fail(function (err) {
+            $(".statusMessage").text(err.responseText);
+        })
+    return false;
+}
