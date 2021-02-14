@@ -58,6 +58,7 @@ var database = {
                         type: schema.Types.ObjectId,
                         ref: 'accounts'
                     },
+                
                     
                     timestamp: String,
                     });
@@ -75,7 +76,12 @@ var database = {
                     account:{
                         type: schema.Types.ObjectId,
                         ref:'accounts'
-                    }
+                    },
+
+                    movieid:{
+                        type:schema.Types.ObjectId,
+                        ref: 'movies'
+                    },
 
 
                 });
@@ -216,7 +222,7 @@ var database = {
 
 
 
-    addReview: function (m,s, rc,r ,oid ,ts, callback) {
+    addReview: function (m,s, rc,r ,oid ,oida, ts, callback) {
         var newReview = new reviewModel({
           
             movie: m,
@@ -224,6 +230,7 @@ var database = {
             reviewcomment: rc,
             rating: r,
             account: oid,
+            movieid: oida,
             timestamp: ts,
         });
         newReview.save(callback);
@@ -238,12 +245,14 @@ var database = {
         reviewModel.find({account:accountid}, callback);
        },    
 
-       getReviewsByMovie: function(moviename, callback){
-        reviewModel.find({movie:moviename}, callback);
-       } ,
+       getReviewsByMovie: function(movie, callback){
+        reviewModel.find({movie:movie}, callback);
+       },
 
       
-       
+       getAllReviews: function (callback) {
+        reviewModel.find({}, callback);
+    },
 
 
 };

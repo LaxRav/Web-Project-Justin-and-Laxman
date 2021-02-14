@@ -8,7 +8,8 @@ $(document).ready(function () {
     })
         .done(
             function (data) {
-                
+                $('#movieId').val(data._id);
+
                 $('#movie').val(data.movie);
                 $('.movie').text(data.movie);
                 $('.price').text(data.price);
@@ -38,6 +39,8 @@ function addreview() {
         subject: $("#subject").val(),
         reviewcomment: $("#reviewcomment").val(),
         rating: $("#rating").val(),
+        movieId: $("#movieId").val(),
+    
 
        
        

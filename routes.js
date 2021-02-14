@@ -286,7 +286,7 @@ var routes = function () {
         var data = req.body;
         data.timestamp = Date.now();
         var account = res.locals.account._id;
-        db.addReview(data.movie, data.subject, data.reviewcomment, data.rating, account, data.timestamp,
+        db.addReview(data.movie, data.subject, data.reviewcomment, data.rating, account,data.movieId, data.timestamp,
             function (err, review) {
                 res.send(review);
             })
@@ -364,13 +364,13 @@ var routes = function () {
 
             })
         })
-        router.get('/reviews/:movie'), function (req, res) {
-            var movie = req.params.movie;
-            db.getReviewsByMovie(movie, function (err, movies) {
+        router.get('/reviews/movie'), function (req, res) {
+            var movie = req.body.movie;
+            db.getReviewsByMovie(movie, function (err, moviereviews) {
                 if (err) {
-                    res.status(500).send("Unable to retrieve movie comments by movie");
+                    res.status(500).send("Unable to retrieve movie reviews by movie");
                 } else {
-                    res.status(200).send(movies);
+                    res.status(200).send(moviereviews);
                 }
             })
         }
